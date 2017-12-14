@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android,Mobile,Google," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="引言很多年没刷过安卓完全忘了，这次因开发需要购入五太子，到手第一件事就是升级为Android6.0，但是刷机过程并不顺利，下面归纳下刷机步骤: 工具准备adb &amp;amp; fastboot驱动：下载地址：http://pan.baidu.com/s/16AxVH安装方法：  下载解压，将名称中含有adb和fastboot.exe复制到 c:/windows/system32下 再将名称中含有adb">
+<meta name="keywords" content="Android,Mobile,Google">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nexus5刷入Android6.0教程">
+<meta property="og:url" content="http://yoursite.com/2015/11/09/android6-0-install/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="引言很多年没刷过安卓完全忘了，这次因开发需要购入五太子，到手第一件事就是升级为Android6.0，但是刷机过程并不顺利，下面归纳下刷机步骤: 工具准备adb &amp;amp; fastboot驱动：下载地址：http://pan.baidu.com/s/16AxVH安装方法：  下载解压，将名称中含有adb和fastboot.exe复制到 c:/windows/system32下 再将名称中含有adb">
+<meta property="og:image" content="http://7xn1ui.com1.z0.glb.clouddn.com/step1.jpg">
+<meta property="og:image" content="http://7xn1ui.com1.z0.glb.clouddn.com/step2.jpg">
+<meta property="og:image" content="http://7xn1ui.com1.z0.glb.clouddn.com/step3.jpg">
+<meta property="og:updated_time" content="2016-03-16T11:42:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Nexus5刷入Android6.0教程">
+<meta name="twitter:description" content="引言很多年没刷过安卓完全忘了，这次因开发需要购入五太子，到手第一件事就是升级为Android6.0，但是刷机过程并不顺利，下面归纳下刷机步骤: 工具准备adb &amp;amp; fastboot驱动：下载地址：http://pan.baidu.com/s/16AxVH安装方法：  下载解压，将名称中含有adb和fastboot.exe复制到 c:/windows/system32下 再将名称中含有adb">
+<meta name="twitter:image" content="http://7xn1ui.com1.z0.glb.clouddn.com/step1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/11/09/android6-0-install/"/>
+
+
+
+
+
+  <title>Nexus5刷入Android6.0教程 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/11/09/android6-0-install/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Nexus5刷入Android6.0教程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-11-09T21:20:35+08:00">
+                2015-11-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>很多年没刷过安卓完全忘了，这次因开发需要购入五太子，到手第一件事就是升级为Android6.0，但是刷机过程并不顺利，下面归纳下刷机步骤:</p>
+<h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><p>adb &amp; fastboot驱动：<br>下载地址：<a href="http://pan.baidu.com/s/16AxVH" target="_blank" rel="noopener">http://pan.baidu.com/s/16AxVH</a><br>安装方法：</p>
+<ol>
+<li>下载解压，将名称中含有adb和fastboot.exe复制到 c:/windows/system32下</li>
+<li>再将名称中含有adb的所有文件复制到 c:/windows/system。</li>
+</ol>
+<p>Android6.0官方镜像：<br>下载地址： <a href="http://pan.baidu.com/s/1kT6cHEn" target="_blank" rel="noopener">http://pan.baidu.com/s/1kT6cHEn</a> 密码：elf8<br>MD5:159361223f975326fc261bb48def426b<br>SHA-1:52364034a9e22d7622c397abe59495fcbdc9c79c</p>
+<h2 id="部署刷机包"><a href="#部署刷机包" class="headerlink" title="部署刷机包"></a>部署刷机包</h2><ol>
+<li>把官方镜像解压到某一文件夹中，在这里我选择 C:/adb 目录，如图所示：</li>
+</ol>
+<p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/step1.jpg" alt=""></p>
+<ol>
+<li><p>打开cmd，进入到上面的adb目录，命令为：</p>
+<p> cd c:\adb</p>
+</li>
+<li><p>把adb目录中的flash-all.bat拖入到命令行窗口中即开始刷机。</p>
+</li>
+</ol>
+<p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/step2.jpg" alt=""></p>
+<h2 id="第一次进入系统"><a href="#第一次进入系统" class="headerlink" title="第一次进入系统"></a>第一次进入系统</h2><p>这里仅罗列几点要注意的地方：</p>
+<ol>
+<li>第一次进入系统很慢，比如我就耗时十分钟左右，耐心等。</li>
+<li>如无意外，你会卡在“正在检查网络连接”页面，别紧张，按以下操作即可：<br>2.1 先后退忘记之前连接的wifi，在填写密码的界面点击『显示高级选项』<br>2.2 到 <a href="http://www.xicidaili.com/wn/" target="_blank" rel="noopener">http://www.xicidaili.com/wn/</a>      上选择一组ip和端口，在wifi高级选项中填入，后连接wifi即可，如果不行的话多换几组ip试试，注意要选择网络自由的国家。</li>
+<li>Android6.0的开发者模式在『设置-关于手机-点击 5 次版本号』可以开启。</li>
+<li>Enjoy it!<br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/step3.jpg" alt=""></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Mobile/" rel="tag"># Mobile</a>
+          
+            <a href="/tags/Google/" rel="tag"># Google</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/11/08/git-clone-branch/" rel="next" title="git clone其他分支的方法">
+                <i class="fa fa-chevron-left"></i> git clone其他分支的方法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/22/Guangzhouautoshow2015-model/" rel="prev" title="2015广州国际车展 ---模特篇">
+                2015广州国际车展 ---模特篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x5F15;&#x8A00;" class="headerlink" title="&#x5F15;&#x8A00;"></a>&#x5F15;&#x8A00;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工具准备"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5DE5;&#x5177;&#x51C6;&#x5907;" class="headerlink" title="&#x5DE5;&#x5177;&#x51C6;&#x5907;"></a>&#x5DE5;&#x5177;&#x51C6;&#x5907;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署刷机包"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x90E8;&#x7F72;&#x5237;&#x673A;&#x5305;" class="headerlink" title="&#x90E8;&#x7F72;&#x5237;&#x673A;&#x5305;"></a>&#x90E8;&#x7F72;&#x5237;&#x673A;&#x5305;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一次进入系统"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x7B2C;&#x4E00;&#x6B21;&#x8FDB;&#x5165;&#x7CFB;&#x7EDF;" class="headerlink" title="&#x7B2C;&#x4E00;&#x6B21;&#x8FDB;&#x5165;&#x7CFB;&#x7EDF;"></a>&#x7B2C;&#x4E00;&#x6B21;&#x8FDB;&#x5165;&#x7CFB;&#x7EDF;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

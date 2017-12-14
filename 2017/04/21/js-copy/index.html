@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript,前端开发,学习笔记," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="最近发现学点什么零碎知识点都给记在博客上记得挺牢的，所以比较高产：） 直接赋值今天讲讲JavaScript的浅拷贝和深拷贝，不少面试题爱考这个。首先当我们要复制一个数组时，可能会采取直接赋值的方式，像这样：12345var arr1=[1,2,3];var arr2=arr1;arr2[1]=7;console.log(arr1);//[1, 7, 3]console.log(arr2);//[1">
+<meta name="keywords" content="JavaScript,前端开发,学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript浅拷贝和深拷贝">
+<meta property="og:url" content="http://yoursite.com/2017/04/21/js-copy/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="最近发现学点什么零碎知识点都给记在博客上记得挺牢的，所以比较高产：） 直接赋值今天讲讲JavaScript的浅拷贝和深拷贝，不少面试题爱考这个。首先当我们要复制一个数组时，可能会采取直接赋值的方式，像这样：12345var arr1=[1,2,3];var arr2=arr1;arr2[1]=7;console.log(arr1);//[1, 7, 3]console.log(arr2);//[1">
+<meta property="og:updated_time" content="2017-04-22T02:17:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript浅拷贝和深拷贝">
+<meta name="twitter:description" content="最近发现学点什么零碎知识点都给记在博客上记得挺牢的，所以比较高产：） 直接赋值今天讲讲JavaScript的浅拷贝和深拷贝，不少面试题爱考这个。首先当我们要复制一个数组时，可能会采取直接赋值的方式，像这样：12345var arr1=[1,2,3];var arr2=arr1;arr2[1]=7;console.log(arr1);//[1, 7, 3]console.log(arr2);//[1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/04/21/js-copy/"/>
+
+
+
+
+
+  <title>JavaScript浅拷贝和深拷贝 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/21/js-copy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript浅拷贝和深拷贝</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-21T22:36:25+08:00">
+                2017-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近发现学点什么零碎知识点都给记在博客上记得挺牢的，所以比较高产：）</p>
+<h2 id="直接赋值"><a href="#直接赋值" class="headerlink" title="直接赋值"></a>直接赋值</h2><p>今天讲讲JavaScript的浅拷贝和深拷贝，不少面试题爱考这个。首先当我们要复制一个数组时，可能会采取直接赋值的方式，像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var arr1=[1,2,3];</span><br><span class="line">var arr2=arr1;</span><br><span class="line">arr2[1]=7;</span><br><span class="line">console.log(arr1);//[1, 7, 3]</span><br><span class="line">console.log(arr2);//[1, 7, 3]</span><br></pre></td></tr></table></figure></p>
+<p>这就出事了，一个数组改变另一个数组也会跟着变，这就是浅拷贝。</p>
+<p>我们可以通过slice、concat方法来实现深拷贝</p>
+<h2 id="slice"><a href="#slice" class="headerlink" title="slice()"></a>slice()</h2><p>先从网上摘一段方法介绍</p>
+<blockquote>
+<p>对于array对象的slice函数，返回一个数组的一段。（仍为数组）<br>arrayObj.slice(start, [end])<br>参数：<br>arrayObj 必选项。一个 Array 对象。<br>start 必选项。arrayObj 中所指定的部分的开始元素是从零开始计算的下标。<br>end可选项。arrayObj 中所指定的部分的结束元素是从零开始计算的下标。<br>说明：<br>slice 方法返回一个 Array 对象，其中包含了 arrayObj 的指定部分。<br>slice 方法一直复制到 end 所指定的元素，但是不包括该元素。<br>如果 start 为负，将它作为 length + start处理，此处 length 为数组的长度。<br>如果 end 为负，就将它作为 length + end 处理，此处 length 为数组的长度。<br>如果省略 end ，那么 slice 方法将一直复制到 arrayObj 的结尾。<br>如果 end 出现在 start 之前，不复制任何元素到新数组中。</p>
+</blockquote>
+<p>好，我们来试试slice方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var arr1=[1,2,3];</span><br><span class="line">var arr2=arr1.slice();</span><br><span class="line">arr2[1]=9;</span><br><span class="line">console.log(arr1);//[1, 2, 3]</span><br><span class="line">console.log(arr2);//[1, 9, 3]</span><br></pre></td></tr></table></figure></p>
+<h2 id="concat"><a href="#concat" class="headerlink" title="concat()"></a>concat()</h2><p>是不是就没问题了？再来看看concat方法：</p>
+<blockquote>
+<p>concat() 方法用于连接两个或多个数组。该方法不会改变现有的数组，而仅仅会返回被连接数组的一个副本。<br>语法：arrayObject.concat(arrayX,arrayX,……,arrayX)<br>说明：返回一个新的数组。该数组是通过把所有 arrayX 参数添加到 arrayObject 中生成的。如果要进行 concat() 操作的参数是数组，那么添加的是数组中的元素，而不是数组。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var arr1 = [&quot;1&quot;,&quot;2&quot;,&quot;3&quot;];</span><br><span class="line">var arr2 = arr1.concat();</span><br><span class="line">arr2[1] = &quot;9&quot;;</span><br><span class="line">console.log(arr1);//[1, 2, 3]</span><br><span class="line">console.log(arr2);//[1, 9, 3]</span><br></pre></td></tr></table></figure>
+<h2 id="局限性"><a href="#局限性" class="headerlink" title="局限性"></a>局限性</h2><p>目前看来，这两个方法做深拷贝没什么问题，但它们也存在着局限性。<em>只适用于不包含引用对象的一维数组的深拷贝</em></p>
+<h2 id="对象的深拷贝"><a href="#对象的深拷贝" class="headerlink" title="对象的深拷贝"></a>对象的深拷贝</h2><p>既然如此，那该怎么对对象进行深拷贝呢？其实也很简单，把对象的属性都给遍历一次，再赋给一个新的对象就行。举个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var a =&#123;name:&apos;Jack&apos;,age:40&#125;;</span><br><span class="line">var b =new Object();</span><br><span class="line">b.name=a.name;</span><br><span class="line">b.age=a.age;</span><br><span class="line">a.name=&apos;robin&apos;;</span><br><span class="line">console.log(a);//&#123;name: &quot;robin&quot;, age: 40&#125;</span><br><span class="line">console.log(b);//&#123;name: &quot;Jack&quot;, age: 40&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/前端开发/" rel="tag"># 前端开发</a>
+          
+            <a href="/tags/学习笔记/" rel="tag"># 学习笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/20/event-obj/" rel="next" title="一张图解释JavaScript event对象">
+                <i class="fa fa-chevron-left"></i> 一张图解释JavaScript event对象
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/02/huxiu-modal/" rel="prev" title="模仿虎嗅网弹出登录框">
+                模仿虎嗅网弹出登录框 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#直接赋值"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x76F4;&#x63A5;&#x8D4B;&#x503C;" class="headerlink" title="&#x76F4;&#x63A5;&#x8D4B;&#x503C;"></a>&#x76F4;&#x63A5;&#x8D4B;&#x503C;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slice"><span class="nav-number">2.</span> <span class="nav-text"><a href="#slice" class="headerlink" title="slice()"></a>slice()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#concat"><span class="nav-number">3.</span> <span class="nav-text"><a href="#concat" class="headerlink" title="concat()"></a>concat()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#局限性"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5C40;&#x9650;&#x6027;" class="headerlink" title="&#x5C40;&#x9650;&#x6027;"></a>&#x5C40;&#x9650;&#x6027;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象的深拷贝"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x5BF9;&#x8C61;&#x7684;&#x6DF1;&#x62F7;&#x8D1D;" class="headerlink" title="&#x5BF9;&#x8C61;&#x7684;&#x6DF1;&#x62F7;&#x8D1D;"></a>&#x5BF9;&#x8C61;&#x7684;&#x6DF1;&#x62F7;&#x8D1D;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

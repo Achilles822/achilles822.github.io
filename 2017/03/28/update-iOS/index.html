@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="软件," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="为什么要线刷？ iOS设备的线刷通常有以下几种：  直接通过电脑端iTunes升级 iOS设备的恢复模式(屏幕显示连接iTunes标志) DFU模式   线刷能避免OTA升级产生的各种奇怪问题 有时候OTA升级不了，例如会卡在“正在验证”页面 已越狱设备不能OTA升级，只能线刷升级系统   为什么要更改iTunes备份路径？根源在于iTunes本身是不支持修改备份目录的，每次都是保存在你的C盘下，">
+<meta name="keywords" content="软件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何更改iTunes的备份路径（iPhone、iPad通用）">
+<meta property="og:url" content="http://yoursite.com/2017/03/28/update-iOS/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="为什么要线刷？ iOS设备的线刷通常有以下几种：  直接通过电脑端iTunes升级 iOS设备的恢复模式(屏幕显示连接iTunes标志) DFU模式   线刷能避免OTA升级产生的各种奇怪问题 有时候OTA升级不了，例如会卡在“正在验证”页面 已越狱设备不能OTA升级，只能线刷升级系统   为什么要更改iTunes备份路径？根源在于iTunes本身是不支持修改备份目录的，每次都是保存在你的C盘下，">
+<meta property="og:image" content="http://7xn1ui.com1.z0.glb.clouddn.com/iOS.png">
+<meta property="og:updated_time" content="2017-03-28T13:44:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何更改iTunes的备份路径（iPhone、iPad通用）">
+<meta name="twitter:description" content="为什么要线刷？ iOS设备的线刷通常有以下几种：  直接通过电脑端iTunes升级 iOS设备的恢复模式(屏幕显示连接iTunes标志) DFU模式   线刷能避免OTA升级产生的各种奇怪问题 有时候OTA升级不了，例如会卡在“正在验证”页面 已越狱设备不能OTA升级，只能线刷升级系统   为什么要更改iTunes备份路径？根源在于iTunes本身是不支持修改备份目录的，每次都是保存在你的C盘下，">
+<meta name="twitter:image" content="http://7xn1ui.com1.z0.glb.clouddn.com/iOS.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/28/update-iOS/"/>
+
+
+
+
+
+  <title>如何更改iTunes的备份路径（iPhone、iPad通用） | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/28/update-iOS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">如何更改iTunes的备份路径（iPhone、iPad通用）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-28T20:43:00+08:00">
+                2017-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="为什么要线刷？"><a href="#为什么要线刷？" class="headerlink" title="为什么要线刷？"></a>为什么要线刷？</h2><blockquote>
+<p>iOS设备的线刷通常有以下几种：</p>
+<ol>
+<li>直接通过电脑端iTunes升级</li>
+<li>iOS设备的恢复模式(屏幕显示连接iTunes标志)</li>
+<li>DFU模式</li>
+</ol>
+<ul>
+<li>线刷能避免OTA升级产生的各种奇怪问题</li>
+<li>有时候OTA升级不了，例如会卡在“正在验证”页面</li>
+<li>已越狱设备不能OTA升级，只能线刷升级系统</li>
+</ul>
+</blockquote>
+<h2 id="为什么要更改iTunes备份路径？"><a href="#为什么要更改iTunes备份路径？" class="headerlink" title="为什么要更改iTunes备份路径？"></a>为什么要更改iTunes备份路径？</h2><p>根源在于iTunes本身是不支持修改备份目录的，每次都是保存在你的C盘下，而每次刷机都没法避免有个自动备份的过程。举个例子，我的设备是iPhone6 64GB，刷机前大概用了50G，自动备份文件大小是18+GB，这时候你的C盘未必有这么大的剩余空间，我们应该明白，最新一代的iPhone主流购买容量都是128GB版本，备份下来的文件大小真的难以想象，这个时候我们就需要想办法迁移备份目录。</p>
+<h2 id="开工"><a href="#开工" class="headerlink" title="开工~"></a>开工~</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>使用Junction命令行工具，生成iTunes备份文件夹的快捷方式指向我们所要移动的目录。</p>
+<h3 id="下载Junction"><a href="#下载Junction" class="headerlink" title="下载Junction"></a>下载Junction</h3><p><a href="https://technet.microsoft.com/en-us/sysinternals/bb896768.aspx" target="_blank" rel="noopener">官网下载地址</a></p>
+<p>把压缩包里的<em>junction.exe,junction64.exe</em>放到<em>C:\windows\system32</em>下，这样就配置好系统环境。</p>
+<h3 id="命令行操作"><a href="#命令行操作" class="headerlink" title="命令行操作"></a>命令行操作</h3><p>便于你们理解，这里的路径基于假设，请根据实际环境修改路径：<br>我们要移动的文件夹路径是：<br><em>C:\Users\UserName\AppData\Roaming\Apple Computer\MobileSync</em>（这个大家都是一样的，替换UserName为你的用户名即可。）<br>我们要移动到以下路径：<br><em>D:\MobileSync</em>（这个可以自定义，选择空间充足的盘符。）</p>
+<ol>
+<li>接下来剪切(必须是剪切，不然会出错！)C盘下的MobileSync文件夹到D盘下</li>
+<li>按下win+R运行cmd，输入以下命令并回车</li>
+</ol>
+<pre><code>mklink /J &quot;C:\Users\UserName\AppData\Roaming\Apple Computer\MobileSync&quot; &quot;D:\MobileSync&quot;
+</code></pre><p>如果出现以下提示，那么恭喜你成功了，可以放心去升级系统了~</p>
+<p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/iOS.png" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/软件/" rel="tag"># 软件</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/07/TIM/" rel="next" title="腾讯的又一次良心发现？————TIM上线之我见">
+                <i class="fa fa-chevron-left"></i> 腾讯的又一次良心发现？————TIM上线之我见
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/04/reinstall-hexo/" rel="prev" title="Hexo3.0重装系统后的还原">
+                Hexo3.0重装系统后的还原 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要线刷？"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7EBF;&#x5237;&#xFF1F;" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7EBF;&#x5237;&#xFF1F;"></a>&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7EBF;&#x5237;&#xFF1F;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要更改iTunes备份路径？"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x66F4;&#x6539;iTunes&#x5907;&#x4EFD;&#x8DEF;&#x5F84;&#xFF1F;" class="headerlink" title="&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x66F4;&#x6539;iTunes&#x5907;&#x4EFD;&#x8DEF;&#x5F84;&#xFF1F;"></a>&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x66F4;&#x6539;iTunes&#x5907;&#x4EFD;&#x8DEF;&#x5F84;&#xFF1F;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开工"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5F00;&#x5DE5;" class="headerlink" title="&#x5F00;&#x5DE5;~"></a>&#x5F00;&#x5DE5;~</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原理"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x539F;&#x7406;" class="headerlink" title="&#x539F;&#x7406;"></a>&#x539F;&#x7406;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载Junction"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#&#x4E0B;&#x8F7D;Junction" class="headerlink" title="&#x4E0B;&#x8F7D;Junction"></a>&#x4E0B;&#x8F7D;Junction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行操作"><span class="nav-number">3.3.</span> <span class="nav-text"><a href="#&#x547D;&#x4EE4;&#x884C;&#x64CD;&#x4F5C;" class="headerlink" title="&#x547D;&#x4EE4;&#x884C;&#x64CD;&#x4F5C;"></a>&#x547D;&#x4EE4;&#x884C;&#x64CD;&#x4F5C;</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
