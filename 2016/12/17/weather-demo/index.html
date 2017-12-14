@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -83,9 +83,10 @@
 <meta name="keywords" content="前端开发,后台开发,PHP,API,demo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PHP+心知天气API实现手机端天气查询demo">
-<meta property="og:url" content="http://yoursite.com/2016/12/17/weather-demo/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:url" content="http://yanziyu.tech/2016/12/17/weather-demo/index.html">
+<meta property="og:site_name" content="黑人筆記">
 <meta property="og:description" content="前言这两天恰逢软件系答辩，扫了一眼我大数本的毕设题目，好家伙八成是Web项目，怎奈我手痒+技穷，只能尝试用PHP来写个天气Demo了，说实话这两年国内好用的天气API接口越来越少了，心知天气算是比较坚挺的一个，申请完接口后发现稳定性还不如用公共开放接口，当然获取的信息也会少很多，没关系，我们懂原理就好。：) 开发准备心知天气官网 值得一提的是，官网为我们准备了两套天气图标，虽然风格较老，但是做做d">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://7xn1ui.com1.z0.glb.clouddn.com/2.gif">
 <meta property="og:updated_time" content="2016-12-17T14:41:16.000Z">
 <meta name="twitter:card" content="summary">
@@ -107,7 +108,7 @@
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: 'Author'
+      author: '博主'
     },
     algolia: {
       applicationID: '',
@@ -121,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/12/17/weather-demo/"/>
+  <link rel="canonical" href="http://yanziyu.tech/2016/12/17/weather-demo/"/>
 
 
 
 
 
-  <title>PHP+心知天气API实现手机端天气查询demo | Hexo</title>
+  <title>PHP+心知天气API实现手机端天气查询demo | 黑人筆記</title>
   
 
 
@@ -139,7 +140,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -157,7 +158,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">黑人筆記</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -187,7 +188,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
           </a>
         </li>
       
@@ -197,7 +198,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档
           </a>
         </li>
       
@@ -234,16 +235,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/17/weather-demo/">
+    <link itemprop="mainEntityOfPage" href="http://yanziyu.tech/2016/12/17/weather-demo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="Leo Yen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="黑人筆記">
     </span>
 
     
@@ -261,9 +262,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-17T22:11:20+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-17T22:11:20+08:00">
                 2016-12-17
               </time>
             
@@ -441,10 +442,10 @@ return $result;}
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
+            文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
+            站点概览
           </li>
         </ul>
       
@@ -453,7 +454,7 @@ return $result;}
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-author-name" itemprop="name">Leo Yen</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -465,7 +466,7 @@ return $result;}
                 <a href="/archives/">
               
                   <span class="site-state-item-count">29</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
@@ -478,7 +479,7 @@ return $result;}
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
                   <span class="site-state-item-count">28</span>
-                  <span class="site-state-item-name">tags</span>
+                  <span class="site-state-item-name">标签</span>
                 </a>
               </div>
             
@@ -536,13 +537,13 @@ return $result;}
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">Leo Yen</span>
 
   
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
@@ -550,7 +551,7 @@ return $result;}
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
 
 
 
@@ -599,6 +600,9 @@ return $result;}
 
 
 
+  
+  
+
 
 
 
@@ -635,6 +639,16 @@ return $result;}
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
   
 
 

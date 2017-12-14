@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -80,11 +80,12 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:title" content="黑人筆記">
+<meta property="og:url" content="http://yanziyu.tech/page/2/index.html">
+<meta property="og:site_name" content="黑人筆記">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="黑人筆記">
 
 
 
@@ -100,7 +101,7 @@
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
-      author: 'Author'
+      author: '博主'
     },
     algolia: {
       applicationID: '',
@@ -114,13 +115,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/page/2/"/>
+  <link rel="canonical" href="http://yanziyu.tech/page/2/"/>
 
 
 
 
 
-  <title>Hexo</title>
+  <title>黑人筆記</title>
   
 
 
@@ -132,7 +133,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -151,7 +152,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">黑人筆記</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -181,7 +182,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
           </a>
         </li>
       
@@ -191,7 +192,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档
           </a>
         </li>
       
@@ -228,16 +229,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/24/JScalculator/">
+    <link itemprop="mainEntityOfPage" href="http://yanziyu.tech/2017/01/24/JScalculator/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="Leo Yen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="黑人筆記">
     </span>
 
     
@@ -257,9 +258,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-24T19:36:37+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-24T19:36:37+08:00">
                 2017-01-24
               </time>
             
@@ -299,41 +300,20 @@
       
         
           
-            <blockquote>
-<p>造轮子是快速提高的方法之一。</p>
-</blockquote>
-<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>以为在花瓣上随便找了一张设计图就可以开工了，结果踩了大坑：（<br>这是我找的图，有没有发现什么不对劲？<br><img src="http://ohvi9wpj7.bkt.clouddn.com/cal1.png" alt=""></p>
-<p>没错，乘法x哪去了？我可是做完了才发现的。这种设计师应该被做成爆炒鱿鱼，为了更完美，无奈只好加了几个功能上去。</p>
-<h3 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h3><p>计算器重在考虑多种错误输入的处理，由于我也是初学者，这里用switch来判断运算</p>
-<pre><code>function operator(type)
-{
-switch(type)
-{
-case &quot;clear&quot;:
-  input.value=&quot;0&quot;;
-  _string.length=0;
-break;
-case &quot;plus&quot;:
-if(checknum(input.value)!=0)
-{
-_string.push(input.value);
-_type=&quot;plus&quot;
-input.value=&quot;+&quot;;
-input.name=&quot;type&quot;;
-}
-break;
-case &quot;minus&quot;:
-if(checknum(input.value)!=0)
-{
-_string.push(input.value);
-_type=&quot;minus&quot;
-input.value=&quot;-&quot;;
-input.name=&quot;type&quot;;
-}
-break;
-</code></pre><h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><p><img src="http://ohvi9wpj7.bkt.clouddn.com/cal2.png" alt=""><br><a href="https://coding.net/u/achilles822/p/Demo/attachment/1385854" target="_blank" rel="noopener">完整源码</a><br><a href="http://112.74.187.252/calculator/calculator.html" target="_blank" rel="noopener">在线demo，仅限pc端</a></p>
-
           
+造轮子是快速提高的方法之一。
+
+准备工作以为在花瓣上随便找了一张设计图就可以开工了，结果踩了大坑：（这是我找的图，有没有发现什么不对劲？
+没错，乘法x哪去了？我可是做完了才发现的。这种设计师应该被做成爆炒鱿鱼，为了更完美，无奈只好加了几个功能上去。
+核心代码计算器重在考虑多种错误输入的处理，由于我
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/01/24/JScalculator/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -380,16 +360,16 @@ break;
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/31/Year-End-Review-for-2016/">
+    <link itemprop="mainEntityOfPage" href="http://yanziyu.tech/2016/12/31/Year-End-Review-for-2016/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="Leo Yen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="黑人筆記">
     </span>
 
     
@@ -409,9 +389,9 @@ break;
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-31T17:13:46+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-31T17:13:46+08:00">
                 2016-12-31
               </time>
             
@@ -454,7 +434,7 @@ break;
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/12/31/Year-End-Review-for-2016/#more" rel="contents">
-              Read more &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -504,16 +484,16 @@ break;
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/17/weather-demo/">
+    <link itemprop="mainEntityOfPage" href="http://yanziyu.tech/2016/12/17/weather-demo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="Leo Yen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="黑人筆記">
     </span>
 
     
@@ -533,9 +513,9 @@ break;
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-17T22:11:20+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-17T22:11:20+08:00">
                 2016-12-17
               </time>
             
@@ -575,44 +555,15 @@ break;
       
         
           
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这两天恰逢软件系答辩，扫了一眼我大数本的毕设题目，好家伙八成是Web项目，怎奈我手痒+技穷，只能尝试用PHP来写个天气Demo了，说实话这两年国内好用的天气API接口越来越少了，心知天气算是比较坚挺的一个，申请完接口后发现稳定性还不如用公共开放接口，当然获取的信息也会少很多，没关系，我们懂原理就好。：)</p>
-<h2 id="开发准备"><a href="#开发准备" class="headerlink" title="开发准备"></a>开发准备</h2><p><a href="http://www.thinkpage.cn/" target="_blank" rel="noopener">心知天气官网</a></p>
-<p>值得一提的是，官网为我们准备了两套天气图标，虽然风格较老，但是做做demo没问题的。</p>
-<h2 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h2><h3 id="从心知API返回天气JSON数据"><a href="#从心知API返回天气JSON数据" class="headerlink" title="从心知API返回天气JSON数据"></a>从心知API返回天气JSON数据</h3><pre><code>function weather(){
-@$location=$_POST[&apos;location&apos;];
-$url=&quot;http://www.thinkpage.cn/weather/api.svc/getWeather?city=$location&amp;language=zh-CHS&amp;provider=CMA&amp;unit=C&amp;aqi=city&quot;;
-$vhtml=curl_get_contents($url);//这是主函数~通过API接口返回JSON数据
-$final=json_decode($vhtml,true);//对Json进行解码，便于提取数据
-$GLOBALS[&apos;wind_scale&apos;]=$final[&quot;results&quot;][0][&quot;now&quot;][&quot;wind_scale&quot;];//风力
-$GLOBALS[&apos;location_name&apos;]=$final[&quot;results&quot;][0][&quot;location&quot;][&quot;name&quot;];
-$GLOBALS[&apos;now_code&apos;]=$final[&quot;results&quot;][0] [&quot;daily&quot;][0][&quot;text_day&quot;];//当前天气
-$GLOBALS[&apos;now_temp&apos;]=$final[&quot;results&quot;][0][&quot;now&quot;][&quot;temperature&quot;];//当前温度
-$GLOBALS[&apos;weather_code_today&apos;]=$final[&apos;results&apos;][0][&apos;now&apos;][&apos;code&apos;];//当前图标
-...后面类似省略}
-</code></pre><h3 id="发起CURL连接"><a href="#发起CURL连接" class="headerlink" title="发起CURL连接"></a>发起CURL连接</h3><pre><code>function curl_get_contents($url){
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);//设置访问的url地址
-curl_setopt($ch, CURLOPT_USERAGENT, &apos;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1&apos;);   //用户访问代理 User-Agent
-curl_setopt($ch, CURLOPT_REFERER,&quot;http://www.thinkpage.cn&quot;);//设置 referer
-curl_setopt($ch, CURLOPT_TIMEOUT, 2);//设置超时
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);//返回结果
-curl_setopt($ch, CURLOPT_COOKIE, &quot;&quot;);
-$result = curl_exec($ch);
-curl_close($ch);
-return $result;}
-</code></pre><h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/2.gif" alt=""><br><a href="http://112.74.187.252/php/index.html" target="_blank" rel="noopener">在线demo</a></p>
-<p>前端代码不贴了，因为太简单了，想看的等我传到github。<br>这次总共不到300行代码就能实现比较令人开心的效果，以后可以举一反三咯~</p>
-<h2 id="收获"><a href="#收获" class="headerlink" title="收获"></a>收获</h2><p>通过写这个demo我掌握了：</p>
-<ul>
-<li>PHP对JSON数据的处理</li>
-<li>心知API部分功能的使用</li>
-<li>编写移动端网页的经验有所提高</li>
-</ul>
-<h2 id="遗憾"><a href="#遗憾" class="headerlink" title="遗憾"></a>遗憾</h2><ul>
-<li>前端方面依然离不开框架的帮助，框架虽好，可还是贪杯了:(</li>
-</ul>
-
-          
+          前言这两天恰逢软件系答辩，扫了一眼我大数本的毕设题目，好家伙八成是Web项目，怎奈我手痒+技穷，只能尝试用PHP来写个天气Demo了，说实话这两年国内好用的天气API接口越来越少了，心知天气算是比较坚挺的一个，申请完接口后发现稳定性还不如用公共开放接口，当然获取的信息也会少很多，没关系，我们懂原理就
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/12/17/weather-demo/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -659,16 +610,16 @@ return $result;}
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/10/spinning-button/">
+    <link itemprop="mainEntityOfPage" href="http://yanziyu.tech/2016/12/10/spinning-button/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="Leo Yen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="黑人筆記">
     </span>
 
     
@@ -688,9 +639,9 @@ return $result;}
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-10T14:34:53+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-10T14:34:53+08:00">
                 2016-12-10
               </time>
             
@@ -733,7 +684,7 @@ return $result;}
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/12/10/spinning-button/#more" rel="contents">
-              Read more &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -783,16 +734,16 @@ return $result;}
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/30/modal-center/">
+    <link itemprop="mainEntityOfPage" href="http://yanziyu.tech/2016/11/30/modal-center/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="Leo Yen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="黑人筆記">
     </span>
 
     
@@ -812,9 +763,9 @@ return $result;}
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-30T17:31:51+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-30T17:31:51+08:00">
                 2016-11-30
               </time>
             
@@ -857,7 +808,7 @@ return $result;}
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/11/30/modal-center/#more" rel="contents">
-              Read more &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -907,16 +858,16 @@ return $result;}
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/20/Guangzhouautoshow2016-cars/">
+    <link itemprop="mainEntityOfPage" href="http://yanziyu.tech/2016/11/20/Guangzhouautoshow2016-cars/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="Leo Yen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="黑人筆記">
     </span>
 
     
@@ -936,9 +887,9 @@ return $result;}
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-20T16:45:57+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-20T16:45:57+08:00">
                 2016-11-20
               </time>
             
@@ -982,7 +933,7 @@ return $result;}
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/11/20/Guangzhouautoshow2016-cars/#more" rel="contents">
-              Read more &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1032,16 +983,16 @@ return $result;}
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/16/compass/">
+    <link itemprop="mainEntityOfPage" href="http://yanziyu.tech/2016/11/16/compass/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="Leo Yen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="黑人筆記">
     </span>
 
     
@@ -1061,9 +1012,9 @@ return $result;}
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-16T15:43:18+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-16T15:43:18+08:00">
                 2016-11-16
               </time>
             
@@ -1103,27 +1054,21 @@ return $result;}
       
         
           
-            <blockquote>
-<p>今天介绍下Win下如何配置Ruby、Sass、Compass：</p>
-</blockquote>
-<h3 id="安装Ruby"><a href="#安装Ruby" class="headerlink" title="安装Ruby"></a>安装Ruby</h3><p>在<a href="http://railsinstaller.org/en" target="_blank" rel="noopener">Ruby官网</a>下载安装RubyInstaller。</p>
-<p><em>安装时记得勾选“add to PATH”选项</em></p>
-<p><em>最好把git也装上，其命令行工具更好用。</em></p>
-<h3 id="更换成境内的源"><a href="#更换成境内的源" class="headerlink" title="更换成境内的源"></a>更换成境内的源</h3><pre><code>gem sources --remove https://rubygem.org/
-
-gem sources -a https://gems.ruby-china.org/
-</code></pre><p><em>如果遇到SSL证书问题，可将https协议换为http协议</em></p>
-<p>使用以下命令检查源是否正确：</p>
-<pre><code>gem sources -l
-</code></pre><h3 id="安装Sass"><a href="#安装Sass" class="headerlink" title="安装Sass"></a>安装Sass</h3><pre><code>gem install Sass
-</code></pre><h3 id="检查Sass版本"><a href="#检查Sass版本" class="headerlink" title="检查Sass版本"></a>检查Sass版本</h3><pre><code>sass -v
-</code></pre><h3 id="安装Compass"><a href="#安装Compass" class="headerlink" title="安装Compass"></a>安装Compass</h3><pre><code>gem install Compass
-</code></pre><h3 id="检查Compass版本"><a href="#检查Compass版本" class="headerlink" title="检查Compass版本"></a>检查Compass版本</h3><pre><code>compass -v
-</code></pre><h3 id="Compass创建项目"><a href="#Compass创建项目" class="headerlink" title="Compass创建项目"></a>Compass创建项目</h3><pre><code>compass create your-project-name
-</code></pre><h3 id="Compass设置监听"><a href="#Compass设置监听" class="headerlink" title="Compass设置监听"></a>Compass设置监听</h3><p>open your project PATH</p>
-<pre><code>compass watch
-</code></pre>
           
+今天介绍下Win下如何配置Ruby、Sass、Compass：
+
+安装Ruby在Ruby官网下载安装RubyInstaller。
+安装时记得勾选“add to PATH”选项
+最好把git也装上，其命令行工具更好用。
+更换成境内的源gem sources --remove https://ruby
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/11/16/compass/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1170,16 +1115,16 @@ gem sources -a https://gems.ruby-china.org/
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/03/img-responsive/">
+    <link itemprop="mainEntityOfPage" href="http://yanziyu.tech/2016/11/03/img-responsive/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="Leo Yen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="黑人筆記">
     </span>
 
     
@@ -1199,9 +1144,9 @@ gem sources -a https://gems.ruby-china.org/
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-03T11:14:38+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-03T11:14:38+08:00">
                 2016-11-03
               </time>
             
@@ -1241,26 +1186,21 @@ gem sources -a https://gems.ruby-china.org/
       
         
           
-            <p>最近在练习Bootstrap的时候需要把图片水平居中，这里要分为两种情况：</p>
-<ol>
-<li>图片使用了.img-responsive类</li>
-</ol>
-<ul>
-<li><p>需要在.img-responsive类后添加.center-block类，like this：</p>
-<pre><code>&lt;img class=&quot;img-responsive center-block&quot; src=&quot;...&quot; /&gt;
-</code></pre></li>
-</ul>
-<ol>
-<li>未使用.img-responsive图片响应式类</li>
-</ol>
-<ul>
-<li><p>直接使用.text-center类，like this：</p>
-<pre><code>&lt;p class=&quot;text-center&quot;&gt;&lt;img src=&quot;...&quot;&gt;&lt;/p&gt;
-</code></pre></li>
-</ul>
-<p>这样，Bootstrap的图片水平居中就实现了~</p>
+          最近在练习Bootstrap的时候需要把图片水平居中，这里要分为两种情况：
 
-          
+图片使用了.img-responsive类
+
+
+需要在.img-responsive类后添加.center-block类，like this：
+&lt;img class=&quot;img-responsive cent
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/11/03/img-responsive/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1307,16 +1247,16 @@ gem sources -a https://gems.ruby-china.org/
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/21/need-for-speed/">
+    <link itemprop="mainEntityOfPage" href="http://yanziyu.tech/2016/07/21/need-for-speed/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="Leo Yen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="黑人筆記">
     </span>
 
     
@@ -1336,9 +1276,9 @@ gem sources -a https://gems.ruby-china.org/
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-07-21T00:07:01+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-21T00:07:01+08:00">
                 2016-07-21
               </time>
             
@@ -1384,7 +1324,7 @@ gem sources -a https://gems.ruby-china.org/
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/07/21/need-for-speed/#more" rel="contents">
-              Read more &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -1434,16 +1374,16 @@ gem sources -a https://gems.ruby-china.org/
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/05/toolbar-issue/">
+    <link itemprop="mainEntityOfPage" href="http://yanziyu.tech/2016/05/05/toolbar-issue/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="Leo Yen">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="黑人筆記">
     </span>
 
     
@@ -1463,9 +1403,9 @@ gem sources -a https://gems.ruby-china.org/
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-05-05T12:17:39+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-05T12:17:39+08:00">
                 2016-05-05
               </time>
             
@@ -1505,78 +1445,17 @@ gem sources -a https://gems.ruby-china.org/
       
         
           
-            <p>最近在练习CoordinatorLayout的时候碰见一个奇怪的问题：当在CollapsingToolbarLayout中加入toolbar之后，会在布局底部也生成一条一样大小的空白区域，把页面内容遮挡住，如图所示；</p>
-<p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/toolbar1.jpg" alt=""><br>布局文件如下：</p>
-<pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
-xmlns:tools=&quot;http://schemas.android.com/tools&quot;
-android:layout_width=&quot;match_parent&quot;
-android:layout_height=&quot;match_parent&quot;
-android:orientation=&quot;vertical&quot;&gt;
-&lt;android.support.design.widget.CoordinatorLayout
-    android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot;
-    &gt;
-    &lt;android.support.design.widget.AppBarLayout
-        android:id=&quot;@+id/appbar_layout&quot;
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:theme=&quot;@style/ThemeOverlay.AppCompat.Dark.ActionBar&quot;&gt;
-
-        &lt;android.support.design.widget.CollapsingToolbarLayout
-            android:layout_width=&quot;match_parent&quot;
-            android:layout_height=&quot;wrap_content&quot;
-            app:contentScrim=&quot;?colorPrimary&quot;
-            app:expandedTitleMarginEnd=&quot;8dp&quot;
-            app:expandedTitleMarginStart=&quot;4dp&quot;
-            app:layout_scrollFlags=&quot;scroll|snap|exitUntilCollapsed&quot;&gt;
-            &lt;android.support.v7.widget.Toolbar
-                android:id=&quot;@+id/toolbar&quot;
-                android:layout_width=&quot;match_parent&quot;
-                android:layout_height=&quot;?attr/actionBarSize&quot;
-                app:layout_collapseMode=&quot;pin&quot; /&gt;
-            &lt;ImageView
-                android:layout_width=&quot;match_parent&quot;
-                android:layout_height=&quot;240dp&quot;
-                android:fitsSystemWindows=&quot;true&quot;
-                android:scaleType=&quot;centerCrop&quot;
-                android:src=&quot;@drawable/scape1&quot;
-                app:layout_collapseMode=&quot;parallax&quot; /&gt;
-        &lt;/android.support.design.widget.CollapsingToolbarLayout&gt;
-    &lt;/android.support.design.widget.AppBarLayout&gt;
-    &lt;android.support.v4.widget.NestedScrollView
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;match_parent&quot;
-        android:fillViewport=&quot;true&quot;
-        android:scrollbars=&quot;none&quot;
-        app:layout_behavior=&quot;@string/appbar_scrolling_view_behavior&quot;&gt;
-        &lt;RelativeLayout
-            android:layout_width=&quot;match_parent&quot;
-            android:layout_height=&quot;match_parent&quot;&gt;
-            &lt;com.ogaclejapan.smarttablayout.SmartTabLayout
-                android:id=&quot;@+id/viewpagertab&quot;
-                android:layout_width=&quot;match_parent&quot;
-                android:layout_height=&quot;48dp&quot;
-             /&gt;
-            &lt;android.support.v4.view.ViewPager
-                android:id=&quot;@+id/viewpager&quot;
-                android:layout_width=&quot;match_parent&quot;
-                android:layout_height=&quot;match_parent&quot;
-                android:layout_below=&quot;@id/viewpagertab&quot; /&gt;
-        &lt;/RelativeLayout&gt;
-    &lt;/android.support.v4.widget.NestedScrollView&gt;
-&lt;/android.support.design.widget.CoordinatorLayout&gt;
-</code></pre><p><br>最初还以为toolbar在作祟，因为把toolbar的layout_height属性设到极小时发现下部的空白也随之变小，后来在调整各个属性后无果的情况下开始怀疑是整体布局的问题，最后在stackoverflow上找到了解决方法：<br>该页面的根布局需由LinearLayout改为RelativeLayout，再加入android:fitsSystemWindows=”true”属性就没问题了~因为解决这个bug花了两天时间，所以特地分享一下：）</p>
-<p>修改后代码:</p>
-<pre><code>&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
- xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
-    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
-    android:layout_width=&quot;match_parent&quot;
-    android:layout_height=&quot;match_parent&quot;
-    android:fitsSystemWindows=&quot;true&quot;&gt;
-</code></pre><p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/toolbar2.jpg" alt=""></p>
-
-          
+          最近在练习CoordinatorLayout的时候碰见一个奇怪的问题：当在CollapsingToolbarLayout中加入toolbar之后，会在布局底部也生成一条一样大小的空白区域，把页面内容遮挡住，如图所示；
+布局文件如下：
+&lt;LinearLayout xmlns:android=&q
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/05/05/toolbar-issue/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1649,7 +1528,7 @@ android:orientation=&quot;vertical&quot;&gt;
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-author-name" itemprop="name">Leo Yen</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -1661,7 +1540,7 @@ android:orientation=&quot;vertical&quot;&gt;
                 <a href="/archives/">
               
                   <span class="site-state-item-count">29</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
@@ -1674,7 +1553,7 @@ android:orientation=&quot;vertical&quot;&gt;
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
                   <span class="site-state-item-count">28</span>
-                  <span class="site-state-item-name">tags</span>
+                  <span class="site-state-item-name">标签</span>
                 </a>
               </div>
             
@@ -1716,13 +1595,13 @@ android:orientation=&quot;vertical&quot;&gt;
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">Leo Yen</span>
 
   
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
@@ -1730,7 +1609,7 @@ android:orientation=&quot;vertical&quot;&gt;
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
 
 
 
@@ -1779,6 +1658,9 @@ android:orientation=&quot;vertical&quot;&gt;
 
 
 
+  
+  
+
 
 
 
@@ -1815,6 +1697,16 @@ android:orientation=&quot;vertical&quot;&gt;
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
   
 
 
