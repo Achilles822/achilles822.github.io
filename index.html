@@ -45,68 +45,24 @@
 
 
 
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-    
-      
-    
-
-    
-  
-
-  
-    
-      
-    
-
-    
-  
-
-  
-
-  
-    
-      
-    
-
-    
-  
-
-  
-    
-    
-    <link href="//fonts.cat.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic|Noto Serif SC:300,300italic,400,400italic,700,700italic|Noto Serif SC:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
 
 
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
 
 
 
@@ -138,7 +94,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    version: '5.1.3',
+    version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -170,15 +126,6 @@
 
 
 
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-126641608-1', 'auto');
-  ga('send', 'pageview');
-</script>
 
 
 
@@ -240,16 +187,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -278,6 +215,139 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yanziyu.tech/2020/07/16/electron-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leo Yen">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑人筆記">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/16/electron-01/" itemprop="url">Electron-Vue 01:项目初始化</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-16T20:10:47+08:00">
+                2020-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>因业务需要开了新坑，选型为Electron-Vue，发展到现在比较成熟了，但是没想到项目初始化都启动不了，把一些小坑记录下来。</p>
+</blockquote>
+<h3 id="Get-Started"><a href="#Get-Started" class="headerlink" title="Get Started"></a>Get Started</h3><h4 id="安装vue-cli"><a href="#安装vue-cli" class="headerlink" title="安装vue-cli"></a>安装vue-cli</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g vue-cli</span><br></pre></td></tr></table></figure>
+<h4 id="通过vue-cli初始化项目模版"><a href="#通过vue-cli初始化项目模版" class="headerlink" title="通过vue-cli初始化项目模版"></a>通过vue-cli初始化项目模版</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init simulatedgreg/electron-vue my-project</span><br></pre></td></tr></table></figure>
+<h4 id="安装依赖并运行开发模式"><a href="#安装依赖并运行开发模式" class="headerlink" title="安装依赖并运行开发模式"></a>安装依赖并运行开发模式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd my-project</span><br><span class="line">yarn # or npm install</span><br><span class="line">yarn run dev # or npm run dev</span><br></pre></td></tr></table></figure>
+<h4 id="ReferenceError-process-is-not-defined"><a href="#ReferenceError-process-is-not-defined" class="headerlink" title="ReferenceError: process is not defined"></a>ReferenceError: process is not defined</h4><p>进行到这里，跑不起来就对了，会报<strong><em>ReferenceError: process is not defined</em></strong>，原因是webpack配置有问题，我们修改项目目录下的 <strong><em>./electron-vue</em></strong> 下的<strong><em>webpack.renderer.config.js和webpack.web.config.js</em></strong>的<strong><em>HtmlWebpackPlugin</em></strong>配置为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">new HtmlWebpackPlugin(&#123;</span><br><span class="line">  filename: &apos;index.html&apos;,</span><br><span class="line">  template: path.resolve(__dirname, &apos;../src/index.ejs&apos;),</span><br><span class="line">  templateParameters(compilation, assets, options) &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      compilation: compilation,</span><br><span class="line">      webpack: compilation.getStats().toJson(),</span><br><span class="line">      webpackConfig: compilation.options,</span><br><span class="line">      htmlWebpackPlugin: &#123;</span><br><span class="line">        files: assets,</span><br><span class="line">        options: options</span><br><span class="line">      &#125;,</span><br><span class="line">      process,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  minify: &#123;</span><br><span class="line">    collapseWhitespace: true,</span><br><span class="line">    removeAttributeQuotes: true,</span><br><span class="line">    removeComments: true</span><br><span class="line">  &#125;,</span><br><span class="line">  nodeModules: false</span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure>
+<h4 id="axios-is-not-defined"><a href="#axios-is-not-defined" class="headerlink" title="axios is not defined"></a>axios is not defined</h4><p>改毕再<strong><em>yarn dev</em></strong>一下就可以解锁第二关<strong><em>axios is not defined</em></strong>，这里很容易联想到依赖安装不完整的问题，如果你尝试安装依赖的话会发现错误没有变化，后经过搜索发现插件白名单没有配置。</p>
+<p>接着修改<strong><em>webpack.renderer.config.js</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let whiteListedModules = [&apos;vue&apos;,&apos;axios&apos;,&apos;vue-electron&apos;,&apos;vue-router&apos;,&apos;element-ui&apos;,&apos;vuex-electron&apos;,&apos;vuex&apos;]</span><br></pre></td></tr></table></figure>
+<p>把所需要的依赖加上即可，进行到这里项目终于可以跑起来了，文章写到这里不忍结束，接着我们迎来第三关：<strong><em>eslint</em></strong></p>
+<h4 id="eslint-vscode代码格式化"><a href="#eslint-vscode代码格式化" class="headerlink" title="eslint vscode代码格式化"></a>eslint vscode代码格式化</h4><p>在使用vue-cli进行项目初始化的时候，我选择了Javascript Standard Style作为代码风格校验，很多人会不堪其扰选择关闭，但其实一个合适的代码风格在团队协作中是很有必要的，至于烦人的红波浪提醒，我们大可交给code formatter去帮我们格式化代码。<br>首先安装vscode拓展 <strong><em>Prettier-Standard - JavaScript formatter</em></strong>，并于vscode首选项中打开<strong><em>editor.formatOnSave</em></strong>即可愉快地匹配项目代码风格。</p>
+<h4 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h4><p>以上是我花了一天时间踩的坑，后续伴随项目发展，本系列文章将会同步更新，感谢观看～</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -341,17 +411,6 @@
 
           
           
-             <span id="/2019/07/16/mac-git/" class="leancloud_visitors" data-flag-title="macOS卸载Xcode导致git报错的解决方法">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -374,15 +433,14 @@
       
         
           
-          因为macbook空间不足卸载了没怎么用的Xcode，导致下班前提交代码时发现git报以下错误：1xcrun: error: invalid active developer path (/Applications/Xcode.app/Contents/Developer), missing xcr
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/07/16/mac-git/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>因为macbook空间不足卸载了没怎么用的Xcode，导致下班前提交代码时发现git报以下错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcrun: error: invalid active developer path (/Applications/Xcode.app/Contents/Developer), missing xcrun at: /Applications/Xcode.app/Contents/Developer/usr/bin/xcrun</span><br></pre></td></tr></table></figure></p>
+<p>经过一番尝试，发现git依赖的CommandLineTools命令行工具路径指向的是Xcode。我们可以通过<strong>xcode-select -p</strong>查看。那么此时我们先把它装回来，执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcode-select --install</span><br></pre></td></tr></table></figure></p>
+<p>看下安装成功了没:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xcode-select --version</span><br><span class="line">-&gt; xcode-select version 2354.</span><br></pre></td></tr></table></figure></p>
+<p>然后把系统命令行路径重新指向到刚安装的xcode-select目录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /usr/bin/xcode-select  --switch /Library/Developer/CommandLineTools</span><br></pre></td></tr></table></figure></p>
+<p>好了，试试git回来了没：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br><span class="line">-&gt; git version 2.20.1 (Apple Git-117)</span><br></pre></td></tr></table></figure></p>
+<p>Done.</p>
+
+          
         
       
     </div>
@@ -478,17 +536,6 @@
 
           
           
-             <span id="/2019/06/27/Bezier-curve/" class="leancloud_visitors" data-flag-title="微信小程序使用贝塞尔曲线绘制加入购物车动画">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -511,18 +558,25 @@
       
         
           
-          定义
-贝塞尔曲线(Bézier curve)，又称贝兹曲线或贝济埃曲线，是应用于二维图形应用程序的数学曲线。一般的矢量图形软件通过它来精确画出曲线，贝兹曲线由线段与节点组成，节点是可拖动的支点，线段像可伸缩的皮筋，我们在绘图工具上看到的钢笔工具就是来做这种矢量曲线的。
+            <h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote>
+<p>贝塞尔曲线(Bézier curve)，又称贝兹曲线或贝济埃曲线，是应用于二维图形应用程序的数学曲线。一般的矢量图形软件通过它来精确画出曲线，贝兹曲线由线段与节点组成，节点是可拖动的支点，线段像可伸缩的皮筋，我们在绘图工具上看到的钢笔工具就是来做这种矢量曲线的。</p>
+</blockquote>
+<h3 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h3><p>以上介绍摘自百度百科，看起来有点晦涩难懂，一年多以前我第一次接触到这个名词便心生抗拒之意。然而在前端开发中，我们在实现抛物线动画时，贝塞尔曲线绝对是个好帮手。今天我们通过在微信小程序实现一个常见的加入购物车动画，来进一步理解它。</p>
+<h3 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h3><p><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1879928557,2488352621&amp;fm=26&amp;gp=0.jpg" alt=""><br>通过上图，我们可以看出贝塞尔曲线有四个关键点，P0、P1、P2、P3且x、y轴取值范围在 <strong><em>[0,1]</em></strong> 。MDN上特别说明了：</p>
+<blockquote>
+<p>Cubic Bézier curves with the P1 or P2 ordinate outside the [0, 1] range may generate bouncing effects.<br>When you specify an invalid cubic-bezier curve, CSS ignores the whole property.</p>
+</blockquote>
+<p>所以x、y的取值一旦不在区间内，CSS会 <strong><em>忽略</em></strong> 掉。<br>我们只需要关注P1和P2的取值，就可以生成一条曲线。在CSS中，贝塞尔曲线的表达式参数也是这两个坐标：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cubic-bezier(x1, y1, x2, y2)</span><br></pre></td></tr></table></figure></p>
+<p>贝塞尔曲线属于 <strong><em>缓动函数（easing functions）</em></strong> ，用于表现某段时间内物体 <strong><em>运动的快慢</em></strong> 。我们可以通过一些实用的工具来调整出我们需要的参数<br><a href="https://easings.net/" target="_blank" rel="noopener">https://easings.net/</a><br>有多种配置好的曲线，应付常见需求应该没有问题。<br><a href="https://cubic-bezier.com/#.17,.67,.83,.67" target="_blank" rel="noopener">https://cubic-bezier.com/#.17,.67,.83,.67</a><br>贝塞尔曲线在线编辑器，可以在线预览效果。url后面的数字即对应四个参数。</p>
+<h3 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h3><p>铺垫了那么多，我们来看一下怎么实现购物车动画。网上有许多该动画在原生js和Vue的实现，其实道理都是一样的:我们需要先获取到「<strong><em>加入购物车</em></strong>」按钮、「<strong><em>购物篮</em></strong>」的坐标，然后通过贝塞尔曲线改变小球的 <strong><em>top</em></strong> 值和 <strong><em>left</em></strong> 值实现从起点到终点的平滑过渡。<br>dom结构：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 触发按钮及小球</span><br><span class="line">&lt;view class=&quot;btn-add-cart before-position&quot; bindtap=&quot;addCart&quot;&gt;加入购物车动画&lt;/view&gt;</span><br><span class="line">&lt;view wx:if=&quot;&#123;&#123;ballDisplay&#125;&#125;&quot; class=&quot;ball&quot; style=&quot;top:&#123;&#123;top&#125;&#125;;left:&#123;&#123;left&#125;&#125;&quot;&gt;&lt;/view&gt;</span><br><span class="line">// 底部tabbar购物栏</span><br><span class="line">&lt;view class=&quot;bottom-bar&quot; hover-class=&quot;none&quot; hover-stop-propagation=&quot;false&quot;&gt;</span><br><span class="line">  &lt;image id=&quot;icon&quot; class=&quot;icon after-position&quot; src=&quot;../../images/cart/cart.png&quot; mode=&quot;widthFix&quot;&gt;&lt;/image&gt;</span><br><span class="line">&lt;/view&gt;</span><br></pre></td></tr></table></figure></p>
+<p>CSS:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">.btn-add-cart &#123;</span><br><span class="line">  width: 300rpx;</span><br><span class="line">  height: 50rpx;</span><br><span class="line">  position: relative;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.bottom-bar &#123;</span><br><span class="line">  position: fixed;</span><br><span class="line">  bottom: 0;</span><br><span class="line">  left: 0;</span><br><span class="line">  height: 100rpx;</span><br><span class="line">  width: 100%;</span><br><span class="line">  background-color: #333;</span><br><span class="line">  display: flex;</span><br><span class="line">  align-items: center;</span><br><span class="line">  justify-content: flex-end</span><br><span class="line">&#125;</span><br><span class="line">.icon&#123;</span><br><span class="line">  height:64rpx;</span><br><span class="line">  width:64rpx;</span><br><span class="line">  padding:10rpx;</span><br><span class="line">  margin-right:30rpx;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  background-color: royalblue;</span><br><span class="line">&#125;</span><br><span class="line">.ball&#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  width:30rpx;</span><br><span class="line">  height:30rpx;</span><br><span class="line">  background-color: red;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  z-index:999;</span><br><span class="line">  transition: 1s top cubic-bezier(0.47, 0, 0.745, 0.715), 1s left cubic-bezier(0, 0, 0, 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后写个通用方法获取起点和终点的坐标：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">getRects(cls) &#123;</span><br><span class="line">  return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">    wx.createSelectorQuery()</span><br><span class="line">      .in(this)</span><br><span class="line">      .select(cls)</span><br><span class="line">      .boundingClientRect(function(rect) &#123;</span><br><span class="line">        console.log(rect);</span><br><span class="line">        resolve(rect);</span><br><span class="line">      &#125;)</span><br><span class="line">      .exec();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注意：获取小球初始位置要在 <strong><em>onShow()</em></strong> 获取。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">onShow() &#123;</span><br><span class="line">  // 获取小球最开始的位置</span><br><span class="line">  this.initBallPos();</span><br><span class="line">  this.start = false;</span><br><span class="line">&#125;,</span><br><span class="line">initBallPos() &#123;</span><br><span class="line">  this.getRects(&quot;.before-position&quot;).then(rect =&gt; &#123;</span><br><span class="line">    this.setData(&#123;</span><br><span class="line">      top: `$&#123;rect.top + 5&#125;px`,</span><br><span class="line">      left: `$&#123;rect.left + 30&#125;px`,</span><br><span class="line">      originTop: `$&#123;rect.top + 5&#125;px`,</span><br><span class="line">      originLeft: `$&#123;rect.left + 30&#125;px`</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里是触发函数，用 <strong><em>this.start</em></strong> 防止多次触发<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">// 加入购物车动画</span><br><span class="line"> addCart() &#123;</span><br><span class="line">   let that = this;</span><br><span class="line">   // 禁止动画多次触发</span><br><span class="line">   if (this.start) &#123;</span><br><span class="line">     return;</span><br><span class="line">   &#125;</span><br><span class="line">   this.start = true;</span><br><span class="line">   this.setData(&#123;</span><br><span class="line">     ballDisplay: true</span><br><span class="line">   &#125;);</span><br><span class="line">   // 获取小球终点位置</span><br><span class="line">   this.getRects(&quot;.after-position&quot;).then(rect =&gt; &#123;</span><br><span class="line">     this.setData(&#123;</span><br><span class="line">       top: `$&#123;rect.top + 16&#125;px`,</span><br><span class="line">       left: `$&#123;rect.left + 16&#125;px`</span><br><span class="line">     &#125;);</span><br><span class="line">     // 延时跟动画时长一致，飞完隐藏掉，再把小球重置到初始位置。</span><br><span class="line">     let &#123; originLeft, originTop &#125; = this.data;</span><br><span class="line">     setTimeout(() =&gt; &#123;</span><br><span class="line">       that.setData(&#123;</span><br><span class="line">         ballDisplay: false,</span><br><span class="line">         top: originTop,</span><br><span class="line">         left: originLeft</span><br><span class="line">       &#125;);</span><br><span class="line">       that.start = false;</span><br><span class="line">     &#125;, 1000);</span><br><span class="line">   &#125;);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<p>demo效果：<br><img src="https://github.com/Achilles822/achilles822.github.io/blob/master/images/curve.gif?raw=true" alt=""></p>
+<p>具体代码可在<a href="https://github.com/Achilles822/wx-miniprogram" target="_blank" rel="noopener">Github</a>找到哦～</p>
 
-用途以上介绍摘自百度百科，看
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/06/27/Bezier-curve/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
         
       
     </div>
@@ -618,17 +672,6 @@
 
           
           
-             <span id="/2018/12/22/wxapp-fonts/" class="leancloud_visitors" data-flag-title="微信小程序使用苹方字体">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -651,16 +694,18 @@
       
         
           
-          最近的一个改版需求设计师在设计稿中使用了苹方字体，在网上找了一下解决方案，无外乎两种方式：
-第一种方式，base64 encode如果字体比较小，如各种英文字体，可以把字体上传到 https://transfonter.org/ 转换成base64格式，然后直接在样式中使用。具体使用
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/12/22/wxapp-fonts/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>最近的一个改版需求设计师在设计稿中使用了苹方字体，在网上找了一下解决方案，无外乎两种方式：</p>
+<h3 id="第一种方式，base64-encode"><a href="#第一种方式，base64-encode" class="headerlink" title="第一种方式，base64 encode"></a>第一种方式，base64 encode</h3><p>如果字体比较小，如各种英文字体，可以把字体上传到 <a href="https://transfonter.org/" target="_blank" rel="noopener">https://transfonter.org/</a> 转换成base64格式，然后直接在样式中使用。具体使用可参考 <a href="https://blog.csdn.net/u013451157/article/details/79825740" target="_blank" rel="noopener">【微信小程序】如何引入外部字体样式</a>一文。</p>
+<h3 id="第二种方式，官方API"><a href="#第二种方式，官方API" class="headerlink" title="第二种方式，官方API"></a>第二种方式，官方API</h3><p>如果字体比较大，如各种中文字体动辄超过10mb，用base64显然是不合适的，小程序超过2m还要分包处理，为了一个字体实在不值当，那么可以用官方的API <strong>wx.loadFontFace</strong>加载外部字体，像这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wx.loadFontFace(&#123;</span><br><span class="line">  family: &apos;PingFangSC-Medium&apos;,</span><br><span class="line">  source: &apos;url(&quot;https://www.your-server.com/PingFangSC-Medium.ttf&quot;)&apos;,</span><br><span class="line">  success: function()&#123;console.log(&apos;load font success&apos;)&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这里需要注意的一点是，<strong>family</strong>处的名称就是使用时<strong>font-family</strong>的名称，举个例子，上方加载的字体这样使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.foo&#123;</span><br><span class="line">    font-family:PingFangSC-Medium;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h3><p>由于字体可能会比较大，所以不建议在一个小程序中使用多种字体，这样会影响用户体验。为了保证界面效果，可以在<strong>onLoad</strong>周期加载字体，在<strong>success</strong>回调中执行后续操作，必要时加上Loading，让程序更加友好。</p>
+<h3 id="2018-12-28日更新："><a href="#2018-12-28日更新：" class="headerlink" title="2018.12.28日更新："></a>2018.12.28日更新：</h3><p>结合实践，决定写得更详细一点，希望可以帮助到更多道友。</p>
+<p>遇到的问题是下载字体时界面已经渲染完毕，导致字体显示不正确。解决方法的总体思路是在使用到该字体的容器中增加一个loading属性，当字体加载完毕后再显示布局,这样可以确保字体渲染正确。</p>
+<p><em>注：下方代码使用了</em> <a href="https://github.com/youngjuning/wxPromise" target="_blank" rel="noopener">wxPromise</a> <em>以支援小程序API Promise化</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- mall.wxml --&gt;</span><br><span class="line">&lt;view wx:if=&quot;&#123;&#123;loading&#125;&#125;&quot; class=&quot;mall-root&quot;&gt;</span><br><span class="line">&lt;/view&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- mall.js --&gt;</span><br><span class="line">Page(&#123;</span><br><span class="line">    data:&#123;</span><br><span class="line">        loading:false</span><br><span class="line">    &#125;,</span><br><span class="line">    onLoad()&#123;</span><br><span class="line">        this.loadFonts().then(()=&gt;&#123;</span><br><span class="line">          this.setData(&#123;</span><br><span class="line">            loading: true</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line">        loadFonts()&#123;</span><br><span class="line">            let PingFangMedium = wx.pro.loadFontFace(&#123;</span><br><span class="line">                family: &apos;PingFangSC-medium&apos;,</span><br><span class="line">                source: &apos;url(&quot;https://img2.misssixty.com.cn/rs/lib/fonts/PingFangSC-medium.ttf&quot;)&apos;</span><br><span class="line">                &#125;)</span><br><span class="line"></span><br><span class="line">            let PingFangRegular = wx.pro.loadFontFace(&#123;</span><br><span class="line">                family: &apos;PingFangSC-regular&apos;,</span><br><span class="line">                source: &apos;url(&quot;https://img2.misssixty.com.cn/rs/lib/fonts/PingFangSC-regular.ttf&quot;)&apos;</span><br><span class="line">                &#125;)</span><br><span class="line">        return Promise.all([PingFangMedium, PingFangRegular]).then((res) =&gt; &#123;</span><br><span class="line">            console.log(res)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+          
         
       
     </div>
@@ -756,17 +801,6 @@
 
           
           
-             <span id="/2018/11/17/Guangzhouautoshow2018-cars/" class="leancloud_visitors" data-flag-title="2018广州国际车展">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -789,17 +823,10 @@
       
         
           
-          今年的首发新车数量比往年多了不少，由于精力问题只去了部分展馆，大众、奥迪全系都换完了代，给人焕然一新的感觉。A6、新A class、新X5、新卡罗拉、ES是本届的超人气车型。连续五年去看车展，不容易啊～
-
+            <p>今年的首发新车数量比往年多了不少，由于精力问题只去了部分展馆，大众、奥迪全系都换完了代，给人焕然一新的感觉。A6、新A class、新X5、新卡罗拉、ES是本届的超人气车型。连续五年去看车展，不容易啊～</p>
+<p><img src="http://cdn.yanziyu.tech/DSC03267.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03270.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03271.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03277.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03283.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03284.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03285.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03293.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03295.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03297.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03312.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03314.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03320.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03328.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03331.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03334.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03344.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03366.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03373.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03374.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03375.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03381.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03392.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03394.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03397.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03401.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03404.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03406.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03410.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03416.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03417.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03418.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03424.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03428.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03445.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03457.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03459.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03464.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03467.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03476.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03477.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03481.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03496.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03507.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03513.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03517.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03522.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03530.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03533.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03537.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03539.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03554.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03557.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03559.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03568.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03569.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03571.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03572.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03574.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03579.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03583.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03590.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03604.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03624.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03637.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03638.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03640.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03655.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03664.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03666.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03681.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03690.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03693.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03702.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03713.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03726.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03735.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03747.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03749.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03763.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03769.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03774.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03776.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03782.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03785.jpg" alt=""></p>
 
           
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/17/Guangzhouautoshow2018-cars/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -895,17 +922,6 @@
 
           
           
-             <span id="/2018/11/14/jquery-01/" class="leancloud_visitors" data-flag-title="解决jQuery无法添加监听">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -928,17 +944,15 @@
       
         
           
-          在最近的项目开发中，用Webpack做了一套脚手架，用jQuery作为主要工具库，一顿操作猛如虎，一看代码2w5。😅今天在这里记一下无法给Dom绑定监听的小问题。
-谈起jQuery绑定事件，这里以最常用的点击事件为例，常见的两种写法有：
-12345678910method one:$(&apos
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/14/jquery-01/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <p>在最近的项目开发中，用Webpack做了一套脚手架，用jQuery作为主要工具库，一顿操作猛如虎，一看代码2w5。😅今天在这里记一下无法给Dom绑定监听的小问题。</p>
+<p>谈起jQuery绑定事件，这里以最常用的点击事件为例，常见的两种写法有：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">method one:</span><br><span class="line"></span><br><span class="line">$(&apos;.selector&apos;).on(&apos;click&apos;,()=&gt;&#123;</span><br><span class="line">    //do something here</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">method two:</span><br><span class="line">$(&apos;.selector&apos;).click(()=&gt;&#123;</span><br><span class="line">    //do something here</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>这两种写法大多数旁友都非常熟悉，平时用起来一点问题也没有，但在我的项目中，却愣是绑定不起来，经过一番查找，原因出在我要绑定事件的Dom是循环后append的，所以，点击事件就失效了，查了下jQuery的API：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">on(eve,[sel],[data],fn)</span><br></pre></td></tr></table></figure></p>
+<p>发现on存在可选的第二个selector参数，官方说明：「一个选择器字符串用于过滤器的触发事件的选择器元素的后代。如果选择的&lt; null或省略，当它到达选定的元素，事件总是触发。」OK，那么要解决这个问题，必须在append html element之后，去on要绑定事件元素的父元素。写成表达式即为:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;.parentSelector&apos;).on(&apos;click&apos;,&apos;.childSelector&apos;,()=&gt;&#123;&#125;)</span><br></pre></td></tr></table></figure>
+<p>好了，事情解决了，可以开启开心星期四了。🤪</p>
+
+          
         
       
     </div>
@@ -1034,17 +1048,6 @@
 
           
           
-             <span id="/2018/10/09/kge-downloader/" class="leancloud_visitors" data-flag-title="koa2实现全民k歌作品批量下载">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1067,17 +1070,29 @@
       
         
           
+            <p><img src="http://47.106.243.241/images/k3.png" alt="界面"></p>
+<h2 id="写在开始"><a href="#写在开始" class="headerlink" title="写在开始"></a>写在开始</h2><p>今天在这里介绍下如何使用koa框架，结合js，实现k歌作品的『批量/单曲/试听』功能。</p>
+<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><p>当用户输入uid时，获取到<strong>全部的作品列表</strong>，并在页面上展示，包含<strong>歌曲名称、歌曲试听、单曲保存</strong>的功能， 并以<strong>弹窗</strong>的形式，给予用户明确的提示：是否下载全部歌曲。当用户点击『下载全部』按钮时，开始下载，并在控制台显示相关进度。当用户点击『取消』时，不影响作品列表的相关操作，点击『分析并下载』时，仍然可以下载全部作品。</p>
+<h2 id="相关数据获取"><a href="#相关数据获取" class="headerlink" title="相关数据获取"></a>相关数据获取</h2><p>第一步的目的是获取到所有作品的列表，自然而然地从个人页开始分析，首先观察url,为以下形式：</p>
+<h4 id="个人中心"><a href="#个人中心" class="headerlink" title="个人中心"></a>个人中心</h4><p><code>https://node.kg.qq.com/personal?uid=18位uid</code></p>
+<p><img src="http://47.106.243.241/images/k1.png" alt=""></p>
+<p>接着发现页面默认加载八首歌，点击『查看更多』按钮会多加载八首歌，在Chrome-Nerwork中查看请求，多请求几页发现规律，用postman模拟请求，发现接口的每页返回数量做了限制，<strong>num</strong>最大值为15，<strong>start</strong>为页数，<strong>share_uid</strong>可从个人中心url获得。至此，我们可以循环请求，获取所有歌曲列表。</p>
+<h4 id="获取作品列表"><a href="#获取作品列表" class="headerlink" title="获取作品列表"></a>获取作品列表</h4><p><code>https://node.kg.qq.com/cgi/fcgi-bin/kg_ugc_get_homepage?type=get_ugc&amp;start=页数&amp;num=8&amp;share_uid=18位uid</code></p>
+<p>最后是获取歌曲播放(下载)的url，在歌曲的播放页的script标签里，我们可以直接获取到一串加密的地址，如果使用这个地址，显然无法与我们之前所做的努力结合，所以我找到了其他网友分享的url，通过<strong>share_uid</strong>，我们可以获取下载url。</p>
+<h4 id="获取歌曲url"><a href="#获取歌曲url" class="headerlink" title="获取歌曲url"></a>获取歌曲url</h4><p><code>http://node.kg.qq.com/cgi/fcgi-bin/fcg_get_play_url?shareid=shareid</code></p>
+<h2 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h2><p>本次项目选择了<strong>koa2</strong>框架，使用<strong>koa-generator</strong>生成带<strong>ejs</strong>模板项目，方便后续功能拓展。加上<strong>axios、jquery、sweetalert2</strong>等辅助库。<br><img src="http://47.106.243.241/images/k4.png" alt="sweetalert2"></p>
+<h2 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h2><p><img src="http://47.106.243.241/images/k6.png" alt="程序运行"><br>整体流程如上图，具体的实现还需要考虑uid校验、node的fs文件流操作，测试过程中发现某用户有相同作品名，还需要加上相同文件名的判断，如果有相同文件名，加上随机数字串，不然创建文件时会覆盖之前的文件。</p>
+<p></p>
+<p><img src="http://47.106.243.241/images/k5.png" alt="程序运行"><br><img src="http://47.106.243.241/images/k2.jpg" alt="程序运行"></p>
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><ul>
+<li>[X] 单曲试听</li>
+<li>[X] 单曲下载</li>
+<li>[X] 作品批量下载</li>
+<li style="list-style: none"><input type="checkbox"> 在前端显示下载进度 </li>
+</ul>
+<h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h2><p><a href="https://github.com/Achilles822/kg-downloader/" target="_blank" rel="noopener">github</a></p>
+
           
-写在开始今天在这里介绍下如何使用koa框架，结合js，实现k歌作品的『批量/单曲/试听』功能。
-需求分析当用户输入uid时，获取到全部的作品列表，并在页面上展示，包含歌曲名称、歌曲试听、单曲保存的功能， 并以弹窗的形式，给予用户明确的提示：是否下载全部歌曲。当用户点击『下载全部』按钮时，开始下载，
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/09/kge-downloader/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1173,17 +1188,6 @@
 
           
           
-             <span id="/2018/05/06/angular-learning/" class="leancloud_visitors" data-flag-title="Angular4学习总结">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1206,16 +1210,21 @@
       
         
           
-          写在开始进入现在的公司快满一年了，记得入职第一天是让我看文档，第二天就正式投入开发了，期间一直想要写点学习心得，但是因为工作量较大，连域名未认证被封了几个月都不知道，趁这次修复blog，大致写一写这一年来积累的东西。
-学习方式学习一门语言最好的方法就是实战，我进入公司的时候
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/06/angular-learning/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h1 id="写在开始"><a href="#写在开始" class="headerlink" title="写在开始"></a>写在开始</h1><p>进入现在的公司快满一年了，记得入职第一天是让我看文档，第二天就正式投入开发了，期间一直想要写点学习心得，但是因为工作量较大，连域名未认证被封了几个月都不知道，趁这次修复blog，大致写一写这一年来积累的东西。</p>
+<h1 id="学习方式"><a href="#学习方式" class="headerlink" title="学习方式"></a>学习方式</h1><p>学习一门语言最好的方法就是实战，我进入公司的时候恰好碰上技术栈转型，逐渐把老项目过渡到Angular4，所以大家都是边做边摸索，Angular在国内远没有Vue那么火，不少问题的解决都要靠老外，国内的开发者也有几个知名的实践，把我们常用的插件集成在一个demo中，这里贴上几个比较经典的学习资源，有需要可以参考：</p>
+<p><a href="https://angular.cn/" target="_blank" rel="noopener">官方中文文档</a></p>
+<p><a href="https://github.com/damoqiongqiu/NiceFish" target="_blank" rel="noopener">大漠老师的美人鱼</a></p>
+<p><a href="https://github.com/zhongzhong0505/CodeBe" target="_blank" rel="noopener">CodeBe插件集成demo</a></p>
+<p><a href="https://github.com/kittencup/angular2-ama-cn" target="_blank" rel="noopener">Angular2随便问</a></p>
+<p>理论上实际开发都是专注于业务，所以一般都会使用框架以提高开发速度，这里推荐阿里的NG-ZORRO和PrimeNG，经过多个版本迭代已经比较成熟，可以放心使用：）</p>
+<p><a href="https://github.com/NG-ZORRO/ng-zorro-antd" target="_blank" rel="noopener">强烈推荐的框架：NG-ZORRO
+</a></p>
+<p><a href="https://github.com/primefaces/primeng" target="_blank" rel="noopener">PrimeNG</a></p>
+<h1 id="实用技巧"><a href="#实用技巧" class="headerlink" title="实用技巧"></a>实用技巧</h1><p><br>这里就不再讲什么数据绑定、http请求等基础用法了，说几个在实际项目中比较实用的技巧，官方文档或许有提及但不够详细。</p>
+<h3 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h3><p>或许你在某些教程中已经学习了Angular的组件通讯，知道常用的组件关系是父子关系，用的是@Input和@Output去传参，但是在实际项目中，经常会遇到兄弟关系的组件，这时候我们可以定义一个全局共用的Service进行传值，需要避免的坑是使用EventEmitter发送的值在订阅之前要先new EventEmiiter()一下，不然会造成重复触发。具体的使用方法可以参考 <a href="https://segmentfault.com/q/1010000011080965" target="_blank" rel="noopener">https://segmentfault.com/q/1010000011080965</a></p>
+<h3 id="动态组件"><a href="#动态组件" class="headerlink" title="动态组件"></a>动态组件</h3><p>当模版内容较多时，例如一个页面包含了多个弹窗，弹窗的内容、逻辑也非常多的时候，按照默认模式Angular会一次全部渲染，影响性能。这时候我们可以使用动态组件，只有初始化事件触发时，才去生成这个弹窗组件，并且这样做有个好处：抽出来的组件可以进行复用。<br>具体的使用方法可以参考 <a href="https://www.jianshu.com/p/10feab2c3102" target="_blank" rel="noopener">https://www.jianshu.com/p/10feab2c3102</a></p>
+
+          
         
       
     </div>
@@ -1311,17 +1320,6 @@
 
           
           
-             <span id="/2017/05/22/nginx/" class="leancloud_visitors" data-flag-title="Windows环境使用nginx反向代理Node.js教程">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1344,17 +1342,41 @@
       
         
           
-          作用最近一直在埋头苦学Node.js,正好手头有个项目需要上线，之前所有项目都是用Apache部署的，接触Node.js后调试都是带端口号的，例如http://localhost:8080 ,但是在生产环境，总不能让用户也访问带端口的地址吧？这个时候就需要用nginx来做端口转发。
-安装官网下载
-下
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/05/22/nginx/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+            <h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>最近一直在埋头苦学Node.js,正好手头有个项目需要上线，之前所有项目都是用Apache部署的，接触Node.js后调试都是带端口号的，例如<a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> ,但是在生产环境，总不能让用户也访问带端口的地址吧？这个时候就需要用nginx来做端口转发。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">官网下载</a></p>
+<p>下载后解压到方便操作的地方，如C:/即可，以下操作以C:/nginx为目录进行演示。</p>
+<p>CMD键入：</p>
+<pre><code>cd C:/nginx
+</code></pre><p>有两种启动命令，第一种无论是否成功启动都是一闪而过，优点是不会挂起进程，第二种会挂起，但是会抛出错误，在配置阶段方便调试。</p>
+<pre><code>start nginx  //第一种启动命令
+
+nginx.exe//第二种启动命令
+</code></pre><p>接着测试服务是否成功启动：</p>
+<pre><code>http://127.0.0.1
+</code></pre><p>如果出现nginx的默认网页就算安装成功。测试完了先关闭服务：</p>
+<pre><code>nginx.exe -s quit
+</code></pre><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>重点来了，网上搜的博文不利于初学者，这也是著此文的目的所在。我们需要修改nginx的配置文件，位于:</p>
+<pre><code>C:\nginx\conf\nginx.conf
+</code></pre><p>编辑该文件，我们的目标是把当前的80端口转发到8080端口。<br>修改第35行开始的配置为：</p>
+<pre><code>server {
+    listen       80;
+    server_name  localhost;
+
+    #charset koi8-r;
+
+    #access_log  logs/host.access.log  main;
+
+    location / {
+        proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host  $http_host;
+    proxy_set_header X-Nginx-Proxy true;
+    proxy_set_header Connection &quot;&quot;;
+    proxy_pass      http://127.0.0.1:8080;
+    }
+</code></pre><p>保存文件，再次开启nginx服务。至此，输入localhost便能访问之前8080端口的项目，希望对大家有所帮助。</p>
+
+          
         
       
     </div>
@@ -1450,17 +1472,6 @@
 
           
           
-             <span id="/2017/05/12/mongodb-win64/" class="leancloud_visitors" data-flag-title="Win10安装MongoDB教程">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -1483,158 +1494,20 @@
       
         
           
-          前言距离MongoDB课程完结已经过去一年半，随着前端知识的系统学习，难免会再次接触到这个数据库，坦白地说之前上课的时候都是应付实验，并没有好好体会它的优点，毕竟你学一门技术如果不能和实战项目结合学习那都是瞎扯淡。接下来的日子得好好学一下了，安装时遇到一些神坑，总结一下与大家分享。
-实验环境Wind
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/05/12/mongodb-win64/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yanziyu.tech/2017/05/02/huxiu-modal/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Leo Yen">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑人筆記">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/02/huxiu-modal/" itemprop="url">模仿虎嗅网弹出登录框</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-02T14:02:45+08:00">
-                2017-05-02
-              </time>
-            
-
-            
-
-            
-          </span>
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>距离MongoDB课程完结已经过去一年半，随着前端知识的系统学习，难免会再次接触到这个数据库，坦白地说之前上课的时候都是应付实验，并没有好好体会它的优点，毕竟你学一门技术如果不能和实战项目结合学习那都是瞎扯淡。接下来的日子得好好学一下了，安装时遇到一些神坑，总结一下与大家分享。</p>
+<h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><p>Windows10 x64 1607、MongoDB v3.4 x64</p>
+<h3 id="获取MongoDB"><a href="#获取MongoDB" class="headerlink" title="获取MongoDB"></a>获取MongoDB</h3><p><a href="https://www.mongodb.com/" target="_blank" rel="noopener">MongoDB官网</a></p>
+<h3 id="配置MongoDB相关文件、注册服务"><a href="#配置MongoDB相关文件、注册服务" class="headerlink" title="配置MongoDB相关文件、注册服务"></a>配置MongoDB相关文件、注册服务</h3><p>默认安装目录为</p>
+<p>C:\Program Files\MongoDB\Server\3.4</p>
+<p>新建以下目录和文件，你可以按需修改：</p>
+<p>E:\data\db    //数据库目录<br>E:\data\dblog\MongoDB.log   //数据库目录</p>
+<p>新建完成后我们需要把MongoDB注册为系统服务，这样日后启动会方便非常多。<br>首先以管理员运行cmd</p>
+<p>cd C:\Program Files\MongoDB\Server\3.4\bin<br>   mongod –dbpath “E:\data\db” –logpath “E:\data\dblog\MongoDB.log” –install –serviceName “MongoDB”</p>
+<p>接着<em>net start mongodb</em>启动刚注册的服务，再输入<em>mongo</em>启动mongo shell。</p>
+<h3 id="issue-Win-10无法注册MongoDB服务"><a href="#issue-Win-10无法注册MongoDB服务" class="headerlink" title="issue:Win 10无法注册MongoDB服务"></a>issue:Win 10无法注册MongoDB服务</h3><p>今天要说的重点来了！！！如果到上面为止你还没有出错，那证明你已经安装成功不必往下看，而我的是提示「服务名无效」，这就尴尬了，刚才注册服务也没出错啊，进系统服务一查，好家伙，服务根本没注册成功。ok，接下来要揭晓Win10史上最大的bug了，原来在小娜里右键管理员运行的cmd依旧没获得权限，导致服务注册失败，正确的做法是win+X，里面的「命令提示符（管理员）」才是正品，再注册一次服务，done~</p>
+<h3 id="把MongoDB路径注册到系统path"><a href="#把MongoDB路径注册到系统path" class="headerlink" title="把MongoDB路径注册到系统path"></a>把MongoDB路径注册到系统path</h3><p>这样做的好处是每次启动都节省掉cd命令，非常方便。只需要在系统变量「path」添加你的MongoDB安装路径，如：C:\Program Files\MongoDB\Server\3.4\bin即可。</p>
 
           
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/05/02/huxiu-modal/" class="leancloud_visitors" data-flag-title="模仿虎嗅网弹出登录框">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-虎嗅网的登录框给我一种眼前一亮的感觉，我也还没做过模态框，遂决定做一个练练手。尺寸并没有严格模仿，因其使用的是Bootstrap，而我想用原生写。
-
-效果如下：
-源码已在Github开源。
-
-          
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/05/02/huxiu-modal/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
         
       
     </div>
@@ -1718,7 +1591,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1731,7 +1604,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1741,9 +1614,7 @@
 
           
 
-          <div class="links-of-author motion-element">
-            
-          </div>
+          
 
           
           
@@ -1770,7 +1641,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -1780,13 +1651,17 @@
 </div>
 
 
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
+  <span class="post-meta-divider">|</span>
 
 
 
-  <div class="footer-custom"><a href="http://www.miitbeian.gov.cn/"">粤ICP备18127631号</a></div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
 
 
         
@@ -1833,9 +1708,6 @@
 
 
 
-  
-  
-
 
 
 
@@ -1874,23 +1746,13 @@
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
   
 
-  
-  
-    <script type="text/javascript" src="/lib/three/three.min.js"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
-  
-
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
 
 
 
@@ -1902,7 +1764,7 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
 
 
 
@@ -1946,113 +1808,6 @@
 
 
   
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("TGlHl2jBcuf0awvbyVS9Q1kc-gzGzoHsz", "wzOfxmQc9nu9of2dS0cjeK7Y");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
 
   
 
