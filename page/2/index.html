@@ -189,8 +189,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>最近一直在埋头苦学Node.js,正好手头有个项目需要上线，之前所有项目都是用Apache部署的，接触Node.js后调试都是带端口号的，例如<a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> ,但是在生产环境，总不能让用户也访问带端口的地址吧？这个时候就需要用nginx来做端口转发。</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">官网下载</a></p>
+          <h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>最近一直在埋头苦学Node.js,正好手头有个项目需要上线，之前所有项目都是用Apache部署的，接触Node.js后调试都是带端口号的，例如<a target="_blank" rel="noopener" href="http://localhost:8080">http://localhost:8080</a> ,但是在生产环境，总不能让用户也访问带端口的地址吧？这个时候就需要用nginx来做端口转发。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><a target="_blank" rel="noopener" href="http://nginx.org/en/download.html">官网下载</a></p>
 <p>下载后解压到方便操作的地方，如C:/即可，以下操作以C:/nginx为目录进行演示。</p>
 <p>CMD键入：</p>
 <pre><code>cd C:/nginx
@@ -205,7 +205,7 @@ nginx.exe//第二种启动命令
 </code></pre><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>重点来了，网上搜的博文不利于初学者，这也是著此文的目的所在。我们需要修改nginx的配置文件，位于:</p>
 <pre><code>C:\nginx\conf\nginx.conf
 </code></pre><p>编辑该文件，我们的目标是把当前的80端口转发到8080端口。<br>修改第35行开始的配置为：</p>
-<pre><code>server {
+<pre><code>server &#123;
     listen       80;
     server_name  localhost;
 
@@ -213,14 +213,14 @@ nginx.exe//第二种启动命令
 
     #access_log  logs/host.access.log  main;
 
-    location / {
+    location / &#123;
         proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header Host  $http_host;
     proxy_set_header X-Nginx-Proxy true;
     proxy_set_header Connection &quot;&quot;;
     proxy_pass      http://127.0.0.1:8080;
-    }
+    &#125;
 </code></pre><p>保存文件，再次开启nginx服务。至此，输入localhost便能访问之前8080端口的项目，希望对大家有所帮助。</p>
 
       
@@ -288,7 +288,7 @@ nginx.exe//第二种启动命令
       
           <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>距离MongoDB课程完结已经过去一年半，随着前端知识的系统学习，难免会再次接触到这个数据库，坦白地说之前上课的时候都是应付实验，并没有好好体会它的优点，毕竟你学一门技术如果不能和实战项目结合学习那都是瞎扯淡。接下来的日子得好好学一下了，安装时遇到一些神坑，总结一下与大家分享。</p>
 <h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><p>Windows10 x64 1607、MongoDB v3.4 x64</p>
-<h3 id="获取MongoDB"><a href="#获取MongoDB" class="headerlink" title="获取MongoDB"></a>获取MongoDB</h3><p><a href="https://www.mongodb.com/" target="_blank" rel="noopener">MongoDB官网</a></p>
+<h3 id="获取MongoDB"><a href="#获取MongoDB" class="headerlink" title="获取MongoDB"></a>获取MongoDB</h3><p><a target="_blank" rel="noopener" href="https://www.mongodb.com/">MongoDB官网</a></p>
 <h3 id="配置MongoDB相关文件、注册服务"><a href="#配置MongoDB相关文件、注册服务" class="headerlink" title="配置MongoDB相关文件、注册服务"></a>配置MongoDB相关文件、注册服务</h3><p>默认安装目录为</p>
 <p>C:\Program Files\MongoDB\Server\3.4</p>
 <p>新建以下目录和文件，你可以按需修改：</p>
@@ -360,7 +360,7 @@ nginx.exe//第二种启动命令
 <p>虎嗅网的登录框给我一种眼前一亮的感觉，我也还没做过模态框，遂决定做一个练练手。尺寸并没有严格模仿，因其使用的是Bootstrap，而我想用原生写。</p>
 </blockquote>
 <p>效果如下：<br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/modal-1.png" alt=""><br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/modal-2.png" alt=""><br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/modal-3.png" alt=""></p>
-<p>源码已在<a href="https://github.com/Achilles822/huxiu-modal" target="_blank" rel="noopener">Github</a>开源。</p>
+<p>源码已在<a target="_blank" rel="noopener" href="https://github.com/Achilles822/huxiu-modal">Github</a>开源。</p>
 
       
     </div>
@@ -426,25 +426,24 @@ nginx.exe//第二种启动命令
 
       
           <p>最近发现学点什么零碎知识点都给记在博客上记得挺牢的，所以比较高产：）</p>
-<h2 id="直接赋值"><a href="#直接赋值" class="headerlink" title="直接赋值"></a>直接赋值</h2><p>今天讲讲JavaScript的浅拷贝和深拷贝，不少面试题爱考这个。首先当我们要复制一个数组时，可能会采取直接赋值的方式，像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var arr1=[1,2,3];</span><br><span class="line">var arr2=arr1;</span><br><span class="line">arr2[1]=7;</span><br><span class="line">console.log(arr1);//[1, 7, 3]</span><br><span class="line">console.log(arr2);//[1, 7, 3]</span><br></pre></td></tr></table></figure></p>
-<p>这就出事了，一个数组改变另一个数组也会跟着变，这就是浅拷贝。</p>
+<h2 id="直接赋值"><a href="#直接赋值" class="headerlink" title="直接赋值"></a>直接赋值</h2><p>今天讲讲JavaScript的浅拷贝和深拷贝，不少面试题爱考这个。首先当我们要复制一个数组时，可能会采取直接赋值的方式，像这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var arr1&#x3D;[1,2,3];</span><br><span class="line">var arr2&#x3D;arr1;</span><br><span class="line">arr2[1]&#x3D;7;</span><br><span class="line">console.log(arr1);&#x2F;&#x2F;[1, 7, 3]</span><br><span class="line">console.log(arr2);&#x2F;&#x2F;[1, 7, 3]</span><br></pre></td></tr></table></figure><br>这就出事了，一个数组改变另一个数组也会跟着变，这就是浅拷贝。</p>
 <p>我们可以通过slice、concat方法来实现深拷贝</p>
 <h2 id="slice"><a href="#slice" class="headerlink" title="slice()"></a>slice()</h2><p>先从网上摘一段方法介绍</p>
 <blockquote>
 <p>对于array对象的slice函数，返回一个数组的一段。（仍为数组）<br>arrayObj.slice(start, [end])<br>参数：<br>arrayObj 必选项。一个 Array 对象。<br>start 必选项。arrayObj 中所指定的部分的开始元素是从零开始计算的下标。<br>end可选项。arrayObj 中所指定的部分的结束元素是从零开始计算的下标。<br>说明：<br>slice 方法返回一个 Array 对象，其中包含了 arrayObj 的指定部分。<br>slice 方法一直复制到 end 所指定的元素，但是不包括该元素。<br>如果 start 为负，将它作为 length + start处理，此处 length 为数组的长度。<br>如果 end 为负，就将它作为 length + end 处理，此处 length 为数组的长度。<br>如果省略 end ，那么 slice 方法将一直复制到 arrayObj 的结尾。<br>如果 end 出现在 start 之前，不复制任何元素到新数组中。</p>
 </blockquote>
-<p>好，我们来试试slice方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var arr1=[1,2,3];</span><br><span class="line">var arr2=arr1.slice();</span><br><span class="line">arr2[1]=9;</span><br><span class="line">console.log(arr1);//[1, 2, 3]</span><br><span class="line">console.log(arr2);//[1, 9, 3]</span><br></pre></td></tr></table></figure></p>
+<p>好，我们来试试slice方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var arr1&#x3D;[1,2,3];</span><br><span class="line">var arr2&#x3D;arr1.slice();</span><br><span class="line">arr2[1]&#x3D;9;</span><br><span class="line">console.log(arr1);&#x2F;&#x2F;[1, 2, 3]</span><br><span class="line">console.log(arr2);&#x2F;&#x2F;[1, 9, 3]</span><br></pre></td></tr></table></figure></p>
 <h2 id="concat"><a href="#concat" class="headerlink" title="concat()"></a>concat()</h2><p>是不是就没问题了？再来看看concat方法：</p>
 <blockquote>
 <p>concat() 方法用于连接两个或多个数组。该方法不会改变现有的数组，而仅仅会返回被连接数组的一个副本。<br>语法：arrayObject.concat(arrayX,arrayX,……,arrayX)<br>说明：返回一个新的数组。该数组是通过把所有 arrayX 参数添加到 arrayObject 中生成的。如果要进行 concat() 操作的参数是数组，那么添加的是数组中的元素，而不是数组。</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var arr1 = [&quot;1&quot;,&quot;2&quot;,&quot;3&quot;];</span><br><span class="line">var arr2 = arr1.concat();</span><br><span class="line">arr2[1] = &quot;9&quot;;</span><br><span class="line">console.log(arr1);//[1, 2, 3]</span><br><span class="line">console.log(arr2);//[1, 9, 3]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var arr1 &#x3D; [&quot;1&quot;,&quot;2&quot;,&quot;3&quot;];</span><br><span class="line">var arr2 &#x3D; arr1.concat();</span><br><span class="line">arr2[1] &#x3D; &quot;9&quot;;</span><br><span class="line">console.log(arr1);&#x2F;&#x2F;[1, 2, 3]</span><br><span class="line">console.log(arr2);&#x2F;&#x2F;[1, 9, 3]</span><br></pre></td></tr></table></figure>
 <h2 id="局限性"><a href="#局限性" class="headerlink" title="局限性"></a>局限性</h2><p>目前看来，这两个方法做深拷贝没什么问题，但它们也存在着局限性。<em>只适用于不包含引用对象的一维数组的深拷贝</em></p>
-<h2 id="对象的深拷贝"><a href="#对象的深拷贝" class="headerlink" title="对象的深拷贝"></a>对象的深拷贝</h2><p>既然如此，那该怎么对对象进行深拷贝呢？其实也很简单，把对象的属性都给遍历一次，再赋给一个新的对象就行。举个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var a =&#123;name:&apos;Jack&apos;,age:40&#125;;</span><br><span class="line">var b =new Object();</span><br><span class="line">b.name=a.name;</span><br><span class="line">b.age=a.age;</span><br><span class="line">a.name=&apos;robin&apos;;</span><br><span class="line">console.log(a);//&#123;name: &quot;robin&quot;, age: 40&#125;</span><br><span class="line">console.log(b);//&#123;name: &quot;Jack&quot;, age: 40&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="对象的深拷贝"><a href="#对象的深拷贝" class="headerlink" title="对象的深拷贝"></a>对象的深拷贝</h2><p>既然如此，那该怎么对对象进行深拷贝呢？其实也很简单，把对象的属性都给遍历一次，再赋给一个新的对象就行。举个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D;&#123;name:&#39;Jack&#39;,age:40&#125;;</span><br><span class="line">var b &#x3D;new Object();</span><br><span class="line">b.name&#x3D;a.name;</span><br><span class="line">b.age&#x3D;a.age;</span><br><span class="line">a.name&#x3D;&#39;robin&#39;;</span><br><span class="line">console.log(a);&#x2F;&#x2F;&#123;name: &quot;robin&quot;, age: 40&#125;</span><br><span class="line">console.log(b);&#x2F;&#x2F;&#123;name: &quot;Jack&quot;, age: 40&#125;</span><br></pre></td></tr></table></figure></p>
 <p>————2018.10.17更新————-</p>
 <h2 id="拓展运算符"><a href="#拓展运算符" class="headerlink" title="拓展运算符"></a>拓展运算符</h2><p>这是ES6带来的新特性，虽然ES6出来很久了，但因为公司的一些历史遗留问题，未能随心所欲地使用。到了18年，开始开发小程序，旧项目上了babel，已经没有了障碍，所以写一下这个能省下不少代码的特性。</p>
-<h4 id="数组深拷贝"><a href="#数组深拷贝" class="headerlink" title="数组深拷贝"></a>数组深拷贝</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let a = [1,2,3,4];</span><br><span class="line">let b = [...a];</span><br><span class="line">b[1] = 5;</span><br><span class="line">console.log(a)  =&gt; [1, 2, 3, 4]</span><br><span class="line">console.log(b)  =&gt; [1, 5, 3, 4]</span><br></pre></td></tr></table></figure>
-<h4 id="对象深拷贝"><a href="#对象深拷贝" class="headerlink" title="对象深拷贝"></a>对象深拷贝</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let a = &#123;&quot;name&quot;:&quot;jack&quot;,&quot;age&quot;:12&#125;;</span><br><span class="line">let b = &#123;...a&#125;;</span><br><span class="line">b.name = &quot;leo&quot;;</span><br><span class="line">console.log(a)  =&gt; &#123;name: &quot;jack&quot;, age: 12&#125;</span><br><span class="line">console.log(b)  =&gt; &#123;name: &quot;leo&quot;, age: 12&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="数组深拷贝"><a href="#数组深拷贝" class="headerlink" title="数组深拷贝"></a>数组深拷贝</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let a &#x3D; [1,2,3,4];</span><br><span class="line">let b &#x3D; [...a];</span><br><span class="line">b[1] &#x3D; 5;</span><br><span class="line">console.log(a)  &#x3D;&gt; [1, 2, 3, 4]</span><br><span class="line">console.log(b)  &#x3D;&gt; [1, 5, 3, 4]</span><br></pre></td></tr></table></figure>
+<h4 id="对象深拷贝"><a href="#对象深拷贝" class="headerlink" title="对象深拷贝"></a>对象深拷贝</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let a &#x3D; &#123;&quot;name&quot;:&quot;jack&quot;,&quot;age&quot;:12&#125;;</span><br><span class="line">let b &#x3D; &#123;...a&#125;;</span><br><span class="line">b.name &#x3D; &quot;leo&quot;;</span><br><span class="line">console.log(a)  &#x3D;&gt; &#123;name: &quot;jack&quot;, age: 12&#125;</span><br><span class="line">console.log(b)  &#x3D;&gt; &#123;name: &quot;leo&quot;, age: 12&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>技术的积累是一点一滴的，正所谓温故而知新，像本篇这种总结基础知识点的文章，偶尔翻来看一看感觉也不错～：）</p>
 
       
@@ -565,9 +564,8 @@ nginx.exe//第二种启动命令
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="call和apply的区别"><a href="#call和apply的区别" class="headerlink" title="call和apply的区别"></a>call和apply的区别</h2><p>首先两者的作用是一样的，都是为了动态改变This，从语法我们可以看出它们所接受的参数不同：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">obj.apply(thisObj, [arg1, arg2, ...]);</span><br><span class="line">obj.call(thisObj, arg1, arg2, ...);</span><br></pre></td></tr></table></figure></p>
-<p>第一个参数都一样，即把this绑定到thisObj，这时候thisObj继承了this的属性和方法，重点在第二个参数，apply所接受的是一个数组参数，call所接受的是连续参数。</p>
-<h3 id="apply示例"><a href="#apply示例" class="headerlink" title="apply示例"></a>apply示例</h3><p>我们来看个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 定义一个人类</span><br><span class="line">function Person(name,age)</span><br><span class="line">&#123;</span><br><span class="line">    this.name=name;</span><br><span class="line">    this.age=age;</span><br><span class="line">&#125;</span><br><span class="line">//定义某个人类</span><br><span class="line">function someOne(name,age,job)&#123;</span><br><span class="line">    </span><br><span class="line">    Person.apply(this,arguments);</span><br><span class="line">    this.job=job;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">var person1 = new someOne(&quot;Jack&quot;,&quot;21&quot;,&quot;doctor&quot;);</span><br><span class="line">alert(&quot;My name is &quot;+person1.name+&quot;. I am &quot;+person1.age+&quot; years old.And now I am a &quot;+person1.job);</span><br><span class="line">//弹出结果是My name is Jack. I am 21 years old.And now I am a doctor</span><br></pre></td></tr></table></figure></p>
+          <h2 id="call和apply的区别"><a href="#call和apply的区别" class="headerlink" title="call和apply的区别"></a>call和apply的区别</h2><p>首先两者的作用是一样的，都是为了动态改变This，从语法我们可以看出它们所接受的参数不同：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">obj.apply(thisObj, [arg1, arg2, ...]);</span><br><span class="line">obj.call(thisObj, arg1, arg2, ...);</span><br><span class="line"></span><br></pre></td></tr></table></figure><br>第一个参数都一样，即把this绑定到thisObj，这时候thisObj继承了this的属性和方法，重点在第二个参数，apply所接受的是一个数组参数，call所接受的是连续参数。</p>
+<h3 id="apply示例"><a href="#apply示例" class="headerlink" title="apply示例"></a>apply示例</h3><p>我们来看个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 定义一个人类</span><br><span class="line">function Person(name,age)</span><br><span class="line">&#123;</span><br><span class="line">    this.name&#x3D;name;</span><br><span class="line">    this.age&#x3D;age;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;定义某个人类</span><br><span class="line">function someOne(name,age,job)&#123;</span><br><span class="line">    </span><br><span class="line">    Person.apply(this,arguments);</span><br><span class="line">    this.job&#x3D;job;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">var person1 &#x3D; new someOne(&quot;Jack&quot;,&quot;21&quot;,&quot;doctor&quot;);</span><br><span class="line">alert(&quot;My name is &quot;+person1.name+&quot;. I am &quot;+person1.age+&quot; years old.And now I am a &quot;+person1.job);</span><br><span class="line">&#x2F;&#x2F;弹出结果是My name is Jack. I am 21 years old.And now I am a doctor</span><br></pre></td></tr></table></figure></p>
 <p>可以看到我们在someOne类中并没有给name和age属性赋值，而是通过apply方法去继承Person类的方法，这个时候<br>apply(this,arguments)里的this指向创建的对象person1,arguments指向[“Jack”,”21”,”doctor”]。</p>
 <h3 id="call示例"><a href="#call示例" class="headerlink" title="call示例"></a>call示例</h3><p>第二个参数开始传入要劫持的属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person.call(this,name,age);</span><br></pre></td></tr></table></figure></p>
 <h2 id="什么时候用apply，什么时候用call？"><a href="#什么时候用apply，什么时候用call？" class="headerlink" title="什么时候用apply，什么时候用call？"></a>什么时候用apply，什么时候用call？</h2><p>在给定参数列表，并且参数是数组类型，同时父子函数的参数列表顺序是一致的，即可用apply。如不一致，就得用call来实现了，参数列表顺序以父函数为准。举个例子，父函数Person(name,age)，子函数someOne(age,name,job),这时候就得这样使用:Person.call(this,name,age)</p>
@@ -717,7 +715,7 @@ nginx.exe//第二种启动命令
 </blockquote>
 <h2 id="为什么要更改iTunes备份路径？"><a href="#为什么要更改iTunes备份路径？" class="headerlink" title="为什么要更改iTunes备份路径？"></a>为什么要更改iTunes备份路径？</h2><p>根源在于iTunes本身是不支持修改备份目录的，每次都是保存在你的C盘下，而每次刷机都没法避免有个自动备份的过程。举个例子，我的设备是iPhone6 64GB，刷机前大概用了50G，自动备份文件大小是18+GB，这时候你的C盘未必有这么大的剩余空间，我们应该明白，最新一代的iPhone主流购买容量都是128GB版本，备份下来的文件大小真的难以想象，这个时候我们就需要想办法迁移备份目录。</p>
 <h2 id="开工"><a href="#开工" class="headerlink" title="开工~"></a>开工~</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>使用Junction命令行工具，生成iTunes备份文件夹的快捷方式指向我们所要移动的目录。</p>
-<h3 id="下载Junction"><a href="#下载Junction" class="headerlink" title="下载Junction"></a>下载Junction</h3><p><a href="https://technet.microsoft.com/en-us/sysinternals/bb896768.aspx" target="_blank" rel="noopener">官网下载地址</a></p>
+<h3 id="下载Junction"><a href="#下载Junction" class="headerlink" title="下载Junction"></a>下载Junction</h3><p><a target="_blank" rel="noopener" href="https://technet.microsoft.com/en-us/sysinternals/bb896768.aspx">官网下载地址</a></p>
 <p>把压缩包里的<em>junction.exe,junction64.exe</em>放到<em>C:\windows\system32</em>下，这样就配置好系统环境。</p>
 <h3 id="命令行操作"><a href="#命令行操作" class="headerlink" title="命令行操作"></a>命令行操作</h3><p>便于你们理解，这里的路径基于假设，请根据实际环境修改路径：<br>我们要移动的文件夹路径是：<br><em>C:\Users\UserName\AppData\Roaming\Apple Computer\MobileSync</em>（这个大家都是一样的，替换UserName为你的用户名即可。）<br>我们要移动到以下路径：<br><em>D:\MobileSync</em>（这个可以自定义，选择空间充足的盘符。）</p>
 <ol>
@@ -805,7 +803,7 @@ nginx.exe//第二种启动命令
 <p>看看iOS版本，做得非常专业和到位，让人有使用的欲望。<br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/IMG_7339%2820170307-220026%29.jpg" alt="APP"></p>
 <p>再看PC版，把联系人列表和聊天窗口合二为一，本身就是一种有效提高效率的设计。<br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/@MK%28TWGOR4~%25%2978%5BWQ09HBJ.png" alt="PC"></p>
 <p>腾讯于数日前刚上线TIM三端的客户端，大家可以去下载体验一把，不用担心，依旧可以抢你们最爱的一分钱红包~</p>
-<p><a href="https://office.qq.com" target="_blank" rel="noopener">TIM官网</a></p>
+<p><a target="_blank" rel="noopener" href="https://office.qq.com">TIM官网</a></p>
 
       
     </div>
@@ -871,32 +869,32 @@ nginx.exe//第二种启动命令
 <p>没错，乘法x哪去了？我可是做完了才发现的。这种设计师应该被做成爆炒鱿鱼，为了更完美，无奈只好加了几个功能上去。</p>
 <h3 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h3><p>计算器重在考虑多种错误输入的处理，由于我也是初学者，这里用switch来判断运算</p>
 <pre><code>function operator(type)
-{
+&#123;
 switch(type)
-{
+&#123;
 case &quot;clear&quot;:
   input.value=&quot;0&quot;;
   _string.length=0;
 break;
 case &quot;plus&quot;:
 if(checknum(input.value)!=0)
-{
+&#123;
 _string.push(input.value);
 _type=&quot;plus&quot;
 input.value=&quot;+&quot;;
 input.name=&quot;type&quot;;
-}
+&#125;
 break;
 case &quot;minus&quot;:
 if(checknum(input.value)!=0)
-{
+&#123;
 _string.push(input.value);
 _type=&quot;minus&quot;
 input.value=&quot;-&quot;;
 input.name=&quot;type&quot;;
-}
+&#125;
 break;
-</code></pre><h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><p><img src="http://ohvi9wpj7.bkt.clouddn.com/cal2.png" alt=""><br><a href="https://coding.net/u/achilles822/p/Demo/attachment/1385854" target="_blank" rel="noopener">完整源码</a><br><a href="http://112.74.187.252/calculator/calculator.html" target="_blank" rel="noopener">在线demo，仅限pc端</a></p>
+</code></pre><h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><p><img src="http://ohvi9wpj7.bkt.clouddn.com/cal2.png" alt=""><br><a target="_blank" rel="noopener" href="https://coding.net/u/achilles822/p/Demo/attachment/1385854">完整源码</a><br><a target="_blank" rel="noopener" href="http://112.74.187.252/calculator/calculator.html">在线demo，仅限pc端</a></p>
 
       
     </div>

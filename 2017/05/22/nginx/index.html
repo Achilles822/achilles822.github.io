@@ -195,8 +195,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>最近一直在埋头苦学Node.js,正好手头有个项目需要上线，之前所有项目都是用Apache部署的，接触Node.js后调试都是带端口号的，例如<a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> ,但是在生产环境，总不能让用户也访问带端口的地址吧？这个时候就需要用nginx来做端口转发。</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><a href="http://nginx.org/en/download.html" target="_blank" rel="noopener">官网下载</a></p>
+        <h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>最近一直在埋头苦学Node.js,正好手头有个项目需要上线，之前所有项目都是用Apache部署的，接触Node.js后调试都是带端口号的，例如<a target="_blank" rel="noopener" href="http://localhost:8080">http://localhost:8080</a> ,但是在生产环境，总不能让用户也访问带端口的地址吧？这个时候就需要用nginx来做端口转发。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><a target="_blank" rel="noopener" href="http://nginx.org/en/download.html">官网下载</a></p>
 <p>下载后解压到方便操作的地方，如C:/即可，以下操作以C:/nginx为目录进行演示。</p>
 <p>CMD键入：</p>
 <pre><code>cd C:/nginx
@@ -211,7 +211,7 @@ nginx.exe//第二种启动命令
 </code></pre><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>重点来了，网上搜的博文不利于初学者，这也是著此文的目的所在。我们需要修改nginx的配置文件，位于:</p>
 <pre><code>C:\nginx\conf\nginx.conf
 </code></pre><p>编辑该文件，我们的目标是把当前的80端口转发到8080端口。<br>修改第35行开始的配置为：</p>
-<pre><code>server {
+<pre><code>server &#123;
     listen       80;
     server_name  localhost;
 
@@ -219,14 +219,14 @@ nginx.exe//第二种启动命令
 
     #access_log  logs/host.access.log  main;
 
-    location / {
+    location / &#123;
         proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header Host  $http_host;
     proxy_set_header X-Nginx-Proxy true;
     proxy_set_header Connection &quot;&quot;;
     proxy_pass      http://127.0.0.1:8080;
-    }
+    &#125;
 </code></pre><p>保存文件，再次开启nginx服务。至此，输入localhost便能访问之前8080端口的项目，希望对大家有所帮助。</p>
 
     </div>

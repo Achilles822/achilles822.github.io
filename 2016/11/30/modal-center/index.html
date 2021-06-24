@@ -197,14 +197,14 @@
       
         <p>个人不偏好修改源码的方式，用js可以更简单地达到目的。<br><a id="more"></a></p>
 <pre><code>&lt;script&gt;
-$(&apos;#myModal&apos;).on(&apos;show.bs.modal&apos;, function (e) {  
-$(this).find(&apos;.modal-dialog&apos;).css({  
-&apos;margin-top&apos;: function () {  
+$(&apos;#myModal&apos;).on(&apos;show.bs.modal&apos;, function (e) &#123;  
+$(this).find(&apos;.modal-dialog&apos;).css(&#123;  
+&apos;margin-top&apos;: function () &#123;  
 var modalHeight = $(&apos;#myModal&apos;).find(&apos;.modal-dialog&apos;).height();  
 return ($(window).height() / 2 - (modalHeight / 2));  
-}  
-});      
-});  
+&#125;  
+&#125;);      
+&#125;);  
 &lt;/script&gt;
 </code></pre><p>当然部分使用场景完全居中并不美观，具体还得根据使用场景修改函数。</p>
 

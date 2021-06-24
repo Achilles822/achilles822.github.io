@@ -203,17 +203,17 @@
       
         <h1 id="写在开始"><a href="#写在开始" class="headerlink" title="写在开始"></a>写在开始</h1><p>进入现在的公司快满一年了，记得入职第一天是让我看文档，第二天就正式投入开发了，期间一直想要写点学习心得，但是因为工作量较大，连域名未认证被封了几个月都不知道，趁这次修复blog，大致写一写这一年来积累的东西。</p>
 <h1 id="学习方式"><a href="#学习方式" class="headerlink" title="学习方式"></a>学习方式</h1><p>学习一门语言最好的方法就是实战，我进入公司的时候恰好碰上技术栈转型，逐渐把老项目过渡到Angular4，所以大家都是边做边摸索，Angular在国内远没有Vue那么火，不少问题的解决都要靠老外，国内的开发者也有几个知名的实践，把我们常用的插件集成在一个demo中，这里贴上几个比较经典的学习资源，有需要可以参考：</p>
-<p><a href="https://angular.cn/" target="_blank" rel="noopener">官方中文文档</a></p>
-<p><a href="https://github.com/damoqiongqiu/NiceFish" target="_blank" rel="noopener">大漠老师的美人鱼</a></p>
-<p><a href="https://github.com/zhongzhong0505/CodeBe" target="_blank" rel="noopener">CodeBe插件集成demo</a></p>
-<p><a href="https://github.com/kittencup/angular2-ama-cn" target="_blank" rel="noopener">Angular2随便问</a></p>
+<p><a target="_blank" rel="noopener" href="https://angular.cn/">官方中文文档</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/damoqiongqiu/NiceFish">大漠老师的美人鱼</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/zhongzhong0505/CodeBe">CodeBe插件集成demo</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/kittencup/angular2-ama-cn">Angular2随便问</a></p>
 <p>理论上实际开发都是专注于业务，所以一般都会使用框架以提高开发速度，这里推荐阿里的NG-ZORRO和PrimeNG，经过多个版本迭代已经比较成熟，可以放心使用：）</p>
-<p><a href="https://github.com/NG-ZORRO/ng-zorro-antd" target="_blank" rel="noopener">强烈推荐的框架：NG-ZORRO
+<p><a target="_blank" rel="noopener" href="https://github.com/NG-ZORRO/ng-zorro-antd">强烈推荐的框架：NG-ZORRO
 </a></p>
-<p><a href="https://github.com/primefaces/primeng" target="_blank" rel="noopener">PrimeNG</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/primefaces/primeng">PrimeNG</a></p>
 <h1 id="实用技巧"><a href="#实用技巧" class="headerlink" title="实用技巧"></a>实用技巧</h1><p><br>这里就不再讲什么数据绑定、http请求等基础用法了，说几个在实际项目中比较实用的技巧，官方文档或许有提及但不够详细。</p>
-<h3 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h3><p>或许你在某些教程中已经学习了Angular的组件通讯，知道常用的组件关系是父子关系，用的是@Input和@Output去传参，但是在实际项目中，经常会遇到兄弟关系的组件，这时候我们可以定义一个全局共用的Service进行传值，需要避免的坑是使用EventEmitter发送的值在订阅之前要先new EventEmiiter()一下，不然会造成重复触发。具体的使用方法可以参考 <a href="https://segmentfault.com/q/1010000011080965" target="_blank" rel="noopener">https://segmentfault.com/q/1010000011080965</a></p>
-<h3 id="动态组件"><a href="#动态组件" class="headerlink" title="动态组件"></a>动态组件</h3><p>当模版内容较多时，例如一个页面包含了多个弹窗，弹窗的内容、逻辑也非常多的时候，按照默认模式Angular会一次全部渲染，影响性能。这时候我们可以使用动态组件，只有初始化事件触发时，才去生成这个弹窗组件，并且这样做有个好处：抽出来的组件可以进行复用。<br>具体的使用方法可以参考 <a href="https://www.jianshu.com/p/10feab2c3102" target="_blank" rel="noopener">https://www.jianshu.com/p/10feab2c3102</a></p>
+<h3 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h3><p>或许你在某些教程中已经学习了Angular的组件通讯，知道常用的组件关系是父子关系，用的是@Input和@Output去传参，但是在实际项目中，经常会遇到兄弟关系的组件，这时候我们可以定义一个全局共用的Service进行传值，需要避免的坑是使用EventEmitter发送的值在订阅之前要先new EventEmiiter()一下，不然会造成重复触发。具体的使用方法可以参考 <a target="_blank" rel="noopener" href="https://segmentfault.com/q/1010000011080965">https://segmentfault.com/q/1010000011080965</a></p>
+<h3 id="动态组件"><a href="#动态组件" class="headerlink" title="动态组件"></a>动态组件</h3><p>当模版内容较多时，例如一个页面包含了多个弹窗，弹窗的内容、逻辑也非常多的时候，按照默认模式Angular会一次全部渲染，影响性能。这时候我们可以使用动态组件，只有初始化事件触发时，才去生成这个弹窗组件，并且这样做有个好处：抽出来的组件可以进行复用。<br>具体的使用方法可以参考 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/10feab2c3102">https://www.jianshu.com/p/10feab2c3102</a></p>
 
     </div>
 

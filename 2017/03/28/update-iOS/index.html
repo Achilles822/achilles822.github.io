@@ -211,7 +211,7 @@
 </blockquote>
 <h2 id="为什么要更改iTunes备份路径？"><a href="#为什么要更改iTunes备份路径？" class="headerlink" title="为什么要更改iTunes备份路径？"></a>为什么要更改iTunes备份路径？</h2><p>根源在于iTunes本身是不支持修改备份目录的，每次都是保存在你的C盘下，而每次刷机都没法避免有个自动备份的过程。举个例子，我的设备是iPhone6 64GB，刷机前大概用了50G，自动备份文件大小是18+GB，这时候你的C盘未必有这么大的剩余空间，我们应该明白，最新一代的iPhone主流购买容量都是128GB版本，备份下来的文件大小真的难以想象，这个时候我们就需要想办法迁移备份目录。</p>
 <h2 id="开工"><a href="#开工" class="headerlink" title="开工~"></a>开工~</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>使用Junction命令行工具，生成iTunes备份文件夹的快捷方式指向我们所要移动的目录。</p>
-<h3 id="下载Junction"><a href="#下载Junction" class="headerlink" title="下载Junction"></a>下载Junction</h3><p><a href="https://technet.microsoft.com/en-us/sysinternals/bb896768.aspx" target="_blank" rel="noopener">官网下载地址</a></p>
+<h3 id="下载Junction"><a href="#下载Junction" class="headerlink" title="下载Junction"></a>下载Junction</h3><p><a target="_blank" rel="noopener" href="https://technet.microsoft.com/en-us/sysinternals/bb896768.aspx">官网下载地址</a></p>
 <p>把压缩包里的<em>junction.exe,junction64.exe</em>放到<em>C:\windows\system32</em>下，这样就配置好系统环境。</p>
 <h3 id="命令行操作"><a href="#命令行操作" class="headerlink" title="命令行操作"></a>命令行操作</h3><p>便于你们理解，这里的路径基于假设，请根据实际环境修改路径：<br>我们要移动的文件夹路径是：<br><em>C:\Users\UserName\AppData\Roaming\Apple Computer\MobileSync</em>（这个大家都是一样的，替换UserName为你的用户名即可。）<br>我们要移动到以下路径：<br><em>D:\MobileSync</em>（这个可以自定义，选择空间充足的盘符。）</p>
 <ol>

@@ -256,9 +256,9 @@
 
       
           <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这两天恰逢软件系答辩，扫了一眼我大数本的毕设题目，好家伙八成是Web项目，怎奈我手痒+技穷，只能尝试用PHP来写个天气Demo了，说实话这两年国内好用的天气API接口越来越少了，心知天气算是比较坚挺的一个，申请完接口后发现稳定性还不如用公共开放接口，当然获取的信息也会少很多，没关系，我们懂原理就好。：)</p>
-<h2 id="开发准备"><a href="#开发准备" class="headerlink" title="开发准备"></a>开发准备</h2><p><a href="http://www.thinkpage.cn/" target="_blank" rel="noopener">心知天气官网</a></p>
+<h2 id="开发准备"><a href="#开发准备" class="headerlink" title="开发准备"></a>开发准备</h2><p><a target="_blank" rel="noopener" href="http://www.thinkpage.cn/">心知天气官网</a></p>
 <p>值得一提的是，官网为我们准备了两套天气图标，虽然风格较老，但是做做demo没问题的。</p>
-<h2 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h2><h3 id="从心知API返回天气JSON数据"><a href="#从心知API返回天气JSON数据" class="headerlink" title="从心知API返回天气JSON数据"></a>从心知API返回天气JSON数据</h3><pre><code>function weather(){
+<h2 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h2><h3 id="从心知API返回天气JSON数据"><a href="#从心知API返回天气JSON数据" class="headerlink" title="从心知API返回天气JSON数据"></a>从心知API返回天气JSON数据</h3><pre><code>function weather()&#123;
 @$location=$_POST[&apos;location&apos;];
 $url=&quot;http://www.thinkpage.cn/weather/api.svc/getWeather?city=$location&amp;language=zh-CHS&amp;provider=CMA&amp;unit=C&amp;aqi=city&quot;;
 $vhtml=curl_get_contents($url);//这是主函数~通过API接口返回JSON数据
@@ -268,8 +268,8 @@ $GLOBALS[&apos;location_name&apos;]=$final[&quot;results&quot;][0][&quot;locatio
 $GLOBALS[&apos;now_code&apos;]=$final[&quot;results&quot;][0] [&quot;daily&quot;][0][&quot;text_day&quot;];//当前天气
 $GLOBALS[&apos;now_temp&apos;]=$final[&quot;results&quot;][0][&quot;now&quot;][&quot;temperature&quot;];//当前温度
 $GLOBALS[&apos;weather_code_today&apos;]=$final[&apos;results&apos;][0][&apos;now&apos;][&apos;code&apos;];//当前图标
-...后面类似省略}
-</code></pre><h3 id="发起CURL连接"><a href="#发起CURL连接" class="headerlink" title="发起CURL连接"></a>发起CURL连接</h3><pre><code>function curl_get_contents($url){
+...后面类似省略&#125;
+</code></pre><h3 id="发起CURL连接"><a href="#发起CURL连接" class="headerlink" title="发起CURL连接"></a>发起CURL连接</h3><pre><code>function curl_get_contents($url)&#123;
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);//设置访问的url地址
 curl_setopt($ch, CURLOPT_USERAGENT, &apos;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1&apos;);   //用户访问代理 User-Agent
@@ -279,8 +279,8 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);//返回结果
 curl_setopt($ch, CURLOPT_COOKIE, &quot;&quot;);
 $result = curl_exec($ch);
 curl_close($ch);
-return $result;}
-</code></pre><h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/2.gif" alt=""><br><a href="http://112.74.187.252/php/index.html" target="_blank" rel="noopener">在线demo</a></p>
+return $result;&#125;
+</code></pre><h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/2.gif" alt=""><br><a target="_blank" rel="noopener" href="http://112.74.187.252/php/index.html">在线demo</a></p>
 <p>前端代码不贴了，因为太简单了，想看的等我传到github。<br>这次总共不到300行代码就能实现比较令人开心的效果，以后可以举一反三咯~</p>
 <h2 id="收获"><a href="#收获" class="headerlink" title="收获"></a>收获</h2><p>通过写这个demo我掌握了：</p>
 <ul>
@@ -488,7 +488,7 @@ return $result;}
 
       
           <p><blockquote class="blockquote-center">今年的广州车展亮点不多，随便拍了一些~终于坐到了new S-class的后座，差点睡着：) </blockquote></p>
-<p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="340" height="86" src="http://music.163.com/outchain/player?type=2&id=2103740&auto=0&height=66"></iframe><br><img src="http://cdn.yanziyu.tech/DSC02032.jpg" alt=""><br>
+<p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=340 height=86 src="http://music.163.com/outchain/player?type=2&id=2103740&auto=0&height=66"></iframe><br><img src="http://cdn.yanziyu.tech/DSC02032.jpg" alt=""><br>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2016/11/20/Guangzhouautoshow2016-cars/#more" rel="contents">
@@ -557,7 +557,7 @@ return $result;}
           <blockquote>
 <p>今天介绍下Win下如何配置Ruby、Sass、Compass：</p>
 </blockquote>
-<h3 id="安装Ruby"><a href="#安装Ruby" class="headerlink" title="安装Ruby"></a>安装Ruby</h3><p>在<a href="http://railsinstaller.org/en" target="_blank" rel="noopener">Ruby官网</a>下载安装RubyInstaller。</p>
+<h3 id="安装Ruby"><a href="#安装Ruby" class="headerlink" title="安装Ruby"></a>安装Ruby</h3><p>在<a target="_blank" rel="noopener" href="http://railsinstaller.org/en">Ruby官网</a>下载安装RubyInstaller。</p>
 <p><em>安装时记得勾选“add to PATH”选项</em></p>
 <p><em>最好把git也装上，其命令行工具更好用。</em></p>
 <h3 id="更换成境内的源"><a href="#更换成境内的源" class="headerlink" title="更换成境内的源"></a>更换成境内的源</h3><pre><code>gem sources --remove https://rubygem.org/
@@ -640,7 +640,7 @@ gem sources -a https://gems.ruby-china.org/
 <pre><code>&lt;img class=&quot;img-responsive center-block&quot; src=&quot;...&quot; /&gt;
 </code></pre></li>
 </ul>
-<ol>
+<ol start="2">
 <li>未使用.img-responsive图片响应式类</li>
 </ol>
 <ul>
@@ -843,7 +843,7 @@ android:orientation=&quot;vertical&quot;&gt;
         &lt;/RelativeLayout&gt;
     &lt;/android.support.v4.widget.NestedScrollView&gt;
 &lt;/android.support.design.widget.CoordinatorLayout&gt;
-</code></pre><p><br>最初还以为toolbar在作祟，因为把toolbar的layout_height属性设到极小时发现下部的空白也随之变小，后来在调整各个属性后无果的情况下开始怀疑是整体布局的问题，最后在stackoverflow上找到了解决方法：<br>该页面的根布局需由LinearLayout改为RelativeLayout，再加入android:fitsSystemWindows=”true”属性就没问题了~因为解决这个bug花了两天时间，所以特地分享一下：）</p>
+</code></pre><p></LinearLayout><br>最初还以为toolbar在作祟，因为把toolbar的layout_height属性设到极小时发现下部的空白也随之变小，后来在调整各个属性后无果的情况下开始怀疑是整体布局的问题，最后在stackoverflow上找到了解决方法：<br>该页面的根布局需由LinearLayout改为RelativeLayout，再加入android:fitsSystemWindows=”true”属性就没问题了~因为解决这个bug花了两天时间，所以特地分享一下：）</p>
 <p>修改后代码:</p>
 <pre><code>&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
  xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
@@ -910,11 +910,9 @@ android:orientation=&quot;vertical&quot;&gt;
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>周末的时候打开Android Studio的时候一脸懵逼，新建任何Demo之后Gradle在sync的时候的都会冒出来这个错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Plugin is too old please update to a more recent version, or set ANDROID_DAILY_OVERRIDE environment variable to &quot;a8faa180fc282060c9b8ec88f9bdcc9072121284&quot;</span><br></pre></td></tr></table></figure></p>
-<p>解决完之后又出现了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Warning:Gradle version 2.10 is required. Current version is 2.8. If using the gradle wrapper, try editing the distributionUrl in D:\aaa\Rundom\gradle\wrapper\gradle-wrapper.properties to gradle-2.10-all.zip</span><br></pre></td></tr></table></figure></p>
-<p>毕竟之前学习Android的时候就踩过不少坑，用过AS后再也不想用Eclipse，故习惯性地上stackoverflow寻求解决方案，然而这并没有什么卵用，最后在联系师兄后得到启发，自己找到了解决方法，希望对以后进这个坑的人有所帮助~</p>
-<h2 id="依赖包下载"><a href="#依赖包下载" class="headerlink" title="依赖包下载"></a>依赖包下载</h2><h3 id="Gradle-dependencies"><a href="#Gradle-dependencies" class="headerlink" title="Gradle dependencies"></a>Gradle dependencies</h3><p><strong>你可以直接修改build.gradle中的版本号后sync一下，as会自动下载对应版本，或者可以按以下方法手动下载。</strong><br>下载地址：<a href="https://jcenter.bintray.com/com/android/tools/build/gradle/" target="_blank" rel="noopener">https://jcenter.bintray.com/com/android/tools/build/gradle/</a><br>声明形式是这样的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">      classpath &apos;com.android.tools.build:gradle:2.1.0-alpha3&apos;</span><br><span class="line"></span><br><span class="line">      // NOTE: Do not place your application dependencies here; they belong</span><br><span class="line">      // in the individual module build.gradle files</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+          <p>周末的时候打开Android Studio的时候一脸懵逼，新建任何Demo之后Gradle在sync的时候的都会冒出来这个错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Plugin is too old please update to a more recent version, or set ANDROID_DAILY_OVERRIDE environment variable to &quot;a8faa180fc282060c9b8ec88f9bdcc9072121284&quot;</span><br></pre></td></tr></table></figure><br>解决完之后又出现了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Warning:Gradle version 2.10 is required. Current version is 2.8. If using the gradle wrapper, try editing the distributionUrl in D:\aaa\Rundom\gradle\wrapper\gradle-wrapper.properties to gradle-2.10-all.zip</span><br></pre></td></tr></table></figure><br>毕竟之前学习Android的时候就踩过不少坑，用过AS后再也不想用Eclipse，故习惯性地上stackoverflow寻求解决方案，然而这并没有什么卵用，最后在联系师兄后得到启发，自己找到了解决方法，希望对以后进这个坑的人有所帮助~</p>
+<h2 id="依赖包下载"><a href="#依赖包下载" class="headerlink" title="依赖包下载"></a>依赖包下载</h2><h3 id="Gradle-dependencies"><a href="#Gradle-dependencies" class="headerlink" title="Gradle dependencies"></a>Gradle dependencies</h3><p><strong>你可以直接修改build.gradle中的版本号后sync一下，as会自动下载对应版本，或者可以按以下方法手动下载。</strong><br>下载地址：<a target="_blank" rel="noopener" href="https://jcenter.bintray.com/com/android/tools/build/gradle/">https://jcenter.bintray.com/com/android/tools/build/gradle/</a><br>声明形式是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">      classpath &#39;com.android.tools.build:gradle:2.1.0-alpha3&#39;</span><br><span class="line"></span><br><span class="line">      &#x2F;&#x2F; NOTE: Do not place your application dependencies here; they belong</span><br><span class="line">      &#x2F;&#x2F; in the individual module build.gradle files</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <p>步骤：以我著文时的版本2.1.0-alpha3为例子，你需要下载</p>
 <pre><code>1. gradle-2.1.0-alpha3.jar
 2. gradle-2.1.0-alpha3.pom
@@ -924,7 +922,7 @@ android:orientation=&quot;vertical&quot;&gt;
 *:\android-studio\gradle\m2repository\com\android\tools\build\gradle\2.1.0-alpha3
 之后sync一下~
 </code></pre><p>注：位于build.gradle中所声明的依赖包，有时候一些错误可通过强制控制该依赖包版本来解决，但是我用了一段时间后发现还是乖乖升级为最新版本吧，因为强制锁定低版本会造成某些新特性不能使用。</p>
-<h3 id="Gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h3><p>这是为了解决上面第二个问题，需要更新Gradle至你项目所要求的版本~<br>下载地址：<a href="http://services.gradle.org/distributions" target="_blank" rel="noopener">http://services.gradle.org/distributions</a><br>例如要求2-10版本，你就下载gradle-2.10-all.zip解压至：<br>*:\android-studio\gradle\gradle-2.10<br>后在Android Studio-Flie-Setting-gradle如图设置：<br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160321233515.png" alt=""></p>
+<h3 id="Gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h3><p>这是为了解决上面第二个问题，需要更新Gradle至你项目所要求的版本~<br>下载地址：<a target="_blank" rel="noopener" href="http://services.gradle.org/distributions">http://services.gradle.org/distributions</a><br>例如要求2-10版本，你就下载gradle-2.10-all.zip解压至：<br>*:\android-studio\gradle\gradle-2.10<br>后在Android Studio-Flie-Setting-gradle如图设置：<br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160321233515.png" alt=""></p>
 <p>跳出深海巨坑感觉真好，have a nice day!</p>
 
       

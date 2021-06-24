@@ -259,7 +259,7 @@ android:orientation=&quot;vertical&quot;&gt;
         &lt;/RelativeLayout&gt;
     &lt;/android.support.v4.widget.NestedScrollView&gt;
 &lt;/android.support.design.widget.CoordinatorLayout&gt;
-</code></pre><p><br>最初还以为toolbar在作祟，因为把toolbar的layout_height属性设到极小时发现下部的空白也随之变小，后来在调整各个属性后无果的情况下开始怀疑是整体布局的问题，最后在stackoverflow上找到了解决方法：<br>该页面的根布局需由LinearLayout改为RelativeLayout，再加入android:fitsSystemWindows=”true”属性就没问题了~因为解决这个bug花了两天时间，所以特地分享一下：）</p>
+</code></pre><p></LinearLayout><br>最初还以为toolbar在作祟，因为把toolbar的layout_height属性设到极小时发现下部的空白也随之变小，后来在调整各个属性后无果的情况下开始怀疑是整体布局的问题，最后在stackoverflow上找到了解决方法：<br>该页面的根布局需由LinearLayout改为RelativeLayout，再加入android:fitsSystemWindows=”true”属性就没问题了~因为解决这个bug花了两天时间，所以特地分享一下：）</p>
 <p>修改后代码:</p>
 <pre><code>&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
  xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
