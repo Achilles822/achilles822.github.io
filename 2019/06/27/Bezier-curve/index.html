@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -12,13 +12,15 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mercury Display A:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+
+<link rel="stylesheet" href="https://sothebys-com.brightspotcdn.com/resource/00000169-4eb2-d078-adfb-6eb2e0750000/styleguide/assets/fonts/BentonSans-Regular.45cf6068acf9113d10468477f69e48b1.woff2">
+<link rel="stylesheet" href="https://sothebys-com.brightspotcdn.com/resource/00000169-4eb2-d078-adfb-6eb2e0750000/styleguide/assets/fonts/BentonSans-Bold.20ec1821a68860be07ea9b7c28785a44.woff2">
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yanziyu.tech","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"yanziyu.tech","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"remove","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="定义 贝塞尔曲线(Bézier curve)，又称贝兹曲线或贝济埃曲线，是应用于二维图形应用程序的数学曲线。一般的矢量图形软件通过它来精确画出曲线，贝兹曲线由线段与节点组成，节点是可拖动的支点，线段像可伸缩的皮筋，我们在绘图工具上看到的钢笔工具就是来做这种矢量曲线的。  用途以上介绍摘自百度百科，看起来有点晦涩难懂，一年多以前我第一次接触到这个名词便心生抗拒之意。然而在前端开发中，我们在实现抛物线">
@@ -118,19 +120,14 @@
 
 <nav class="site-nav">
   <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-首页">
+        <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-归档">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/" rel="section">Home</a>
 
   </li>
-        <li class="menu-item menu-item-关于">
+        <li class="menu-item menu-item-archives">
 
-    <a href="/about/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>关于</a>
+    <a href="/archives/" rel="section">Archives</a>
 
   </li>
   </ul>
@@ -209,13 +206,13 @@
 <p>贝塞尔曲线(Bézier curve)，又称贝兹曲线或贝济埃曲线，是应用于二维图形应用程序的数学曲线。一般的矢量图形软件通过它来精确画出曲线，贝兹曲线由线段与节点组成，节点是可拖动的支点，线段像可伸缩的皮筋，我们在绘图工具上看到的钢笔工具就是来做这种矢量曲线的。</p>
 </blockquote>
 <h3 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h3><p>以上介绍摘自百度百科，看起来有点晦涩难懂，一年多以前我第一次接触到这个名词便心生抗拒之意。然而在前端开发中，我们在实现抛物线动画时，贝塞尔曲线绝对是个好帮手。今天我们通过在微信小程序实现一个常见的加入购物车动画，来进一步理解它。</p>
-<a id="more"></a>
+<span id="more"></span>
 <h3 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h3><p><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1879928557,2488352621&amp;fm=26&amp;gp=0.jpg" alt=""><br>通过上图，我们可以看出贝塞尔曲线有四个关键点，P0、P1、P2、P3且x、y轴取值范围在 <strong><em>[0,1]</em></strong> 。MDN上特别说明了：</p>
 <blockquote>
 <p>Cubic Bézier curves with the P1 or P2 ordinate outside the [0, 1] range may generate bouncing effects.<br>When you specify an invalid cubic-bezier curve, CSS ignores the whole property.</p>
 </blockquote>
-<p>所以x、y的取值一旦不在区间内，CSS会 <strong><em>忽略</em></strong> 掉。<br>我们只需要关注P1和P2的取值，就可以生成一条曲线。在CSS中，贝塞尔曲线的表达式参数也是这两个坐标：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cubic-bezier(x1, y1, x2, y2)</span><br></pre></td></tr></table></figure><br>贝塞尔曲线属于 <strong><em>缓动函数（easing functions）</em></strong> ，用于表现某段时间内物体 <strong><em>运动的快慢</em></strong> 。我们可以通过一些实用的工具来调整出我们需要的参数<br><a target="_blank" rel="noopener" href="https://easings.net/">https://easings.net/</a><br>有多种配置好的曲线，应付常见需求应该没有问题。<br><a target="_blank" rel="noopener" href="https://cubic-bezier.com/#.17,.67,.83,.67">https://cubic-bezier.com/#.17,.67,.83,.67</a><br>贝塞尔曲线在线编辑器，可以在线预览效果。url后面的数字即对应四个参数。</p>
-<h3 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h3><p>铺垫了那么多，我们来看一下怎么实现购物车动画。网上有许多该动画在原生js和Vue的实现，其实道理都是一样的:我们需要先获取到「<strong><em>加入购物车</em></strong>」按钮、「<strong><em>购物篮</em></strong>」的坐标，然后通过贝塞尔曲线改变小球的 <strong><em>top</em></strong> 值和 <strong><em>left</em></strong> 值实现从起点到终点的平滑过渡。<br>dom结构：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 触发按钮及小球</span><br><span class="line">&lt;view class&#x3D;&quot;btn-add-cart before-position&quot; bindtap&#x3D;&quot;addCart&quot;&gt;加入购物车动画&lt;&#x2F;view&gt;</span><br><span class="line">&lt;view wx:if&#x3D;&quot;&#123;&#123;ballDisplay&#125;&#125;&quot; class&#x3D;&quot;ball&quot; style&#x3D;&quot;top:&#123;&#123;top&#125;&#125;;left:&#123;&#123;left&#125;&#125;&quot;&gt;&lt;&#x2F;view&gt;</span><br><span class="line">&#x2F;&#x2F; 底部tabbar购物栏</span><br><span class="line">&lt;view class&#x3D;&quot;bottom-bar&quot; hover-class&#x3D;&quot;none&quot; hover-stop-propagation&#x3D;&quot;false&quot;&gt;</span><br><span class="line">  &lt;image id&#x3D;&quot;icon&quot; class&#x3D;&quot;icon after-position&quot; src&#x3D;&quot;..&#x2F;..&#x2F;images&#x2F;cart&#x2F;cart.png&quot; mode&#x3D;&quot;widthFix&quot;&gt;&lt;&#x2F;image&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br></pre></td></tr></table></figure><br>CSS:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">.btn-add-cart &#123;</span><br><span class="line">  width: 300rpx;</span><br><span class="line">  height: 50rpx;</span><br><span class="line">  position: relative;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.bottom-bar &#123;</span><br><span class="line">  position: fixed;</span><br><span class="line">  bottom: 0;</span><br><span class="line">  left: 0;</span><br><span class="line">  height: 100rpx;</span><br><span class="line">  width: 100%;</span><br><span class="line">  background-color: #333;</span><br><span class="line">  display: flex;</span><br><span class="line">  align-items: center;</span><br><span class="line">  justify-content: flex-end</span><br><span class="line">&#125;</span><br><span class="line">.icon&#123;</span><br><span class="line">  height:64rpx;</span><br><span class="line">  width:64rpx;</span><br><span class="line">  padding:10rpx;</span><br><span class="line">  margin-right:30rpx;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  background-color: royalblue;</span><br><span class="line">&#125;</span><br><span class="line">.ball&#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  width:30rpx;</span><br><span class="line">  height:30rpx;</span><br><span class="line">  background-color: red;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  z-index:999;</span><br><span class="line">  transition: 1s top cubic-bezier(0.47, 0, 0.745, 0.715), 1s left cubic-bezier(0, 0, 0, 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>然后写个通用方法获取起点和终点的坐标：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">getRects(cls) &#123;</span><br><span class="line">  return new Promise((resolve, reject) &#x3D;&gt; &#123;</span><br><span class="line">    wx.createSelectorQuery()</span><br><span class="line">      .in(this)</span><br><span class="line">      .select(cls)</span><br><span class="line">      .boundingClientRect(function(rect) &#123;</span><br><span class="line">        console.log(rect);</span><br><span class="line">        resolve(rect);</span><br><span class="line">      &#125;)</span><br><span class="line">      .exec();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>注意：获取小球初始位置要在 <strong><em>onShow()</em></strong> 获取。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">onShow() &#123;</span><br><span class="line">  &#x2F;&#x2F; 获取小球最开始的位置</span><br><span class="line">  this.initBallPos();</span><br><span class="line">  this.start &#x3D; false;</span><br><span class="line">&#125;,</span><br><span class="line">initBallPos() &#123;</span><br><span class="line">  this.getRects(&quot;.before-position&quot;).then(rect &#x3D;&gt; &#123;</span><br><span class="line">    this.setData(&#123;</span><br><span class="line">      top: &#96;$&#123;rect.top + 5&#125;px&#96;,</span><br><span class="line">      left: &#96;$&#123;rect.left + 30&#125;px&#96;,</span><br><span class="line">      originTop: &#96;$&#123;rect.top + 5&#125;px&#96;,</span><br><span class="line">      originLeft: &#96;$&#123;rect.left + 30&#125;px&#96;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>这里是触发函数，用 <strong><em>this.start</em></strong> 防止多次触发<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 加入购物车动画</span><br><span class="line"> addCart() &#123;</span><br><span class="line">   let that &#x3D; this;</span><br><span class="line">   &#x2F;&#x2F; 禁止动画多次触发</span><br><span class="line">   if (this.start) &#123;</span><br><span class="line">     return;</span><br><span class="line">   &#125;</span><br><span class="line">   this.start &#x3D; true;</span><br><span class="line">   this.setData(&#123;</span><br><span class="line">     ballDisplay: true</span><br><span class="line">   &#125;);</span><br><span class="line">   &#x2F;&#x2F; 获取小球终点位置</span><br><span class="line">   this.getRects(&quot;.after-position&quot;).then(rect &#x3D;&gt; &#123;</span><br><span class="line">     this.setData(&#123;</span><br><span class="line">       top: &#96;$&#123;rect.top + 16&#125;px&#96;,</span><br><span class="line">       left: &#96;$&#123;rect.left + 16&#125;px&#96;</span><br><span class="line">     &#125;);</span><br><span class="line">     &#x2F;&#x2F; 延时跟动画时长一致，飞完隐藏掉，再把小球重置到初始位置。</span><br><span class="line">     let &#123; originLeft, originTop &#125; &#x3D; this.data;</span><br><span class="line">     setTimeout(() &#x3D;&gt; &#123;</span><br><span class="line">       that.setData(&#123;</span><br><span class="line">         ballDisplay: false,</span><br><span class="line">         top: originTop,</span><br><span class="line">         left: originLeft</span><br><span class="line">       &#125;);</span><br><span class="line">       that.start &#x3D; false;</span><br><span class="line">     &#125;, 1000);</span><br><span class="line">   &#125;);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure><br>demo效果：<br><img src="https://github.com/Achilles822/achilles822.github.io/blob/master/images/curve.gif?raw=true" alt=""></p>
+<p>所以x、y的取值一旦不在区间内，CSS会 <strong><em>忽略</em></strong> 掉。<br>我们只需要关注P1和P2的取值，就可以生成一条曲线。在CSS中，贝塞尔曲线的表达式参数也是这两个坐标：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cubic-bezier(x1, y1, x2, y2)</span><br></pre></td></tr></table></figure><br>贝塞尔曲线属于 <strong><em>缓动函数（easing functions）</em></strong> ，用于表现某段时间内物体 <strong><em>运动的快慢</em></strong> 。我们可以通过一些实用的工具来调整出我们需要的参数<br><a target="_blank" rel="noopener" href="https://easings.net/">https://easings.net/</a><br>有多种配置好的曲线，应付常见需求应该没有问题。<br><a target="_blank" rel="noopener" href="https://cubic-bezier.com/#.17,.67,.83,.67">https://cubic-bezier.com/#.17,.67,.83,.67</a><br>贝塞尔曲线在线编辑器，可以在线预览效果。url后面的数字即对应四个参数。</p>
+<h3 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h3><p>铺垫了那么多，我们来看一下怎么实现购物车动画。网上有许多该动画在原生js和Vue的实现，其实道理都是一样的:我们需要先获取到「<strong><em>加入购物车</em></strong>」按钮、「<strong><em>购物篮</em></strong>」的坐标，然后通过贝塞尔曲线改变小球的 <strong><em>top</em></strong> 值和 <strong><em>left</em></strong> 值实现从起点到终点的平滑过渡。<br>dom结构：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 触发按钮及小球</span><br><span class="line">&lt;view class=&quot;btn-add-cart before-position&quot; bindtap=&quot;addCart&quot;&gt;加入购物车动画&lt;/view&gt;</span><br><span class="line">&lt;view wx:if=&quot;&#123;&#123;ballDisplay&#125;&#125;&quot; class=&quot;ball&quot; style=&quot;top:&#123;&#123;top&#125;&#125;;left:&#123;&#123;left&#125;&#125;&quot;&gt;&lt;/view&gt;</span><br><span class="line">// 底部tabbar购物栏</span><br><span class="line">&lt;view class=&quot;bottom-bar&quot; hover-class=&quot;none&quot; hover-stop-propagation=&quot;false&quot;&gt;</span><br><span class="line">  &lt;image id=&quot;icon&quot; class=&quot;icon after-position&quot; src=&quot;../../images/cart/cart.png&quot; mode=&quot;widthFix&quot;&gt;&lt;/image&gt;</span><br><span class="line">&lt;/view&gt;</span><br></pre></td></tr></table></figure><br>CSS:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">.btn-add-cart &#123;</span><br><span class="line">  width: 300rpx;</span><br><span class="line">  height: 50rpx;</span><br><span class="line">  position: relative;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.bottom-bar &#123;</span><br><span class="line">  position: fixed;</span><br><span class="line">  bottom: 0;</span><br><span class="line">  left: 0;</span><br><span class="line">  height: 100rpx;</span><br><span class="line">  width: 100%;</span><br><span class="line">  background-color: #333;</span><br><span class="line">  display: flex;</span><br><span class="line">  align-items: center;</span><br><span class="line">  justify-content: flex-end</span><br><span class="line">&#125;</span><br><span class="line">.icon&#123;</span><br><span class="line">  height:64rpx;</span><br><span class="line">  width:64rpx;</span><br><span class="line">  padding:10rpx;</span><br><span class="line">  margin-right:30rpx;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  background-color: royalblue;</span><br><span class="line">&#125;</span><br><span class="line">.ball&#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  width:30rpx;</span><br><span class="line">  height:30rpx;</span><br><span class="line">  background-color: red;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  z-index:999;</span><br><span class="line">  transition: 1s top cubic-bezier(0.47, 0, 0.745, 0.715), 1s left cubic-bezier(0, 0, 0, 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>然后写个通用方法获取起点和终点的坐标：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">getRects(cls) &#123;</span><br><span class="line">  return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">    wx.createSelectorQuery()</span><br><span class="line">      .in(this)</span><br><span class="line">      .select(cls)</span><br><span class="line">      .boundingClientRect(function(rect) &#123;</span><br><span class="line">        console.log(rect);</span><br><span class="line">        resolve(rect);</span><br><span class="line">      &#125;)</span><br><span class="line">      .exec();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>注意：获取小球初始位置要在 <strong><em>onShow()</em></strong> 获取。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">onShow() &#123;</span><br><span class="line">  // 获取小球最开始的位置</span><br><span class="line">  this.initBallPos();</span><br><span class="line">  this.start = false;</span><br><span class="line">&#125;,</span><br><span class="line">initBallPos() &#123;</span><br><span class="line">  this.getRects(&quot;.before-position&quot;).then(rect =&gt; &#123;</span><br><span class="line">    this.setData(&#123;</span><br><span class="line">      top: `$&#123;rect.top + 5&#125;px`,</span><br><span class="line">      left: `$&#123;rect.left + 30&#125;px`,</span><br><span class="line">      originTop: `$&#123;rect.top + 5&#125;px`,</span><br><span class="line">      originLeft: `$&#123;rect.left + 30&#125;px`</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>这里是触发函数，用 <strong><em>this.start</em></strong> 防止多次触发<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">// 加入购物车动画</span><br><span class="line"> addCart() &#123;</span><br><span class="line">   let that = this;</span><br><span class="line">   // 禁止动画多次触发</span><br><span class="line">   if (this.start) &#123;</span><br><span class="line">     return;</span><br><span class="line">   &#125;</span><br><span class="line">   this.start = true;</span><br><span class="line">   this.setData(&#123;</span><br><span class="line">     ballDisplay: true</span><br><span class="line">   &#125;);</span><br><span class="line">   // 获取小球终点位置</span><br><span class="line">   this.getRects(&quot;.after-position&quot;).then(rect =&gt; &#123;</span><br><span class="line">     this.setData(&#123;</span><br><span class="line">       top: `$&#123;rect.top + 16&#125;px`,</span><br><span class="line">       left: `$&#123;rect.left + 16&#125;px`</span><br><span class="line">     &#125;);</span><br><span class="line">     // 延时跟动画时长一致，飞完隐藏掉，再把小球重置到初始位置。</span><br><span class="line">     let &#123; originLeft, originTop &#125; = this.data;</span><br><span class="line">     setTimeout(() =&gt; &#123;</span><br><span class="line">       that.setData(&#123;</span><br><span class="line">         ballDisplay: false,</span><br><span class="line">         top: originTop,</span><br><span class="line">         left: originLeft</span><br><span class="line">       &#125;);</span><br><span class="line">       that.start = false;</span><br><span class="line">     &#125;, 1000);</span><br><span class="line">   &#125;);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure><br>demo效果：<br><img src="https://github.com/Achilles822/achilles822.github.io/blob/master/images/curve.gif?raw=true" alt=""></p>
 <p>具体代码可在<a target="_blank" rel="noopener" href="https://github.com/Achilles822/wx-miniprogram">Github</a>找到哦～</p>
 
     </div>
@@ -279,62 +276,6 @@
 </script>
 
         </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E9%80%94"><span class="nav-number">2.</span> <span class="nav-text">用途</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%90%86%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E8%B7%B5"><span class="nav-number">4.</span> <span class="nav-text">实践</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Leo Yen</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives">
-          <span class="site-state-item-count">37</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">37</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
       </div>
     </main>
 
@@ -347,7 +288,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -371,8 +312,6 @@
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 

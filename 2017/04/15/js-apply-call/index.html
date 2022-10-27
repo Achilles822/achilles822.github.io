@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.2.0">
+<meta name="generator" content="Hexo 5.4.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -12,13 +12,15 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mercury Display A:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+
+<link rel="stylesheet" href="https://sothebys-com.brightspotcdn.com/resource/00000169-4eb2-d078-adfb-6eb2e0750000/styleguide/assets/fonts/BentonSans-Regular.45cf6068acf9113d10468477f69e48b1.woff2">
+<link rel="stylesheet" href="https://sothebys-com.brightspotcdn.com/resource/00000169-4eb2-d078-adfb-6eb2e0750000/styleguide/assets/fonts/BentonSans-Bold.20ec1821a68860be07ea9b7c28785a44.woff2">
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yanziyu.tech","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"yanziyu.tech","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"remove","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="call和apply的区别首先两者的作用是一样的，都是为了动态改变This，从语法我们可以看出它们所接受的参数不同：123obj.apply(thisObj, [arg1, arg2, ...]);obj.call(thisObj, arg1, arg2, ...);第一个参数都一样，即把this绑定到thisObj，这时候thisObj继承了this的属性和方法，重点在第二个参数，apply所接">
@@ -115,19 +117,14 @@
 
 <nav class="site-nav">
   <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-首页">
+        <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-归档">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+    <a href="/" rel="section">Home</a>
 
   </li>
-        <li class="menu-item menu-item-关于">
+        <li class="menu-item menu-item-archives">
 
-    <a href="/about/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>关于</a>
+    <a href="/archives/" rel="section">Archives</a>
 
   </li>
   </ul>
@@ -196,10 +193,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="call和apply的区别"><a href="#call和apply的区别" class="headerlink" title="call和apply的区别"></a>call和apply的区别</h2><p>首先两者的作用是一样的，都是为了动态改变This，从语法我们可以看出它们所接受的参数不同：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">obj.apply(thisObj, [arg1, arg2, ...]);</span><br><span class="line">obj.call(thisObj, arg1, arg2, ...);</span><br><span class="line"></span><br></pre></td></tr></table></figure><br>第一个参数都一样，即把this绑定到thisObj，这时候thisObj继承了this的属性和方法，重点在第二个参数，apply所接受的是一个数组参数，call所接受的是连续参数。</p>
-<h3 id="apply示例"><a href="#apply示例" class="headerlink" title="apply示例"></a>apply示例</h3><p>我们来看个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 定义一个人类</span><br><span class="line">function Person(name,age)</span><br><span class="line">&#123;</span><br><span class="line">    this.name&#x3D;name;</span><br><span class="line">    this.age&#x3D;age;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;定义某个人类</span><br><span class="line">function someOne(name,age,job)&#123;</span><br><span class="line">    </span><br><span class="line">    Person.apply(this,arguments);</span><br><span class="line">    this.job&#x3D;job;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">var person1 &#x3D; new someOne(&quot;Jack&quot;,&quot;21&quot;,&quot;doctor&quot;);</span><br><span class="line">alert(&quot;My name is &quot;+person1.name+&quot;. I am &quot;+person1.age+&quot; years old.And now I am a &quot;+person1.job);</span><br><span class="line">&#x2F;&#x2F;弹出结果是My name is Jack. I am 21 years old.And now I am a doctor</span><br></pre></td></tr></table></figure></p>
+        <h2 id="call和apply的区别"><a href="#call和apply的区别" class="headerlink" title="call和apply的区别"></a>call和apply的区别</h2><p>首先两者的作用是一样的，都是为了动态改变This，从语法我们可以看出它们所接受的参数不同：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">obj.apply(thisObj, [arg1, arg2, ...]);</span><br><span class="line">obj.call(thisObj, arg1, arg2, ...);</span><br><span class="line"></span><br></pre></td></tr></table></figure><br>第一个参数都一样，即把this绑定到thisObj，这时候thisObj继承了this的属性和方法，重点在第二个参数，apply所接受的是一个数组参数，call所接受的是连续参数。</p>
+<h3 id="apply示例"><a href="#apply示例" class="headerlink" title="apply示例"></a>apply示例</h3><p>我们来看个例子：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 定义一个人类</span><br><span class="line">function Person(name,age)</span><br><span class="line">&#123;</span><br><span class="line">    this.name=name;</span><br><span class="line">    this.age=age;</span><br><span class="line">&#125;</span><br><span class="line">//定义某个人类</span><br><span class="line">function someOne(name,age,job)&#123;</span><br><span class="line">    </span><br><span class="line">    Person.apply(this,arguments);</span><br><span class="line">    this.job=job;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">var person1 = new someOne(&quot;Jack&quot;,&quot;21&quot;,&quot;doctor&quot;);</span><br><span class="line">alert(&quot;My name is &quot;+person1.name+&quot;. I am &quot;+person1.age+&quot; years old.And now I am a &quot;+person1.job);</span><br><span class="line">//弹出结果是My name is Jack. I am 21 years old.And now I am a doctor</span><br></pre></td></tr></table></figure></p>
 <p>可以看到我们在someOne类中并没有给name和age属性赋值，而是通过apply方法去继承Person类的方法，这个时候<br>apply(this,arguments)里的this指向创建的对象person1,arguments指向[“Jack”,”21”,”doctor”]。</p>
-<h3 id="call示例"><a href="#call示例" class="headerlink" title="call示例"></a>call示例</h3><p>第二个参数开始传入要劫持的属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person.call(this,name,age);</span><br></pre></td></tr></table></figure></p>
+<h3 id="call示例"><a href="#call示例" class="headerlink" title="call示例"></a>call示例</h3><p>第二个参数开始传入要劫持的属性<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person.call(this,name,age);</span><br></pre></td></tr></table></figure></p>
 <h2 id="什么时候用apply，什么时候用call？"><a href="#什么时候用apply，什么时候用call？" class="headerlink" title="什么时候用apply，什么时候用call？"></a>什么时候用apply，什么时候用call？</h2><p>在给定参数列表，并且参数是数组类型，同时父子函数的参数列表顺序是一致的，即可用apply。如不一致，就得用call来实现了，参数列表顺序以父函数为准。举个例子，父函数Person(name,age)，子函数someOne(age,name,job),这时候就得这样使用:Person.call(this,name,age)</p>
 <h2 id="实用的apply"><a href="#实用的apply" class="headerlink" title="实用的apply"></a>实用的apply</h2><p>利用apply可以把数组参数转为一个一个的参数传递给方法这个特性，我们可以为Math方法做一个良好的拓展。原生的Math.max()是不接受数组参数的，确实是个遗憾，不过现在我们可以这样写：<code>Math.max.apply(null,array)</code>去求最大值，同样也可以用<code>Math.min.apply(null,array)</code>求出数组里的最小值。</p>
 
@@ -264,62 +261,6 @@
 </script>
 
         </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#call%E5%92%8Capply%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.</span> <span class="nav-text">call和apply的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#apply%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.1.</span> <span class="nav-text">apply示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#call%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.2.</span> <span class="nav-text">call示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8apply%EF%BC%8C%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8call%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">什么时候用apply，什么时候用call？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%94%A8%E7%9A%84apply"><span class="nav-number">3.</span> <span class="nav-text">实用的apply</span></a></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">Leo Yen</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives">
-          <span class="site-state-item-count">37</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">37</span>
-        <span class="site-state-item-name">tags</span></a>
-      </div>
-  </nav>
-</div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
       </div>
     </main>
 
@@ -332,7 +273,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -356,8 +297,6 @@
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 
