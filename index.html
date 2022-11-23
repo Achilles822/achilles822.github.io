@@ -173,7 +173,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-11-23 21:16:33 / Modified: 21:26:33" itemprop="dateCreated datePublished" datetime="2022-11-23T21:16:33+08:00">2022-11-23</time>
+              <time title="Created: 2022-11-23 21:16:33 / Modified: 21:45:16" itemprop="dateCreated datePublished" datetime="2022-11-23T21:16:33+08:00">2022-11-23</time>
             </span>
 
           
@@ -208,27 +208,41 @@
 <p>iframe的特性导致搜索引擎无法获取到其中的内容，进而无法实现应用的seo</p>
 <h2 id="Web-Components"><a href="#Web-Components" class="headerlink" title="Web Components"></a>Web Components</h2><p>由google推出的浏览器的原生组件</p>
 <p>它的三项主要技术是指：</p>
-<p>Custom elements（自定义元素）：一组JavaScript API，允许您定义custom elements及其行为，然后可以在您的用户界面中按照需要使用它们。<br>Shadow DOM（影子DOM）：一组JavaScript API，用于将封装的“影子”DOM树附加到元素（与主文档DOM分开呈现）并控制其关联的功能。通过这种方式，您可以保持元素的功能私有，这样它们就可以被脚本化和样式化，而不用担心与文档的其他部分发生冲突。<br>HTML templates（HTML模板）： <template> 和 <slot> 元素使您可以编写不在呈现页面中显示的标记模板。然后它们可以作为自定义元素结构的基础被多次重用。 通过以上描述，再结合微前端的概念，我们来看看Web Components是如何做到微前端：<br>技术栈无关：Web Components是浏览器原生组件，那即是在任何框架中都可以使用。<br>独立开发：使用Web Components开发的应用无需与其他应用间产生任何关联。<br>应用间隔离： Shadow DOM的特性，各个引入的微应用间可以达到相互隔离的效果。 综上所述，Web Components是有能力以组件加载的方式将微应用整合在一起作为微前端的一种手段，但不幸的是，Web Components是浏览器的新特性，所以它的兼容性不是很好，如果有兼容性要求的项目还是无法使用，具体请查看can i use。</p>
+<p>Custom elements（自定义元素）：一组JavaScript API，允许您定义custom elements及其行为，然后可以在您的用户界面中按照需要使用它们。<br>Shadow DOM（影子DOM）：一组JavaScript API，用于将封装的“影子”DOM树附加到元素（与主文档DOM分开呈现）并控制其关联的功能。通过这种方式，您可以保持元素的功能私有，这样它们就可以被脚本化和样式化，而不用担心与文档的其他部分发生冲突。<br>HTML templates（HTML模板）： <code>&lt;template&gt;</code> 和 <code>&lt;slot&gt;</code> 元素使您可以编写不在呈现页面中显示的标记模板。然后它们可以作为自定义元素结构的基础被多次重用。 通过以上描述，再结合微前端的概念，我们来看看Web Components是如何做到微前端：<br>技术栈无关：Web Components是浏览器原生组件，那即是在任何框架中都可以使用。<br>独立开发：使用Web Components开发的应用无需与其他应用间产生任何关联。<br>应用间隔离： Shadow DOM的特性，各个引入的微应用间可以达到相互隔离的效果。 综上所述，Web Components是有能力以组件加载的方式将微应用整合在一起作为微前端的一种手段，但不幸的是，Web Components是浏览器的新特性，所以它的兼容性不是很好，如果有兼容性要求的项目还是无法使用，具体请查看can i use。</p>
 <h2 id="ES-Module"><a href="#ES-Module" class="headerlink" title="ES Module"></a>ES Module</h2><p>ES Module是Ecma script 2015中提出的一种前端模块化手段</p>
 <p>无技术栈限制：ESM加载的只是js内容，无论哪个框架，最终都要编译成js，因此，无论哪种框架，ESM都能加载。<br>应用单独开发： ESM只是js的一种规范，不会影响应用的开发模式。<br>多应用整合： 只要将微应用以ESM的方式暴露出来，就能正常加载。<br>远程加载模块: ESM能够直接请求cdn资源，这是它与生俱来的能力。<br>缺点：兼容性一般，可以搭配打包工具解决兼容性问题</p>
 <h2 id="qiankun（基于一个基座服务的中心化的架构方式）"><a href="#qiankun（基于一个基座服务的中心化的架构方式）" class="headerlink" title="qiankun（基于一个基座服务的中心化的架构方式）"></a>qiankun（基于一个基座服务的中心化的架构方式）</h2><p>当下微前端主要采用的是组合式应用路由方案，该方案的核心是“主从”思想，即包括一个基座（MainApp）应用和若干个微（MicroApp）应用，基座应用大多数是一个前端SPA项目，主要负责应用注册，路由映射，消息下发等，而微应用是独立前端项目，这些项目不限于采用React，Vue，Angular或者JQuery开发，每个微应用注册到基座应用中，由基座进行管理，但是如果脱离基座也是可以单独访问，基本的流程如下图所示：</p>
 <p>基于single-spa封装，提供了更加开箱即用的 API<br>技术栈无关，任意技术栈的应用均可 使用/接入，不论是 React/Vue/Angular/JQuery 还是其他等框架<br>HTML Entry 接入方式，让你接入微应用像使用 iframe 一样简单<br>样式隔离，确保微应用之间样式互相不干扰<br>JS 沙箱，确保微应用之间 全局变量/事件 不冲突<br>资源预加载，在浏览器空闲时间预加载未打开的微应用资源，加速微应用打开速度<br>umi 插件，提供了 @umijs/plugin-qiankun 供 umi 应用一键切换成微前端架构系统 除了最后一点拓展以外，微前端想要达到的效果都已经达到。<br>缺点：需要对子项目进行入侵式修改</p>
 <h2 id="MF（去中心化的应用部署方式）"><a href="#MF（去中心化的应用部署方式）" class="headerlink" title="MF（去中心化的应用部署方式）"></a>MF（去中心化的应用部署方式）</h2><p>每个应用是单独部署在各自的服务器，每个应用都可以引用其他应用，也能被其他应用所引用，即每个应用可以充当host的角色，亦可以作为remote出现，无中心应用的概念。</p>
-<h1 id="什么是模块联邦（MF）"><a href="#什么是模块联邦（MF）" class="headerlink" title="什么是模块联邦（MF）"></a>什么是模块联邦（MF）</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="Container"><a href="#Container" class="headerlink" title="Container"></a>Container</h3><pre><code>一个使用 ModuleFederationPlugin 构建的应用就是一个 Container，它可以加载其他的 Container，也可以被其他的 Container 加载。
-</code></pre><h3 id="Remote、Host、Bidirectional-hosts"><a href="#Remote、Host、Bidirectional-hosts" class="headerlink" title="Remote、Host、Bidirectional-hosts"></a>Remote、Host、Bidirectional-hosts</h3><p>如果一个应用只导出模块给其它应用消费，我们称这样的应用为 remote<br>如果一个应用只消费其它应用导出的模块，我们称这样的应用为 host<br>Bidirectional-hosts，如果一个应用既消费其它应用导出的模块，也导出模块给其它应用消费，我们称这样的应用为 Bidirectional-hosts</p>
+<h1 id="什么是模块联邦（MF）"><a href="#什么是模块联邦（MF）" class="headerlink" title="什么是模块联邦（MF）"></a>什么是模块联邦（MF）</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="Container"><a href="#Container" class="headerlink" title="Container"></a>Container</h3><p>一个使用 ModuleFederationPlugin 构建的应用就是一个 Container，它可以加载其他的 Container，也可以被其他的 Container 加载。</p>
+<h3 id="Remote、Host、Bidirectional-hosts"><a href="#Remote、Host、Bidirectional-hosts" class="headerlink" title="Remote、Host、Bidirectional-hosts"></a>Remote、Host、Bidirectional-hosts</h3><p>如果一个应用只导出模块给其它应用消费，我们称这样的应用为 remote<br>如果一个应用只消费其它应用导出的模块，我们称这样的应用为 host<br>Bidirectional-hosts，如果一个应用既消费其它应用导出的模块，也导出模块给其它应用消费，我们称这样的应用为 Bidirectional-hosts</p>
 <h3 id="Shared"><a href="#Shared" class="headerlink" title="Shared"></a>Shared</h3><p>shared 表示共享依赖，一个应用可以将自己的依赖共享出去，比如 react、react-dom、mobx等，其他的应用可以直接使用共享作用域中的依赖从而减少应用的体积。</p>
-<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>微前端：通过shared以及exposes可以将多个应用引入同一应用中进行管理。<br>资源复用，减少编译体积：可以将多个应用都用到的通用组件单独部署，通过mf的功能在runtime时引入到其他项目中，这样组件代码就不会编译到项目中，同时亦能满足多个项目同时使用的需求，一举两得。<br>针对一些封装基础能力或业务组件的项目，要提供给其它项目复用，常用的方式是封装成npm包，业务方再把包引入项目使用，这样做会带来以下问题：<br>通过发包的方式进行进行组件/方法的复用，当组件（方法）有一些更新时候，尤其是更改了某些存在的bug，就不得不通知依赖模块进行升版；如果存在多个依赖方，这种“发布-&gt; 通知-&gt; 更改”模式无疑是低效率的<br>项目伴随着引入的模块增多，编译耗时会增加，并且可能存在编译陷阱（意外的构建失败），需要花费额外的时间去排查。<br>MF的出现，使得以上问题有了新的解决方法。</p>
-<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><p>缺乏类型提示，使用远程组件只是获取到组件的引用，但获取不到类型定义。<br>应用一旦发布即会被Host应用消费，一旦出现问题影响范围广。</p>
-<p>使用方法<br>使用MF,只需要配置好以下几个属性：</p>
-<p>name    string    必传值，即输出的模块名，被远程引用时路径为${name}/${expose}<br>library    object    声明全局变量的方式，name为umd的name<br>filename    string    构建输出的文件名<br>remotes    object    远程引用的应用名及其别名的映射，使用时以key值作为name<br>exposes    object    被远程引用时可暴露的资源路径及其别名<br>shared    object    与其他应用之间可以共享的第三方依赖，使你的代码中不用重复加载同一份依赖</p>
-<h1 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h1><p>源码地址：<a target="_blank" rel="noopener" href="https://github.com/webpack/webpack/blob/main/lib/container/ModuleFederationPlugin.js">https://github.com/webpack/webpack/blob/main/lib/container/ModuleFederationPlugin.js</a></p>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p><strong>微前端</strong>：通过shared以及exposes可以将多个应用引入同一应用中进行管理。<br><strong>资源复用，减少编译体积</strong>:可以将多个应用都用到的通用组件单独部署，通过mf的功能在runtime时引入到其他项目中，这样组件代码就不会编译到项目中，同时亦能满足多个项目同时使用的需求，一举两得。<br>针对一些封装基础能力或业务组件的项目，要提供给其它项目复用，常用的方式是封装成npm包，业务方再把包引入项目使用，这样做会带来以下问题：<br>通过发包的方式进行进行组件/方法的复用，当组件（方法）有一些更新时候，尤其是更改了某些存在的bug，就不得不通知依赖模块进行升版；如果存在多个依赖方，这种“发布-&gt; 通知-&gt; 更改”模式无疑是低效率的<br>项目伴随着引入的模块增多，编译耗时会增加，并且可能存在编译陷阱（意外的构建失败），需要花费额外的时间去排查。<br>MF的出现，使得以上问题有了新的解决方法。</p>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ol>
+<li>缺乏类型提示，使用远程组件只是获取到组件的引用，但获取不到类型定义。</li>
+<li>应用一旦发布即会被Host应用消费，一旦出现问题影响范围广。</li>
+</ol>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>使用MF,只需要配置好以下几个属性：</p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>name |    string    |必传值，即输出的模块名，被远程引用时路径为<code>$&#123;name&#125;/$&#123;expose&#125;</code><br>|library |    object    |声明全局变量的方式，name为umd的name<br>|filename|    string    |构建输出的文件名<br>|remotes    |object|    远程引用的应用名及其别名的映射，使用时以key值作为name<br>|exposes|    object    |被远程引用时可暴露的资源路径及其别名<br>|shared|    object    |与其他应用之间可以共享的第三方依赖，使你的代码中不用重复加载同一份依赖</p>
+<h1 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h1><p><a target="_blank" rel="noopener" href="https://github.com/webpack/webpack/blob/main/lib/container/ModuleFederationPlugin.js">源码地址</a></p>
 <p>ModuleFederationPlugin利用了webpack的plugin机制，根据传入的options调用了以下三个plugin：</p>
-<p>ContainerPlugin</p>
-<p>主要作用将exposes的插件当成入口文件模块进行打包，形成单独可运行的文件，然后跟随主模块进行编译，最终expose的组件会被解析成一个入口文件。</p>
-<p>ContainerReferencePlugin</p>
-<p>该插件将指定引用的外部包（remote）添加的容器中。并允许容器导入远程模块。在导入时会调用向容器使用者提供override，为远程模块提供公共依赖。</p>
-<p>SharePlugin</p>
-<p>整个模块都在实现共享的功能，其利用Provider进行提供，Consumer进行消费的机制，将共享的数据隔离在特定的shareScope中，通过resolveMatchedConfigs实现了对provider依赖及consumer依赖的过滤，从而对共有依赖只进行一遍请求。</p>
+<h2 id="ContainerPlugin"><a href="#ContainerPlugin" class="headerlink" title="ContainerPlugin"></a>ContainerPlugin</h2><p>主要作用将exposes的插件当成入口文件模块进行打包，形成单独可运行的文件，然后跟随主模块进行编译，最终expose的组件会被解析成一个入口文件。</p>
+<h2 id="ContainerReferencePlugin"><a href="#ContainerReferencePlugin" class="headerlink" title="ContainerReferencePlugin"></a>ContainerReferencePlugin</h2><p>该插件将指定引用的外部包（remote）添加的容器中。并允许容器导入远程模块。在导入时会调用向容器使用者提供override，为远程模块提供公共依赖。</p>
+<h2 id="SharePlugin"><a href="#SharePlugin" class="headerlink" title="SharePlugin"></a>SharePlugin</h2><p>整个模块都在实现共享的功能，其利用Provider进行提供，Consumer进行消费的机制，将共享的数据隔离在特定的shareScope中，通过resolveMatchedConfigs实现了对provider依赖及consumer依赖的过滤，从而对共有依赖只进行一遍请求。</p>
 <h1 id="行业实践"><a href="#行业实践" class="headerlink" title="行业实践"></a>行业实践</h1><h2 id="UmiJS-MFSU构建加速"><a href="#UmiJS-MFSU构建加速" class="headerlink" title="UmiJS MFSU构建加速"></a>UmiJS MFSU构建加速</h2><p><a target="_blank" rel="noopener" href="https://umijs.org/docs/api/config#mfsu">https://umijs.org/docs/api/config#mfsu</a></p>
 <p>mfsu 是一种基于 webpack5 新特性 Module Federation 的打包提速方案。核心原理是将应用的依赖构建为一个 Module Federation 的 remote 应用，以免去应用热更新时对依赖的编译。</p>
 <p>因此，开启 mfsu 可以大幅减少热更新所需的时间。在生产模式，也可以通过提前编译依赖，大幅提升部署效率。</p>
