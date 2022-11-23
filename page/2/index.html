@@ -148,6 +148,83 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yanziyu.tech/2018/05/06/angular-learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Leo Yen">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑人筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/05/06/angular-learning/" class="post-title-link" itemprop="url">Angular4学习总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-05-06 14:43:22" itemprop="dateCreated datePublished" datetime="2018-05-06T14:43:22+08:00">2018-05-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-05-15 17:29:10" itemprop="dateModified" datetime="2018-05-15T17:29:10+08:00">2018-05-15</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="写在开始"><a href="#写在开始" class="headerlink" title="写在开始"></a>写在开始</h1><p>进入现在的公司快满一年了，记得入职第一天是让我看文档，第二天就正式投入开发了，期间一直想要写点学习心得，但是因为工作量较大，连域名未认证被封了几个月都不知道，趁这次修复blog，大致写一写这一年来积累的东西。</p>
+<h1 id="学习方式"><a href="#学习方式" class="headerlink" title="学习方式"></a>学习方式</h1><p>学习一门语言最好的方法就是实战，我进入公司的时候恰好碰上技术栈转型，逐渐把老项目过渡到Angular4，所以大家都是边做边摸索，Angular在国内远没有Vue那么火，不少问题的解决都要靠老外，国内的开发者也有几个知名的实践，把我们常用的插件集成在一个demo中，这里贴上几个比较经典的学习资源，有需要可以参考：</p>
+<p><a target="_blank" rel="noopener" href="https://angular.cn/">官方中文文档</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/damoqiongqiu/NiceFish">大漠老师的美人鱼</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/zhongzhong0505/CodeBe">CodeBe插件集成demo</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/kittencup/angular2-ama-cn">Angular2随便问</a></p>
+<p>理论上实际开发都是专注于业务，所以一般都会使用框架以提高开发速度，这里推荐阿里的NG-ZORRO和PrimeNG，经过多个版本迭代已经比较成熟，可以放心使用：）</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/NG-ZORRO/ng-zorro-antd">强烈推荐的框架：NG-ZORRO
+</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/primefaces/primeng">PrimeNG</a></p>
+<h1 id="实用技巧"><a href="#实用技巧" class="headerlink" title="实用技巧"></a>实用技巧</h1><p><br>这里就不再讲什么数据绑定、http请求等基础用法了，说几个在实际项目中比较实用的技巧，官方文档或许有提及但不够详细。</p>
+<h3 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h3><p>或许你在某些教程中已经学习了Angular的组件通讯，知道常用的组件关系是父子关系，用的是@Input和@Output去传参，但是在实际项目中，经常会遇到兄弟关系的组件，这时候我们可以定义一个全局共用的Service进行传值，需要避免的坑是使用EventEmitter发送的值在订阅之前要先new EventEmiiter()一下，不然会造成重复触发。具体的使用方法可以参考 <a target="_blank" rel="noopener" href="https://segmentfault.com/q/1010000011080965">https://segmentfault.com/q/1010000011080965</a></p>
+<h3 id="动态组件"><a href="#动态组件" class="headerlink" title="动态组件"></a>动态组件</h3><p>当模版内容较多时，例如一个页面包含了多个弹窗，弹窗的内容、逻辑也非常多的时候，按照默认模式Angular会一次全部渲染，影响性能。这时候我们可以使用动态组件，只有初始化事件触发时，才去生成这个弹窗组件，并且这样做有个好处：抽出来的组件可以进行复用。<br>具体的使用方法可以参考 <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/10feab2c3102">https://www.jianshu.com/p/10feab2c3102</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yanziyu.tech/2017/05/22/nginx/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -802,97 +879,6 @@ nginx.exe//第二种启动命令
 <p>再看PC版，把联系人列表和聊天窗口合二为一，本身就是一种有效提高效率的设计。<br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/@MK%28TWGOR4~%25%2978%5BWQ09HBJ.png" alt="PC"></p>
 <p>腾讯于数日前刚上线TIM三端的客户端，大家可以去下载体验一把，不用担心，依旧可以抢你们最爱的一分钱红包~</p>
 <p><a target="_blank" rel="noopener" href="https://office.qq.com">TIM官网</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yanziyu.tech/2017/01/24/JScalculator/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo Yen">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑人筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/01/24/JScalculator/" class="post-title-link" itemprop="url">JavaScript实现Material Design计算器</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2017-01-24 19:36:37 / Modified: 19:57:16" itemprop="dateCreated datePublished" datetime="2017-01-24T19:36:37+08:00">2017-01-24</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>造轮子是快速提高的方法之一。</p>
-</blockquote>
-<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>以为在花瓣上随便找了一张设计图就可以开工了，结果踩了大坑：（<br>这是我找的图，有没有发现什么不对劲？<br><img src="http://ohvi9wpj7.bkt.clouddn.com/cal1.png" alt=""></p>
-<p>没错，乘法x哪去了？我可是做完了才发现的。这种设计师应该被做成爆炒鱿鱼，为了更完美，无奈只好加了几个功能上去。</p>
-<h3 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h3><p>计算器重在考虑多种错误输入的处理，由于我也是初学者，这里用switch来判断运算</p>
-<pre><code>function operator(type)
-&#123;
-switch(type)
-&#123;
-case &quot;clear&quot;:
-  input.value=&quot;0&quot;;
-  _string.length=0;
-break;
-case &quot;plus&quot;:
-if(checknum(input.value)!=0)
-&#123;
-_string.push(input.value);
-_type=&quot;plus&quot;
-input.value=&quot;+&quot;;
-input.name=&quot;type&quot;;
-&#125;
-break;
-case &quot;minus&quot;:
-if(checknum(input.value)!=0)
-&#123;
-_string.push(input.value);
-_type=&quot;minus&quot;
-input.value=&quot;-&quot;;
-input.name=&quot;type&quot;;
-&#125;
-break;
-</code></pre><h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><p><img src="http://ohvi9wpj7.bkt.clouddn.com/cal2.png" alt=""><br><a target="_blank" rel="noopener" href="https://coding.net/u/achilles822/p/Demo/attachment/1385854">完整源码</a><br><a target="_blank" rel="noopener" href="http://112.74.187.252/calculator/calculator.html">在线demo，仅限pc端</a></p>
 
       
     </div>

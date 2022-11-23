@@ -148,6 +148,97 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yanziyu.tech/2017/01/24/JScalculator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Leo Yen">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="黑人筆記">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/01/24/JScalculator/" class="post-title-link" itemprop="url">JavaScript实现Material Design计算器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2017-01-24 19:36:37 / Modified: 19:57:16" itemprop="dateCreated datePublished" datetime="2017-01-24T19:36:37+08:00">2017-01-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>造轮子是快速提高的方法之一。</p>
+</blockquote>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>以为在花瓣上随便找了一张设计图就可以开工了，结果踩了大坑：（<br>这是我找的图，有没有发现什么不对劲？<br><img src="http://ohvi9wpj7.bkt.clouddn.com/cal1.png" alt=""></p>
+<p>没错，乘法x哪去了？我可是做完了才发现的。这种设计师应该被做成爆炒鱿鱼，为了更完美，无奈只好加了几个功能上去。</p>
+<h3 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h3><p>计算器重在考虑多种错误输入的处理，由于我也是初学者，这里用switch来判断运算</p>
+<pre><code>function operator(type)
+&#123;
+switch(type)
+&#123;
+case &quot;clear&quot;:
+  input.value=&quot;0&quot;;
+  _string.length=0;
+break;
+case &quot;plus&quot;:
+if(checknum(input.value)!=0)
+&#123;
+_string.push(input.value);
+_type=&quot;plus&quot;
+input.value=&quot;+&quot;;
+input.name=&quot;type&quot;;
+&#125;
+break;
+case &quot;minus&quot;:
+if(checknum(input.value)!=0)
+&#123;
+_string.push(input.value);
+_type=&quot;minus&quot;
+input.value=&quot;-&quot;;
+input.name=&quot;type&quot;;
+&#125;
+break;
+</code></pre><h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><p><img src="http://ohvi9wpj7.bkt.clouddn.com/cal2.png" alt=""><br><a target="_blank" rel="noopener" href="https://coding.net/u/achilles822/p/Demo/attachment/1385854">完整源码</a><br><a target="_blank" rel="noopener" href="http://112.74.187.252/calculator/calculator.html">在线demo，仅限pc端</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yanziyu.tech/2016/12/31/Year-End-Review-for-2016/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -850,78 +941,6 @@ android:orientation=&quot;vertical&quot;&gt;
     android:layout_height=&quot;match_parent&quot;
     android:fitsSystemWindows=&quot;true&quot;&gt;
 </code></pre><p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/toolbar2.jpg" alt=""></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yanziyu.tech/2016/03/21/as-issue/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo Yen">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑人筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/03/21/as-issue/" class="post-title-link" itemprop="url">Android Studio Plugin is too old、Gradle version 2.10 is required问题解决方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2016-03-21 23:03:12 / Modified: 23:39:18" itemprop="dateCreated datePublished" datetime="2016-03-21T23:03:12+08:00">2016-03-21</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>周末的时候打开Android Studio的时候一脸懵逼，新建任何Demo之后Gradle在sync的时候的都会冒出来这个错误：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Plugin is too old please update to a more recent version, or set ANDROID_DAILY_OVERRIDE environment variable to &quot;a8faa180fc282060c9b8ec88f9bdcc9072121284&quot;</span><br></pre></td></tr></table></figure><br>解决完之后又出现了：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Warning:Gradle version 2.10 is required. Current version is 2.8. If using the gradle wrapper, try editing the distributionUrl in D:\aaa\Rundom\gradle\wrapper\gradle-wrapper.properties to gradle-2.10-all.zip</span><br></pre></td></tr></table></figure><br>毕竟之前学习Android的时候就踩过不少坑，用过AS后再也不想用Eclipse，故习惯性地上stackoverflow寻求解决方案，然而这并没有什么卵用，最后在联系师兄后得到启发，自己找到了解决方法，希望对以后进这个坑的人有所帮助~</p>
-<h2 id="依赖包下载"><a href="#依赖包下载" class="headerlink" title="依赖包下载"></a>依赖包下载</h2><h3 id="Gradle-dependencies"><a href="#Gradle-dependencies" class="headerlink" title="Gradle dependencies"></a>Gradle dependencies</h3><p><strong>你可以直接修改build.gradle中的版本号后sync一下，as会自动下载对应版本，或者可以按以下方法手动下载。</strong><br>下载地址：<a target="_blank" rel="noopener" href="https://jcenter.bintray.com/com/android/tools/build/gradle/">https://jcenter.bintray.com/com/android/tools/build/gradle/</a><br>声明形式是这样的：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">      classpath &#x27;com.android.tools.build:gradle:2.1.0-alpha3&#x27;</span><br><span class="line"></span><br><span class="line">      // NOTE: Do not place your application dependencies here; they belong</span><br><span class="line">      // in the individual module build.gradle files</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p>步骤：以我著文时的版本2.1.0-alpha3为例子，你需要下载</p>
-<pre><code>1. gradle-2.1.0-alpha3.jar
-2. gradle-2.1.0-alpha3.pom
-3. gradle-2.1.0-alpha3-sources.jar
-这三个文件放入
-*:\android-studio\gradle\m2repository\com\android\tools\build\gradle-core\2.1.0-alpha3
-*:\android-studio\gradle\m2repository\com\android\tools\build\gradle\2.1.0-alpha3
-之后sync一下~
-</code></pre><p>注：位于build.gradle中所声明的依赖包，有时候一些错误可通过强制控制该依赖包版本来解决，但是我用了一段时间后发现还是乖乖升级为最新版本吧，因为强制锁定低版本会造成某些新特性不能使用。</p>
-<h3 id="Gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h3><p>这是为了解决上面第二个问题，需要更新Gradle至你项目所要求的版本~<br>下载地址：<a target="_blank" rel="noopener" href="http://services.gradle.org/distributions">http://services.gradle.org/distributions</a><br>例如要求2-10版本，你就下载gradle-2.10-all.zip解压至：<br>*:\android-studio\gradle\gradle-2.10<br>后在Android Studio-Flie-Setting-gradle如图设置：<br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160321233515.png" alt=""></p>
-<p>跳出深海巨坑感觉真好，have a nice day!</p>
 
       
     </div>
