@@ -278,19 +278,19 @@
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><a target="_blank" rel="noopener" href="http://nginx.org/en/download.html">官网下载</a></p>
 <p>下载后解压到方便操作的地方，如C:/即可，以下操作以C:/nginx为目录进行演示。</p>
 <p>CMD键入：</p>
-<pre><code>cd C:/nginx
+<pre><code class="hljs">cd C:/nginx
 </code></pre><p>有两种启动命令，第一种无论是否成功启动都是一闪而过，优点是不会挂起进程，第二种会挂起，但是会抛出错误，在配置阶段方便调试。</p>
-<pre><code>start nginx  //第一种启动命令
+<pre><code class="hljs">start nginx  //第一种启动命令
 
 nginx.exe//第二种启动命令
 </code></pre><p>接着测试服务是否成功启动：</p>
-<pre><code>http://127.0.0.1
+<pre><code class="hljs">http://127.0.0.1
 </code></pre><p>如果出现nginx的默认网页就算安装成功。测试完了先关闭服务：</p>
-<pre><code>nginx.exe -s quit
+<pre><code class="hljs">nginx.exe -s quit
 </code></pre><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>重点来了，网上搜的博文不利于初学者，这也是著此文的目的所在。我们需要修改nginx的配置文件，位于:</p>
-<pre><code>C:\nginx\conf\nginx.conf
+<pre><code class="hljs">C:\nginx\conf\nginx.conf
 </code></pre><p>编辑该文件，我们的目标是把当前的80端口转发到8080端口。<br>修改第35行开始的配置为：</p>
-<pre><code>server &#123;
+<pre><code class="hljs">server &#123;
     listen       80;
     server_name  localhost;
 

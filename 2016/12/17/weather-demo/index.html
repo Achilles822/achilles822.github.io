@@ -282,7 +282,7 @@
                 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这两天恰逢软件系答辩，扫了一眼我大数本的毕设题目，好家伙八成是Web项目，怎奈我手痒+技穷，只能尝试用PHP来写个天气Demo了，说实话这两年国内好用的天气API接口越来越少了，心知天气算是比较坚挺的一个，申请完接口后发现稳定性还不如用公共开放接口，当然获取的信息也会少很多，没关系，我们懂原理就好。：)</p>
 <h2 id="开发准备"><a href="#开发准备" class="headerlink" title="开发准备"></a>开发准备</h2><p><a target="_blank" rel="noopener" href="http://www.thinkpage.cn/">心知天气官网</a></p>
 <p>值得一提的是，官网为我们准备了两套天气图标，虽然风格较老，但是做做demo没问题的。</p>
-<h2 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h2><h3 id="从心知API返回天气JSON数据"><a href="#从心知API返回天气JSON数据" class="headerlink" title="从心知API返回天气JSON数据"></a>从心知API返回天气JSON数据</h3><pre><code>function weather()&#123;
+<h2 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h2><h3 id="从心知API返回天气JSON数据"><a href="#从心知API返回天气JSON数据" class="headerlink" title="从心知API返回天气JSON数据"></a>从心知API返回天气JSON数据</h3><pre><code class="hljs">function weather()&#123;
 @$location=$_POST[&apos;location&apos;];
 $url=&quot;http://www.thinkpage.cn/weather/api.svc/getWeather?city=$location&amp;language=zh-CHS&amp;provider=CMA&amp;unit=C&amp;aqi=city&quot;;
 $vhtml=curl_get_contents($url);//这是主函数~通过API接口返回JSON数据
@@ -293,7 +293,7 @@ $GLOBALS[&apos;now_code&apos;]=$final[&quot;results&quot;][0] [&quot;daily&quot;
 $GLOBALS[&apos;now_temp&apos;]=$final[&quot;results&quot;][0][&quot;now&quot;][&quot;temperature&quot;];//当前温度
 $GLOBALS[&apos;weather_code_today&apos;]=$final[&apos;results&apos;][0][&apos;now&apos;][&apos;code&apos;];//当前图标
 ...后面类似省略&#125;
-</code></pre><h3 id="发起CURL连接"><a href="#发起CURL连接" class="headerlink" title="发起CURL连接"></a>发起CURL连接</h3><pre><code>function curl_get_contents($url)&#123;
+</code></pre><h3 id="发起CURL连接"><a href="#发起CURL连接" class="headerlink" title="发起CURL连接"></a>发起CURL连接</h3><pre><code class="hljs">function curl_get_contents($url)&#123;
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);//设置访问的url地址
 curl_setopt($ch, CURLOPT_USERAGENT, &apos;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1&apos;);   //用户访问代理 User-Agent

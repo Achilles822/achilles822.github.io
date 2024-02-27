@@ -281,19 +281,19 @@
 <h3 id="安装Ruby"><a href="#安装Ruby" class="headerlink" title="安装Ruby"></a>安装Ruby</h3><p>在<a target="_blank" rel="noopener" href="http://railsinstaller.org/en">Ruby官网</a>下载安装RubyInstaller。</p>
 <p><em>安装时记得勾选“add to PATH”选项</em></p>
 <p><em>最好把git也装上，其命令行工具更好用。</em></p>
-<h3 id="更换成境内的源"><a href="#更换成境内的源" class="headerlink" title="更换成境内的源"></a>更换成境内的源</h3><pre><code>gem sources --remove https://rubygem.org/
+<h3 id="更换成境内的源"><a href="#更换成境内的源" class="headerlink" title="更换成境内的源"></a>更换成境内的源</h3><pre><code class="hljs">gem sources --remove https://rubygem.org/
 
 gem sources -a https://gems.ruby-china.org/
 </code></pre><p><em>如果遇到SSL证书问题，可将https协议换为http协议</em></p>
 <p>使用以下命令检查源是否正确：</p>
-<pre><code>gem sources -l
-</code></pre><h3 id="安装Sass"><a href="#安装Sass" class="headerlink" title="安装Sass"></a>安装Sass</h3><pre><code>gem install Sass
-</code></pre><h3 id="检查Sass版本"><a href="#检查Sass版本" class="headerlink" title="检查Sass版本"></a>检查Sass版本</h3><pre><code>sass -v
-</code></pre><h3 id="安装Compass"><a href="#安装Compass" class="headerlink" title="安装Compass"></a>安装Compass</h3><pre><code>gem install Compass
-</code></pre><h3 id="检查Compass版本"><a href="#检查Compass版本" class="headerlink" title="检查Compass版本"></a>检查Compass版本</h3><pre><code>compass -v
-</code></pre><h3 id="Compass创建项目"><a href="#Compass创建项目" class="headerlink" title="Compass创建项目"></a>Compass创建项目</h3><pre><code>compass create your-project-name
+<pre><code class="hljs">gem sources -l
+</code></pre><h3 id="安装Sass"><a href="#安装Sass" class="headerlink" title="安装Sass"></a>安装Sass</h3><pre><code class="hljs">gem install Sass
+</code></pre><h3 id="检查Sass版本"><a href="#检查Sass版本" class="headerlink" title="检查Sass版本"></a>检查Sass版本</h3><pre><code class="hljs">sass -v
+</code></pre><h3 id="安装Compass"><a href="#安装Compass" class="headerlink" title="安装Compass"></a>安装Compass</h3><pre><code class="hljs">gem install Compass
+</code></pre><h3 id="检查Compass版本"><a href="#检查Compass版本" class="headerlink" title="检查Compass版本"></a>检查Compass版本</h3><pre><code class="hljs">compass -v
+</code></pre><h3 id="Compass创建项目"><a href="#Compass创建项目" class="headerlink" title="Compass创建项目"></a>Compass创建项目</h3><pre><code class="hljs">compass create your-project-name
 </code></pre><h3 id="Compass设置监听"><a href="#Compass设置监听" class="headerlink" title="Compass设置监听"></a>Compass设置监听</h3><p>open your project PATH</p>
-<pre><code>compass watch
+<pre><code class="hljs">compass watch
 </code></pre>
                 
               </div>

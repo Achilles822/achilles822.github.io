@@ -279,7 +279,7 @@
                 
                 <p>最近在练习CoordinatorLayout的时候碰见一个奇怪的问题：当在CollapsingToolbarLayout中加入toolbar之后，会在布局底部也生成一条一样大小的空白区域，把页面内容遮挡住，如图所示；</p>
 <p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/toolbar1.jpg" srcset="/img/loading.gif" lazyload alt=""><br>布局文件如下：</p>
-<pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+<pre><code class="hljs">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
 xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
 xmlns:tools=&quot;http://schemas.android.com/tools&quot;
 android:layout_width=&quot;match_parent&quot;
@@ -340,7 +340,7 @@ android:orientation=&quot;vertical&quot;&gt;
 &lt;/android.support.design.widget.CoordinatorLayout&gt;
 </code></pre><p></LinearLayout><br>最初还以为toolbar在作祟，因为把toolbar的layout_height属性设到极小时发现下部的空白也随之变小，后来在调整各个属性后无果的情况下开始怀疑是整体布局的问题，最后在stackoverflow上找到了解决方法：<br>该页面的根布局需由LinearLayout改为RelativeLayout，再加入android:fitsSystemWindows=”true”属性就没问题了~因为解决这个bug花了两天时间，所以特地分享一下：）</p>
 <p>修改后代码:</p>
-<pre><code>&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+<pre><code class="hljs">&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
  xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
     xmlns:tools=&quot;http://schemas.android.com/tools&quot;
     android:layout_width=&quot;match_parent&quot;

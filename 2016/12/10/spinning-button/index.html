@@ -282,13 +282,13 @@
 <ul>
 <li>先准备一下音乐图标，状态on和off各一张，以及音乐文件</li>
 </ul>
-<p>html代码非常简单:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;music&quot;&gt;</span><br><span class="line">   &lt;div id=&quot;audio-btn&quot; class=&quot;on&quot; onclick=&quot;music.changeClass(this,&#x27;media&#x27;)&quot;&gt;</span><br><span class="line">&lt;audio loop=&quot;loop&quot; src=&quot;assets/LastChristmas.mp3&quot; id=&quot;media&quot; preload=&quot;preload&quot;&gt;&lt;/audio&gt;</span><br><span class="line">   &lt;/div&gt;</span><br><span class="line">   &lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>html代码非常简单:<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs applescript">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;music&quot;</span>&gt;<br>   &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;audio-btn&quot;</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">&quot;on&quot;</span> onclick=<span class="hljs-string">&quot;music.changeClass(this,&#x27;media&#x27;)&quot;</span>&gt;<br>&lt;audio loop=<span class="hljs-string">&quot;loop&quot;</span> src=<span class="hljs-string">&quot;assets/LastChristmas.mp3&quot;</span> <span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;media&quot;</span> preload=<span class="hljs-string">&quot;preload&quot;</span>&gt;&lt;/audio&gt;<br>   &lt;/<span class="hljs-keyword">div</span>&gt;<br>   &lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure></p>
 <p>CSS3代码，这里自定义animation属性名为rotating，结合@keyframes规则定义图标旋转过程，from是动画开始状态，to是动画结束状态，看代码应该比较好理解：</p>
-<pre><code>#music #audio-btn&#123;width: 44px;height: 44px; margin:100px auto;background-size: 100% 100%;&#125;
+<pre><code class="hljs">#music #audio-btn&#123;width: 44px;height: 44px; margin:100px auto;background-size: 100% 100%;&#125;
 #music .on&#123;background: url(&apos;images/music_on.png&apos;) no-repeat 0 0;-webkit-animation: rotating 4.0s linear infinite;animation: rotating 4.0s linear infinite;&#125;
 #music .off&#123;background: url(&apos;images/music_off.png&apos;) no-repeat 0 0;&#125;
 </code></pre><p>jQuery设定按钮事件，切换之前CSS定义的class on and off。</p>
-<pre><code>var music = &#123;
+<pre><code class="hljs">var music = &#123;
 changeClass: function (target,id) &#123;
        var className = $(target).attr(&apos;class&apos;);
        var ids = document.getElementById(id);
