@@ -1,1008 +1,756 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-Hans">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-
-<link rel="stylesheet" href="https://sothebys-com.brightspotcdn.com/resource/00000169-4eb2-d078-adfb-6eb2e0750000/styleguide/assets/fonts/BentonSans-Regular.45cf6068acf9113d10468477f69e48b1.woff2">
-<link rel="stylesheet" href="https://sothebys-com.brightspotcdn.com/resource/00000169-4eb2-d078-adfb-6eb2e0750000/styleguide/assets/fonts/BentonSans-Bold.20ec1821a68860be07ea9b7c28785a44.woff2">
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yanziyu.fun","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"remove","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
-
-  <meta property="og:type" content="website">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Leo Yen">
+  <meta name="keywords" content="">
+  
+    <meta property="og:type" content="website">
 <meta property="og:title" content="黑人筆記">
 <meta property="og:url" content="http://yanziyu.fun/index.html">
 <meta property="og:site_name" content="黑人筆記">
-<meta property="og:locale">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Leo Yen">
-<meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="http://yanziyu.fun/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : true,
-    isPost : false,
-    lang   : 'zh-Hans'
-  };
-</script>
-
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
   <title>黑人筆記</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yanziyu.fun","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
 
 
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
 
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
+<body>
+  
 
-</head>
+  <header>
+    
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">黑人筆記</h1>
-      <span class="logo-line-after"><i></i></span>
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
     </a>
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section">Home</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section">Archives</a>
-
-  </li>
-  </ul>
 </nav>
 
+  
 
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Less is more."></span>
+          
+        </div>
 
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
 
 </div>
-    </header>
 
+  </header>
+
+  <main>
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2022/11/23/module-federation/" target="_self">
+          模块联邦
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/11/23/module-federation/" target="_self">
+        <div>
+          微前端方案什么是微前端微前端是将Web应用由单一的单体应用转变为多个小型前端应用聚合为一的一种手段。具备以下三个特点：  无技术栈限制 应用单独开发 多应用整合  在讲MF之前，我们先对比当前常见的几种微前端方案，以更好地对比它们之间的优劣： iframeframe是html提供的标签，能加载其他web应用的内容，并且它能兼容所有的浏览器，因此，你可以用它来加载任何你想要加载的web应用。 优点：
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-11-23 21:16" pubdate>
+              2022-11-23
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/webpack/">#webpack</a>
+            
+              <a href="/tags/%E5%BE%AE%E5%89%8D%E7%AB%AF/">#微前端</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2022/10/25/rollup/" target="_self">
+          Rollup简易教程
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/25/rollup/" target="_self">
+        <div>
+          Rollup是什么Rollup是一个JavaScript模块打包工具，相对于Webpack更侧重于应用打包，Rollup更适合用来构建库。Rollup有着简单易用的API、支持Tree-shaking的特性，若你只是想为你的库构建出一个bundle包，Rollup会是非常不错的选择，业内不少优秀框架，如React、Vue都使用Rollup构建，本文将简单介绍Rollup的使用。 安装1npm in
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-10-25 23:17" pubdate>
+              2022-10-25
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7/">#打包工具</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2021/05/27/react-mp4-codec/" target="_self">
+          React应用判断mp4文件是h264、h265编码的方法
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/05/27/react-mp4-codec/" target="_self">
+        <div>
+          日常开发中，遇到一个需求是视频文件上传之前，判断用户选择的 mp4 文件编码格式，若不是期望的编码，则不予上传。分析一下，这是一个比较 basic 的需求，我们只需要获取到视频文件的 MINE 信息，就可以判断视频编码。由于网上没有比较完整的文章，所以著文分享。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-05-27 21:55" pubdate>
+              2021-05-27
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">#前端开发</a>
+            
+              <a href="/tags/React/">#React</a>
+            
+              <a href="/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/">#音视频</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2021/01/10/summary-2020/" target="_self">
+          2020年终总结
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/01/10/summary-2020/" target="_self">
+        <div>
+          生活2020年我的生活发生了翻天覆地的变化，在COVID-19的影响下，被迫降薪了三个月，从计划换工作开始，到最后签offer，经过了整整四个月。那段时间饱受煎熬，不少公司锁了HC，投了没反应，甚至很长一段时间在考虑是否进外包公司，最后戏剧化地在做了外包公司入职体检之后，接受了现公司的offer。新公司很有意思，入职之后需要做半个月的服务员，这种纯体力活对我来说毫无意义，也算是丰富了人生的体
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-01-10 21:43" pubdate>
+              2021-01-10
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2020/07/16/electron-01/" target="_self">
+          Electron-Vue 01:项目初始化
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2020/07/16/electron-01/" target="_self">
+        <div>
+          因业务需要开了新坑，选型为Electron-Vue，发展到现在比较成熟了，但是没想到项目初始化都启动不了，把一些小坑记录下来。  Get Started安装vue-cli1npm install -g vue-cli 通过vue-cli初始化项目模版1vue init simulatedgreg/electron-vue my-project 安装依赖并运行开发模式123cd my-projec
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-07-16 20:10" pubdate>
+              2020-07-16
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Electron/">#Electron</a>
+            
+              <a href="/tags/Vue/">#Vue</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2019/07/16/mac-git/" target="_self">
+          macOS卸载Xcode导致git报错的解决方法
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2019/07/16/mac-git/" target="_self">
+        <div>
+          因为macbook空间不足卸载了没怎么用的Xcode，导致下班前提交代码时发现git报以下错误：1xcrun: error: invalid active developer path (/Applications/Xcode.app/Contents/Developer), missing xcrun at: /Applications/Xcode.app/Contents/Developer/
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-07-16 16:33" pubdate>
+              2019-07-16
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/git/">#git</a>
+            
+              <a href="/tags/macOS/">#macOS</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2019/06/27/Bezier-curve/" target="_self">
+          微信小程序使用贝塞尔曲线绘制加入购物车动画
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2019/06/27/Bezier-curve/" target="_self">
+        <div>
+          定义 贝塞尔曲线(Bézier curve)，又称贝兹曲线或贝济埃曲线，是应用于二维图形应用程序的数学曲线。一般的矢量图形软件通过它来精确画出曲线，贝兹曲线由线段与节点组成，节点是可拖动的支点，线段像可伸缩的皮筋，我们在绘图工具上看到的钢笔工具就是来做这种矢量曲线的。  用途以上介绍摘自百度百科，看起来有点晦涩难懂，一年多以前我第一次接触到这个名词便心生抗拒之意。然而在前端开发中，我们在实现抛物线
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-06-27 22:25" pubdate>
+              2019-06-27
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">#微信小程序</a>
+            
+              <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">#前端开发</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2018/12/22/wxapp-fonts/" target="_self">
+          微信小程序使用苹方字体
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2018/12/22/wxapp-fonts/" target="_self">
+        <div>
+          最近的一个改版需求设计师在设计稿中使用了苹方字体，在网上找了一下解决方案，无外乎两种方式： 第一种方式，base64 encode如果字体比较小，如各种英文字体，可以把字体上传到 https://transfonter.org/ 转换成base64格式，然后直接在样式中使用。具体使用可参考 【微信小程序】如何引入外部字体样式一文。 第二种方式，官方API如果字体比较大，如各种中
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2018-12-22 14:59" pubdate>
+              2018-12-22
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">#前端开发</a>
+            
+              <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">#小程序</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2018/11/17/Guangzhouautoshow2018-cars/" target="_self">
+          2018广州国际车展
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2018/11/17/Guangzhouautoshow2018-cars/" target="_self">
+        <div>
+          今年的首发新车数量比往年多了不少，由于精力问题只去了部分展馆，大众、奥迪全系都换完了代，给人焕然一新的感觉。A6、新A class、新X5、新卡罗拉、ES是本届的超人气车型。连续五年去看车展，不容易啊～
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2018-11-17 21:57" pubdate>
+              2018-11-17
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%BD%A6%E5%B1%95/">#车展</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2018/11/14/jquery-01/" target="_self">
+          解决jQuery无法添加监听
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2018/11/14/jquery-01/" target="_self">
+        <div>
+          在最近的项目开发中，用Webpack做了一套脚手架，用jQuery作为主要工具库，一顿操作猛如虎，一看代码2w5。😅今天在这里记一下无法给Dom绑定监听的小问题。 谈起jQuery绑定事件，这里以最常用的点击事件为例，常见的两种写法有： 1234567891011method one:$(&#x27;.selector&#x27;).on(&#x27;click&#x27;,()=&gt;&#
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2018-11-14 22:55" pubdate>
+              2018-11-14
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">#前端开发</a>
+            
+              <a href="/tags/jQuery/">#jQuery</a>
+            
+          </div>
+        
+      </div>
+    </article>
   </div>
 
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
 
-          <div class="content index posts-expand">
-            
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yanziyu.fun/2022/11/23/module-federation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo Yen">
-      <meta itemprop="description" content="">
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑人筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/23/module-federation/" class="post-title-link" itemprop="url">模块联邦</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-11-23 21:16:33 / Modified: 21:45:16" itemprop="dateCreated datePublished" datetime="2022-11-23T21:16:33+08:00">2022-11-23</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="微前端方案"><a href="#微前端方案" class="headerlink" title="微前端方案"></a>微前端方案</h1><h2 id="什么是微前端"><a href="#什么是微前端" class="headerlink" title="什么是微前端"></a>什么是微前端</h2><p>微前端是将Web应用由单一的单体应用转变为多个小型前端应用聚合为一的一种手段。具备以下三个特点：</p>
-<ol>
-<li>无技术栈限制</li>
-<li>应用单独开发</li>
-<li>多应用整合</li>
-</ol>
-<p>在讲MF之前，我们先对比当前常见的几种微前端方案，以更好地对比它们之间的优劣：</p>
-<h2 id="iframe"><a href="#iframe" class="headerlink" title="iframe"></a>iframe</h2><p>frame是html提供的标签，能加载其他web应用的内容，并且它能兼容所有的浏览器，因此，你可以用它来加载任何你想要加载的web应用。</p>
-<p>优点：</p>
-<ol>
-<li>浏览器提供的原生硬隔离方案，兼容性好，</li>
-<li>样式隔离</li>
-<li>js 隔离<br>缺点：隔离性无法被突破，导致应用间上下文无法被共享，随之带来开发体验、产品体验的问题。</li>
-</ol>
-<p>不是单页应用，会导致浏览器刷新 iframe url 状态丢失、后退前进按钮无法使用。</p>
-<p>弹框类的功能无法应用到整个大应用中，只能在对应的窗口内展示。</p>
-<p>由于可能应用间不是在相同的域内，主应用的 cookie 要透传到根域名都不同的子应用中才能实现免登录效果。</p>
-<p>每次子应用进入都是一次浏览器上下文重建、资源重新加载的过程，占用大量资源的同时也在极大地消耗资源。 经过以上思考，我个人也有了一些拓展总结：</p>
-<p>iframe的特性导致搜索引擎无法获取到其中的内容，进而无法实现应用的seo</p>
-<h2 id="Web-Components"><a href="#Web-Components" class="headerlink" title="Web Components"></a>Web Components</h2><p>由google推出的浏览器的原生组件</p>
-<p>它的三项主要技术是指：</p>
-<p>Custom elements（自定义元素）：一组JavaScript API，允许您定义custom elements及其行为，然后可以在您的用户界面中按照需要使用它们。<br>Shadow DOM（影子DOM）：一组JavaScript API，用于将封装的“影子”DOM树附加到元素（与主文档DOM分开呈现）并控制其关联的功能。通过这种方式，您可以保持元素的功能私有，这样它们就可以被脚本化和样式化，而不用担心与文档的其他部分发生冲突。<br>HTML templates（HTML模板）： <code>&lt;template&gt;</code> 和 <code>&lt;slot&gt;</code> 元素使您可以编写不在呈现页面中显示的标记模板。然后它们可以作为自定义元素结构的基础被多次重用。 通过以上描述，再结合微前端的概念，我们来看看Web Components是如何做到微前端：<br>技术栈无关：Web Components是浏览器原生组件，那即是在任何框架中都可以使用。<br>独立开发：使用Web Components开发的应用无需与其他应用间产生任何关联。<br>应用间隔离： Shadow DOM的特性，各个引入的微应用间可以达到相互隔离的效果。 综上所述，Web Components是有能力以组件加载的方式将微应用整合在一起作为微前端的一种手段，但不幸的是，Web Components是浏览器的新特性，所以它的兼容性不是很好，如果有兼容性要求的项目还是无法使用，具体请查看can i use。</p>
-<h2 id="ES-Module"><a href="#ES-Module" class="headerlink" title="ES Module"></a>ES Module</h2><p>ES Module是Ecma script 2015中提出的一种前端模块化手段</p>
-<p>无技术栈限制：ESM加载的只是js内容，无论哪个框架，最终都要编译成js，因此，无论哪种框架，ESM都能加载。<br>应用单独开发： ESM只是js的一种规范，不会影响应用的开发模式。<br>多应用整合： 只要将微应用以ESM的方式暴露出来，就能正常加载。<br>远程加载模块: ESM能够直接请求cdn资源，这是它与生俱来的能力。<br>缺点：兼容性一般，可以搭配打包工具解决兼容性问题</p>
-<h2 id="qiankun（基于一个基座服务的中心化的架构方式）"><a href="#qiankun（基于一个基座服务的中心化的架构方式）" class="headerlink" title="qiankun（基于一个基座服务的中心化的架构方式）"></a>qiankun（基于一个基座服务的中心化的架构方式）</h2><p>当下微前端主要采用的是组合式应用路由方案，该方案的核心是“主从”思想，即包括一个基座（MainApp）应用和若干个微（MicroApp）应用，基座应用大多数是一个前端SPA项目，主要负责应用注册，路由映射，消息下发等，而微应用是独立前端项目，这些项目不限于采用React，Vue，Angular或者JQuery开发，每个微应用注册到基座应用中，由基座进行管理，但是如果脱离基座也是可以单独访问，基本的流程如下图所示：</p>
-<p>基于single-spa封装，提供了更加开箱即用的 API<br>技术栈无关，任意技术栈的应用均可 使用/接入，不论是 React/Vue/Angular/JQuery 还是其他等框架<br>HTML Entry 接入方式，让你接入微应用像使用 iframe 一样简单<br>样式隔离，确保微应用之间样式互相不干扰<br>JS 沙箱，确保微应用之间 全局变量/事件 不冲突<br>资源预加载，在浏览器空闲时间预加载未打开的微应用资源，加速微应用打开速度<br>umi 插件，提供了 @umijs/plugin-qiankun 供 umi 应用一键切换成微前端架构系统 除了最后一点拓展以外，微前端想要达到的效果都已经达到。<br>缺点：需要对子项目进行入侵式修改</p>
-<h2 id="MF（去中心化的应用部署方式）"><a href="#MF（去中心化的应用部署方式）" class="headerlink" title="MF（去中心化的应用部署方式）"></a>MF（去中心化的应用部署方式）</h2><p>每个应用是单独部署在各自的服务器，每个应用都可以引用其他应用，也能被其他应用所引用，即每个应用可以充当host的角色，亦可以作为remote出现，无中心应用的概念。</p>
-<h1 id="什么是模块联邦（MF）"><a href="#什么是模块联邦（MF）" class="headerlink" title="什么是模块联邦（MF）"></a>什么是模块联邦（MF）</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="Container"><a href="#Container" class="headerlink" title="Container"></a>Container</h3><p>一个使用 ModuleFederationPlugin 构建的应用就是一个 Container，它可以加载其他的 Container，也可以被其他的 Container 加载。</p>
-<h3 id="Remote、Host、Bidirectional-hosts"><a href="#Remote、Host、Bidirectional-hosts" class="headerlink" title="Remote、Host、Bidirectional-hosts"></a>Remote、Host、Bidirectional-hosts</h3><p>如果一个应用只导出模块给其它应用消费，我们称这样的应用为 remote<br>如果一个应用只消费其它应用导出的模块，我们称这样的应用为 host<br>Bidirectional-hosts，如果一个应用既消费其它应用导出的模块，也导出模块给其它应用消费，我们称这样的应用为 Bidirectional-hosts</p>
-<h3 id="Shared"><a href="#Shared" class="headerlink" title="Shared"></a>Shared</h3><p>shared 表示共享依赖，一个应用可以将自己的依赖共享出去，比如 react、react-dom、mobx等，其他的应用可以直接使用共享作用域中的依赖从而减少应用的体积。</p>
-<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p><strong>微前端</strong>：通过shared以及exposes可以将多个应用引入同一应用中进行管理。<br><strong>资源复用，减少编译体积</strong>:可以将多个应用都用到的通用组件单独部署，通过mf的功能在runtime时引入到其他项目中，这样组件代码就不会编译到项目中，同时亦能满足多个项目同时使用的需求，一举两得。<br>针对一些封装基础能力或业务组件的项目，要提供给其它项目复用，常用的方式是封装成npm包，业务方再把包引入项目使用，这样做会带来以下问题：<br>通过发包的方式进行进行组件/方法的复用，当组件（方法）有一些更新时候，尤其是更改了某些存在的bug，就不得不通知依赖模块进行升版；如果存在多个依赖方，这种“发布-&gt; 通知-&gt; 更改”模式无疑是低效率的<br>项目伴随着引入的模块增多，编译耗时会增加，并且可能存在编译陷阱（意外的构建失败），需要花费额外的时间去排查。<br>MF的出现，使得以上问题有了新的解决方法。</p>
-<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ol>
-<li>缺乏类型提示，使用远程组件只是获取到组件的引用，但获取不到类型定义。</li>
-<li>应用一旦发布即会被Host应用消费，一旦出现问题影响范围广。</li>
-</ol>
-<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>使用MF,只需要配置好以下几个属性：</p>
-<table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>类型</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>name |    string    |必传值，即输出的模块名，被远程引用时路径为<code>$&#123;name&#125;/$&#123;expose&#125;</code><br>|library |    object    |声明全局变量的方式，name为umd的name<br>|filename|    string    |构建输出的文件名<br>|remotes    |object|    远程引用的应用名及其别名的映射，使用时以key值作为name<br>|exposes|    object    |被远程引用时可暴露的资源路径及其别名<br>|shared|    object    |与其他应用之间可以共享的第三方依赖，使你的代码中不用重复加载同一份依赖</p>
-<h1 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h1><p><a target="_blank" rel="noopener" href="https://github.com/webpack/webpack/blob/main/lib/container/ModuleFederationPlugin.js">源码地址</a></p>
-<p>ModuleFederationPlugin利用了webpack的plugin机制，根据传入的options调用了以下三个plugin：</p>
-<h2 id="ContainerPlugin"><a href="#ContainerPlugin" class="headerlink" title="ContainerPlugin"></a>ContainerPlugin</h2><p>主要作用将exposes的插件当成入口文件模块进行打包，形成单独可运行的文件，然后跟随主模块进行编译，最终expose的组件会被解析成一个入口文件。</p>
-<h2 id="ContainerReferencePlugin"><a href="#ContainerReferencePlugin" class="headerlink" title="ContainerReferencePlugin"></a>ContainerReferencePlugin</h2><p>该插件将指定引用的外部包（remote）添加的容器中。并允许容器导入远程模块。在导入时会调用向容器使用者提供override，为远程模块提供公共依赖。</p>
-<h2 id="SharePlugin"><a href="#SharePlugin" class="headerlink" title="SharePlugin"></a>SharePlugin</h2><p>整个模块都在实现共享的功能，其利用Provider进行提供，Consumer进行消费的机制，将共享的数据隔离在特定的shareScope中，通过resolveMatchedConfigs实现了对provider依赖及consumer依赖的过滤，从而对共有依赖只进行一遍请求。</p>
-<h1 id="行业实践"><a href="#行业实践" class="headerlink" title="行业实践"></a>行业实践</h1><h2 id="UmiJS-MFSU构建加速"><a href="#UmiJS-MFSU构建加速" class="headerlink" title="UmiJS MFSU构建加速"></a>UmiJS MFSU构建加速</h2><p><a target="_blank" rel="noopener" href="https://umijs.org/docs/api/config#mfsu">https://umijs.org/docs/api/config#mfsu</a></p>
-<p>mfsu 是一种基于 webpack5 新特性 Module Federation 的打包提速方案。核心原理是将应用的依赖构建为一个 Module Federation 的 remote 应用，以免去应用热更新时对依赖的编译。</p>
-<p>因此，开启 mfsu 可以大幅减少热更新所需的时间。在生产模式，也可以通过提前编译依赖，大幅提升部署效率。</p>
-<h2 id="YY-EMP-2-0-微前端方案"><a href="#YY-EMP-2-0-微前端方案" class="headerlink" title="YY EMP 2.0 微前端方案"></a>YY EMP 2.0 微前端方案</h2><p><a target="_blank" rel="noopener" href="https://github.com/efoxTeam/emp/wiki">https://github.com/efoxTeam/emp/wiki</a></p>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>ModuleFederationPlugin 源码解析 <a target="_blank" rel="noopener" href="https://juejin.cn/post/7163081741094092807">https://juejin.cn/post/7163081741094092807</a></p>
-<p>《模块联邦实践指南》 <a target="_blank" rel="noopener" href="https://module-federation.github.io/">https://module-federation.github.io/</a></p>
-<p>微前端-最容易看懂的微前端知识 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/141530392">https://zhuanlan.zhihu.com/p/141530392</a></p>
-<p><a target="_blank" rel="noopener" href="https://github.com/ogzhanolguncu/react-typescript-module-federation">https://github.com/ogzhanolguncu/react-typescript-module-federation</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yanziyu.fun/2022/10/25/rollup/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo Yen">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑人筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/10/25/rollup/" class="post-title-link" itemprop="url">Rollup简易教程</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-10-25 23:17:48" itemprop="dateCreated datePublished" datetime="2022-10-25T23:17:48+08:00">2022-10-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-10-27 22:37:03" itemprop="dateModified" datetime="2022-10-27T22:37:03+08:00">2022-10-27</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="Rollup是什么"><a href="#Rollup是什么" class="headerlink" title="Rollup是什么"></a>Rollup是什么</h3><p>Rollup是一个JavaScript模块打包工具，相对于Webpack更侧重于应用打包，Rollup更适合用来构建库。Rollup有着简单易用的API、支持Tree-shaking的特性，若你只是想为你的库构建出一个bundle包，Rollup会是非常不错的选择，业内不少优秀框架，如React、Vue都使用Rollup构建，本文将简单介绍Rollup的使用。</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --global rollup</span><br></pre></td></tr></table></figure>
-<h3 id="初始化演示项目"><a href="#初始化演示项目" class="headerlink" title="初始化演示项目"></a>初始化演示项目</h3><p>为了方便演示，使用 <strong>npm init</strong> 初始化package.json，并新建index.js、utils/math.js，形成这样的目录结构：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">├── index.js</span><br><span class="line">├── package.json</span><br><span class="line">└── utils</span><br><span class="line">    └── math.js</span><br></pre></td></tr></table></figure>
-<p>在utils/math.js中，编写并导出两个工具函数<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">export const add = (x, y) =&gt; &#123;</span><br><span class="line">  return x + y;</span><br><span class="line">&#125;;</span><br><span class="line">export const reduce = (x, y) =&gt; &#123;</span><br><span class="line">  return x - y;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br>在index.js中，我们引用并打印add函数<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import &#123; add &#125; from &quot;./utils/math&quot;;</span><br><span class="line"></span><br><span class="line">console.log(add(1,2));</span><br></pre></td></tr></table></figure></p>
-<h3 id="Tree-shaking"><a href="#Tree-shaking" class="headerlink" title="Tree-shaking"></a>Tree-shaking</h3><p>接着我们演示Tree-shaking特性，运行打包命令：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rollup index.js --file output.js</span><br></pre></td></tr></table></figure><br>以上命令代表执行打包index.js，<strong>–file</strong>参数表示指定输出的文件名，运行完毕后我们打开output.js：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const add = (x, y) =&gt; &#123;</span><br><span class="line">  return x + y;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(add(1,2));</span><br></pre></td></tr></table></figure><br>可以看到，utils/math.js中的reduce函数由于没有在index.js中使用，所以被Tree-shaking处理了，并没有出现在打包产物中。</p>
-<h3 id="指定输出文件夹"><a href="#指定输出文件夹" class="headerlink" title="指定输出文件夹"></a>指定输出文件夹</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rollup index.js --dir dirname</span><br></pre></td></tr></table></figure>
-<p>运行后会把打包产物输出到–dir参数后指定的文件夹中</p>
-<h3 id="指定产物构建格式"><a href="#指定产物构建格式" class="headerlink" title="指定产物构建格式"></a>指定产物构建格式</h3><p>rollup支持打包成CommonJS、UMD、自执行函数（IIFE-style scripts for browsers），打包参数略有区别：</p>
-<p>For browsers:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># compile to a &lt;script&gt; containing a self-executing function</span><br><span class="line">rollup main.js --format iife --name &quot;myBundle&quot; --file bundle.js</span><br><span class="line"></span><br></pre></td></tr></table></figure><br>For Node.js:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># compile to a CommonJS module</span><br><span class="line">rollup main.js --format cjs --file bundle.js</span><br></pre></td></tr></table></figure><br>For both browsers and Node.js:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># UMD format requires a bundle name</span><br><span class="line">rollup main.js --format umd --name &quot;myBundle&quot; --file bundle.js</span><br></pre></td></tr></table></figure></p>
-<h3 id="根据配置文件打包"><a href="#根据配置文件打包" class="headerlink" title="根据配置文件打包"></a>根据配置文件打包</h3><p>作为bundle打包工具，rollup自然也支持根据配置文件进行打包，配置文件在区分环境时非常有用。我们可以于项目根目录新建一个rollup.config.js进行演示，内容为：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  input: &#x27;src/main.js&#x27;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    file: &#x27;bundle.js&#x27;,</span><br><span class="line">    format: &#x27;cjs&#x27;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br>上面的配置指定了输入输出以及输出格式，在使用时我们可以使用–config指定配置文件<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rollup --config rollup.config.js</span><br></pre></td></tr></table></figure><br>rollup的配置文件有很多玩法，具体可以参阅<a target="_blank" rel="noopener" href="https://rollupjs.org/guide/en/#configuration-files">rollup-configuration-files</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yanziyu.fun/2021/05/27/react-mp4-codec/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo Yen">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑人筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/27/react-mp4-codec/" class="post-title-link" itemprop="url">React应用判断mp4文件是h264、h265编码的方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-05-27 21:55:18" itemprop="dateCreated datePublished" datetime="2021-05-27T21:55:18+08:00">2021-05-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-05 16:43:06" itemprop="dateModified" datetime="2021-12-05T16:43:06+08:00">2021-12-05</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>日常开发中，遇到一个需求是视频文件上传之前，判断用户选择的 mp4 文件编码格式，若不是期望的编码，则不予上传。分析一下，这是一个比较 basic 的需求，我们只需要获取到视频文件的 MINE 信息，就可以判断视频编码。由于网上没有比较完整的文章，所以著文分享。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/05/27/react-mp4-codec/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yanziyu.fun/2021/01/10/summary-2020/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo Yen">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑人筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/10/summary-2020/" class="post-title-link" itemprop="url">2020年终总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-01-10 21:43:35" itemprop="dateCreated datePublished" datetime="2021-01-10T21:43:35+08:00">2021-01-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-05-27 22:21:26" itemprop="dateModified" datetime="2021-05-27T22:21:26+08:00">2021-05-27</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h1><p>2020年我的生活发生了翻天覆地的变化，在COVID-19的影响下，被迫降薪了三个月，从计划换工作开始，到最后签offer，经过了整整四个月。那段时间饱受煎熬，不少公司锁了HC，投了没反应，甚至很长一段时间在考虑是否进外包公司，最后戏剧化地在做了外包公司入职体检之后，接受了现公司的offer。新公司很有意思，入职之后需要做半个月的服务员，这种纯体力活对我来说毫无意义，也算是丰富了人生的体验吧。接近年底的时候搬出了住了三年的城中村，到了一个单程通勤一小时的地方，生活作息提前进入了老年状态，由于时间太长，我甚至开始养成在地铁上读书的习惯。</p>
-<h1 id="新工作"><a href="#新工作" class="headerlink" title="新工作"></a>新工作</h1><p>事实证明，在待遇差不多的情况下，我会选择更具有挑战性的工作。在著文的时候，恰巧是我半年以来工作成果的验收————项目上线。过去的半年里，我在electron方面有很多实践，许多同事反应在进行两到三年的前端工作之后开始出现厌倦的感觉，日复一日的编写业务逻辑确实会降低编码的欲望，我也不例外，所以我更乐意去探索新的领域，从几年前的小程序转为桌面端开发，踩坑其实也是一种乐趣。不出意外，今年你们会在我司许多门店里见到我的作品：）</p>
-<h1 id="Best-buy"><a href="#Best-buy" class="headerlink" title="Best buy"></a>Best buy</h1><h3 id="斐讯n1"><a href="#斐讯n1" class="headerlink" title="斐讯n1"></a>斐讯n1</h3><p>同事推荐的型号，为主路由降低了大量负载，现在可以无压力地看油管了：），低廉的价格真是便宜又大碗。</p>
-<h1 id="2021-05-27-update"><a href="#2021-05-27-update" class="headerlink" title="2021.05.27 update"></a>2021.05.27 update</h1><p>因为发新文章的缘故看到这篇半成品，更新一下近况：换了新工作，老东家的作品还在发挥余热，在全国「太二」门店都已经上线，恰逢这个时间点，「太二前传」也即将开业，里面有我iPad端的作品，迫不及待去尝试啦～</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yanziyu.fun/2020/07/16/electron-01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo Yen">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑人筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/16/electron-01/" class="post-title-link" itemprop="url">Electron-Vue 01:项目初始化</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-07-16 20:10:47 / Modified: 20:34:56" itemprop="dateCreated datePublished" datetime="2020-07-16T20:10:47+08:00">2020-07-16</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>因业务需要开了新坑，选型为Electron-Vue，发展到现在比较成熟了，但是没想到项目初始化都启动不了，把一些小坑记录下来。</p>
-</blockquote>
-<h3 id="Get-Started"><a href="#Get-Started" class="headerlink" title="Get Started"></a>Get Started</h3><h4 id="安装vue-cli"><a href="#安装vue-cli" class="headerlink" title="安装vue-cli"></a>安装vue-cli</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g vue-cli</span><br></pre></td></tr></table></figure>
-<h4 id="通过vue-cli初始化项目模版"><a href="#通过vue-cli初始化项目模版" class="headerlink" title="通过vue-cli初始化项目模版"></a>通过vue-cli初始化项目模版</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init simulatedgreg/electron-vue my-project</span><br></pre></td></tr></table></figure>
-<h4 id="安装依赖并运行开发模式"><a href="#安装依赖并运行开发模式" class="headerlink" title="安装依赖并运行开发模式"></a>安装依赖并运行开发模式</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd my-project</span><br><span class="line">yarn # or npm install</span><br><span class="line">yarn run dev # or npm run dev</span><br></pre></td></tr></table></figure>
-<h4 id="ReferenceError-process-is-not-defined"><a href="#ReferenceError-process-is-not-defined" class="headerlink" title="ReferenceError: process is not defined"></a>ReferenceError: process is not defined</h4><p>进行到这里，跑不起来就对了，会报<strong><em>ReferenceError: process is not defined</em></strong>，原因是webpack配置有问题，我们修改项目目录下的 <strong><em>./electron-vue</em></strong> 下的<strong><em>webpack.renderer.config.js和webpack.web.config.js</em></strong>的<strong><em>HtmlWebpackPlugin</em></strong>配置为：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">new HtmlWebpackPlugin(&#123;</span><br><span class="line">  filename: &#x27;index.html&#x27;,</span><br><span class="line">  template: path.resolve(__dirname, &#x27;../src/index.ejs&#x27;),</span><br><span class="line">  templateParameters(compilation, assets, options) &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      compilation: compilation,</span><br><span class="line">      webpack: compilation.getStats().toJson(),</span><br><span class="line">      webpackConfig: compilation.options,</span><br><span class="line">      htmlWebpackPlugin: &#123;</span><br><span class="line">        files: assets,</span><br><span class="line">        options: options</span><br><span class="line">      &#125;,</span><br><span class="line">      process,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  minify: &#123;</span><br><span class="line">    collapseWhitespace: true,</span><br><span class="line">    removeAttributeQuotes: true,</span><br><span class="line">    removeComments: true</span><br><span class="line">  &#125;,</span><br><span class="line">  nodeModules: false</span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure>
-<h4 id="axios-is-not-defined"><a href="#axios-is-not-defined" class="headerlink" title="axios is not defined"></a>axios is not defined</h4><p>改毕再<strong><em>yarn dev</em></strong>一下就可以解锁第二关<strong><em>axios is not defined</em></strong>，这里很容易联想到依赖安装不完整的问题，如果你尝试安装依赖的话会发现错误没有变化，后经过搜索发现插件白名单没有配置。</p>
-<p>接着修改<strong><em>webpack.renderer.config.js</em></strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let whiteListedModules = [&#x27;vue&#x27;,&#x27;axios&#x27;,&#x27;vue-electron&#x27;,&#x27;vue-router&#x27;,&#x27;element-ui&#x27;,&#x27;vuex-electron&#x27;,&#x27;vuex&#x27;]</span><br></pre></td></tr></table></figure>
-<p>把所需要的依赖加上即可，进行到这里项目终于可以跑起来了，文章写到这里不忍结束，接着我们迎来第三关：<strong><em>eslint</em></strong></p>
-<h4 id="eslint-vscode代码格式化"><a href="#eslint-vscode代码格式化" class="headerlink" title="eslint vscode代码格式化"></a>eslint vscode代码格式化</h4><p>在使用vue-cli进行项目初始化的时候，我选择了Javascript Standard Style作为代码风格校验，很多人会不堪其扰选择关闭，但其实一个合适的代码风格在团队协作中是很有必要的，至于烦人的红波浪提醒，我们大可交给code formatter去帮我们格式化代码。<br>首先安装vscode拓展 <strong><em>Prettier-Standard - JavaScript formatter</em></strong>，并于vscode首选项中打开<strong><em>editor.formatOnSave</em></strong>即可愉快地匹配项目代码风格。</p>
-<h4 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h4><p>以上是我花了一天时间踩的坑，后续伴随项目发展，本系列文章将会同步更新，感谢观看～</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yanziyu.fun/2019/07/16/mac-git/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo Yen">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑人筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/07/16/mac-git/" class="post-title-link" itemprop="url">macOS卸载Xcode导致git报错的解决方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-07-16 16:33:16 / Modified: 16:51:50" itemprop="dateCreated datePublished" datetime="2019-07-16T16:33:16+08:00">2019-07-16</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>因为macbook空间不足卸载了没怎么用的Xcode，导致下班前提交代码时发现git报以下错误：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcrun: error: invalid active developer path (/Applications/Xcode.app/Contents/Developer), missing xcrun at: /Applications/Xcode.app/Contents/Developer/usr/bin/xcrun</span><br></pre></td></tr></table></figure><br>经过一番尝试，发现git依赖的CommandLineTools命令行工具路径指向的是Xcode。我们可以通过<strong>xcode-select -p</strong>查看。那么此时我们先把它装回来，执行：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcode-select --install</span><br></pre></td></tr></table></figure><br>看下安装成功了没:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xcode-select --version</span><br><span class="line">-&gt; xcode-select version 2354.</span><br></pre></td></tr></table></figure><br>然后把系统命令行路径重新指向到刚安装的xcode-select目录：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /usr/bin/xcode-select  --switch /Library/Developer/CommandLineTools</span><br></pre></td></tr></table></figure><br>好了，试试git回来了没：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br><span class="line">-&gt; git version 2.20.1 (Apple Git-117)</span><br></pre></td></tr></table></figure></p>
-<p>Done.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yanziyu.fun/2019/06/27/Bezier-curve/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo Yen">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑人筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/27/Bezier-curve/" class="post-title-link" itemprop="url">微信小程序使用贝塞尔曲线绘制加入购物车动画</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-06-27 22:25:17" itemprop="dateCreated datePublished" datetime="2019-06-27T22:25:17+08:00">2019-06-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-11-07 12:47:50" itemprop="dateModified" datetime="2020-11-07T12:47:50+08:00">2020-11-07</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote>
-<p>贝塞尔曲线(Bézier curve)，又称贝兹曲线或贝济埃曲线，是应用于二维图形应用程序的数学曲线。一般的矢量图形软件通过它来精确画出曲线，贝兹曲线由线段与节点组成，节点是可拖动的支点，线段像可伸缩的皮筋，我们在绘图工具上看到的钢笔工具就是来做这种矢量曲线的。</p>
-</blockquote>
-<h3 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h3><p>以上介绍摘自百度百科，看起来有点晦涩难懂，一年多以前我第一次接触到这个名词便心生抗拒之意。然而在前端开发中，我们在实现抛物线动画时，贝塞尔曲线绝对是个好帮手。今天我们通过在微信小程序实现一个常见的加入购物车动画，来进一步理解它。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/06/27/Bezier-curve/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yanziyu.fun/2018/12/22/wxapp-fonts/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo Yen">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑人筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/12/22/wxapp-fonts/" class="post-title-link" itemprop="url">微信小程序使用苹方字体</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-12-22 14:59:07" itemprop="dateCreated datePublished" datetime="2018-12-22T14:59:07+08:00">2018-12-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-01-03 20:47:36" itemprop="dateModified" datetime="2019-01-03T20:47:36+08:00">2019-01-03</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>最近的一个改版需求设计师在设计稿中使用了苹方字体，在网上找了一下解决方案，无外乎两种方式：</p>
-<h3 id="第一种方式，base64-encode"><a href="#第一种方式，base64-encode" class="headerlink" title="第一种方式，base64 encode"></a>第一种方式，base64 encode</h3><p>如果字体比较小，如各种英文字体，可以把字体上传到 <a target="_blank" rel="noopener" href="https://transfonter.org/">https://transfonter.org/</a> 转换成base64格式，然后直接在样式中使用。具体使用可参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/u013451157/article/details/79825740">【微信小程序】如何引入外部字体样式</a>一文。</p>
-<h3 id="第二种方式，官方API"><a href="#第二种方式，官方API" class="headerlink" title="第二种方式，官方API"></a>第二种方式，官方API</h3><p>如果字体比较大，如各种中文字体动辄超过10mb，用base64显然是不合适的，小程序超过2m还要分包处理，为了一个字体实在不值当，那么可以用官方的API <strong>wx.loadFontFace</strong>加载外部字体，像这样：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wx.loadFontFace(&#123;</span><br><span class="line">  family: &#x27;PingFangSC-Medium&#x27;,</span><br><span class="line">  source: &#x27;url(&quot;https://www.your-server.com/PingFangSC-Medium.ttf&quot;)&#x27;,</span><br><span class="line">  success: function()&#123;console.log(&#x27;load font success&#x27;)&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>这里需要注意的一点是，<strong>family</strong>处的名称就是使用时<strong>font-family</strong>的名称，举个例子，上方加载的字体这样使用：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.foo&#123;</span><br><span class="line">    font-family:PingFangSC-Medium;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h3><p>由于字体可能会比较大，所以不建议在一个小程序中使用多种字体，这样会影响用户体验。为了保证界面效果，可以在<strong>onLoad</strong>周期加载字体，在<strong>success</strong>回调中执行后续操作，必要时加上Loading，让程序更加友好。</p>
-<h3 id="2018-12-28日更新："><a href="#2018-12-28日更新：" class="headerlink" title="2018.12.28日更新："></a>2018.12.28日更新：</h3><p>结合实践，决定写得更详细一点，希望可以帮助到更多道友。</p>
-<p>遇到的问题是下载字体时界面已经渲染完毕，导致字体显示不正确。解决方法的总体思路是在使用到该字体的容器中增加一个loading属性，当字体加载完毕后再显示布局,这样可以确保字体渲染正确。</p>
-<p><em>注：下方代码使用了</em> <a target="_blank" rel="noopener" href="https://github.com/youngjuning/wxPromise">wxPromise</a> <em>以支援小程序API Promise化</em><br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- mall.wxml --&gt;</span><br><span class="line">&lt;view wx:if=&quot;&#123;&#123;loading&#125;&#125;&quot; class=&quot;mall-root&quot;&gt;</span><br><span class="line">&lt;/view&gt;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- mall.js --&gt;</span><br><span class="line">Page(&#123;</span><br><span class="line">    data:&#123;</span><br><span class="line">        loading:false</span><br><span class="line">    &#125;,</span><br><span class="line">    onLoad()&#123;</span><br><span class="line">        this.loadFonts().then(()=&gt;&#123;</span><br><span class="line">          this.setData(&#123;</span><br><span class="line">            loading: true</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line">        loadFonts()&#123;</span><br><span class="line">            let PingFangMedium = wx.pro.loadFontFace(&#123;</span><br><span class="line">                family: &#x27;PingFangSC-medium&#x27;,</span><br><span class="line">                source: &#x27;url(&quot;https://img2.misssixty.com.cn/rs/lib/fonts/PingFangSC-medium.ttf&quot;)&#x27;</span><br><span class="line">                &#125;)</span><br><span class="line"></span><br><span class="line">            let PingFangRegular = wx.pro.loadFontFace(&#123;</span><br><span class="line">                family: &#x27;PingFangSC-regular&#x27;,</span><br><span class="line">                source: &#x27;url(&quot;https://img2.misssixty.com.cn/rs/lib/fonts/PingFangSC-regular.ttf&quot;)&#x27;</span><br><span class="line">                &#125;)</span><br><span class="line">        return Promise.all([PingFangMedium, PingFangRegular]).then((res) =&gt; &#123;</span><br><span class="line">            console.log(res)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yanziyu.fun/2018/11/17/Guangzhouautoshow2018-cars/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo Yen">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑人筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/11/17/Guangzhouautoshow2018-cars/" class="post-title-link" itemprop="url">2018广州国际车展</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-11-17 21:57:26" itemprop="dateCreated datePublished" datetime="2018-11-17T21:57:26+08:00">2018-11-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-11-07 12:46:20" itemprop="dateModified" datetime="2020-11-07T12:46:20+08:00">2020-11-07</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>今年的首发新车数量比往年多了不少，由于精力问题只去了部分展馆，大众、奥迪全系都换完了代，给人焕然一新的感觉。A6、新A class、新X5、新卡罗拉、ES是本届的超人气车型。连续五年去看车展，不容易啊～</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/11/17/Guangzhouautoshow2018-cars/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yanziyu.fun/2018/11/14/jquery-01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo Yen">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="黑人筆記">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/11/14/jquery-01/" class="post-title-link" itemprop="url">解决jQuery无法添加监听</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2018-11-14 22:55:17 / Modified: 23:23:28" itemprop="dateCreated datePublished" datetime="2018-11-14T22:55:17+08:00">2018-11-14</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在最近的项目开发中，用Webpack做了一套脚手架，用jQuery作为主要工具库，一顿操作猛如虎，一看代码2w5。😅今天在这里记一下无法给Dom绑定监听的小问题。</p>
-<p>谈起jQuery绑定事件，这里以最常用的点击事件为例，常见的两种写法有：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">method one:</span><br><span class="line"></span><br><span class="line">$(&#x27;.selector&#x27;).on(&#x27;click&#x27;,()=&gt;&#123;</span><br><span class="line">    //do something here</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">method two:</span><br><span class="line">$(&#x27;.selector&#x27;).click(()=&gt;&#123;</span><br><span class="line">    //do something here</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>这两种写法大多数旁友都非常熟悉，平时用起来一点问题也没有，但在我的项目中，却愣是绑定不起来，经过一番查找，原因出在我要绑定事件的Dom是循环后append的，所以，点击事件就失效了，查了下jQuery的API：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">on(eve,[sel],[data],fn)</span><br></pre></td></tr></table></figure><br>发现on存在可选的第二个selector参数，官方说明：「一个选择器字符串用于过滤器的触发事件的选择器元素的后代。如果选择的&lt; null或省略，当它到达选定的元素，事件总是触发。」OK，那么要解决这个问题，必须在append html element之后，去on要绑定事件元素的父元素。写成表达式即为:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&#x27;.parentSelector&#x27;).on(&#x27;click&#x27;,&#x27;.childSelector&#x27;,()=&gt;&#123;&#125;)</span><br></pre></td></tr></table></figure>
-<p>好了，事情解决了，可以开启开心星期四了。🤪</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
 
+              </div>
+            </div>
           </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
         </div>
       </div>
-    </main>
+    
 
-    <footer class="footer">
-      <div class="footer-inner">
-        
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
 
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2023</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Leo Yen</span>
-</div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
-  </div>
-
-        
-
-
-
-
-
-
-
-
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-    </footer>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
   </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/muse.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
 
 
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
 
-
-
-
-
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
 
 
   
 
-  
-
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>模块联邦</title>
+    <link href="/2022/11/23/module-federation/"/>
+    <url>/2022/11/23/module-federation/</url>
+    
+    <content type="html"><![CDATA[<h1 id="微前端方案"><a href="#微前端方案" class="headerlink" title="微前端方案"></a>微前端方案</h1><h2 id="什么是微前端"><a href="#什么是微前端" class="headerlink" title="什么是微前端"></a>什么是微前端</h2><p>微前端是将Web应用由单一的单体应用转变为多个小型前端应用聚合为一的一种手段。具备以下三个特点：</p><ol><li>无技术栈限制</li><li>应用单独开发</li><li>多应用整合</li></ol><p>在讲MF之前，我们先对比当前常见的几种微前端方案，以更好地对比它们之间的优劣：</p><h2 id="iframe"><a href="#iframe" class="headerlink" title="iframe"></a>iframe</h2><p>frame是html提供的标签，能加载其他web应用的内容，并且它能兼容所有的浏览器，因此，你可以用它来加载任何你想要加载的web应用。</p><p>优点：</p><ol><li>浏览器提供的原生硬隔离方案，兼容性好，</li><li>样式隔离</li><li>js 隔离<br>缺点：隔离性无法被突破，导致应用间上下文无法被共享，随之带来开发体验、产品体验的问题。</li></ol><p>不是单页应用，会导致浏览器刷新 iframe url 状态丢失、后退前进按钮无法使用。</p><p>弹框类的功能无法应用到整个大应用中，只能在对应的窗口内展示。</p><p>由于可能应用间不是在相同的域内，主应用的 cookie 要透传到根域名都不同的子应用中才能实现免登录效果。</p><p>每次子应用进入都是一次浏览器上下文重建、资源重新加载的过程，占用大量资源的同时也在极大地消耗资源。 经过以上思考，我个人也有了一些拓展总结：</p><p>iframe的特性导致搜索引擎无法获取到其中的内容，进而无法实现应用的seo</p><h2 id="Web-Components"><a href="#Web-Components" class="headerlink" title="Web Components"></a>Web Components</h2><p>由google推出的浏览器的原生组件</p><p>它的三项主要技术是指：</p><p>Custom elements（自定义元素）：一组JavaScript API，允许您定义custom elements及其行为，然后可以在您的用户界面中按照需要使用它们。<br>Shadow DOM（影子DOM）：一组JavaScript API，用于将封装的“影子”DOM树附加到元素（与主文档DOM分开呈现）并控制其关联的功能。通过这种方式，您可以保持元素的功能私有，这样它们就可以被脚本化和样式化，而不用担心与文档的其他部分发生冲突。<br>HTML templates（HTML模板）： <code>&lt;template&gt;</code> 和 <code>&lt;slot&gt;</code> 元素使您可以编写不在呈现页面中显示的标记模板。然后它们可以作为自定义元素结构的基础被多次重用。 通过以上描述，再结合微前端的概念，我们来看看Web Components是如何做到微前端：<br>技术栈无关：Web Components是浏览器原生组件，那即是在任何框架中都可以使用。<br>独立开发：使用Web Components开发的应用无需与其他应用间产生任何关联。<br>应用间隔离： Shadow DOM的特性，各个引入的微应用间可以达到相互隔离的效果。 综上所述，Web Components是有能力以组件加载的方式将微应用整合在一起作为微前端的一种手段，但不幸的是，Web Components是浏览器的新特性，所以它的兼容性不是很好，如果有兼容性要求的项目还是无法使用，具体请查看can i use。</p><h2 id="ES-Module"><a href="#ES-Module" class="headerlink" title="ES Module"></a>ES Module</h2><p>ES Module是Ecma script 2015中提出的一种前端模块化手段</p><p>无技术栈限制：ESM加载的只是js内容，无论哪个框架，最终都要编译成js，因此，无论哪种框架，ESM都能加载。<br>应用单独开发： ESM只是js的一种规范，不会影响应用的开发模式。<br>多应用整合： 只要将微应用以ESM的方式暴露出来，就能正常加载。<br>远程加载模块: ESM能够直接请求cdn资源，这是它与生俱来的能力。<br>缺点：兼容性一般，可以搭配打包工具解决兼容性问题</p><h2 id="qiankun（基于一个基座服务的中心化的架构方式）"><a href="#qiankun（基于一个基座服务的中心化的架构方式）" class="headerlink" title="qiankun（基于一个基座服务的中心化的架构方式）"></a>qiankun（基于一个基座服务的中心化的架构方式）</h2><p>当下微前端主要采用的是组合式应用路由方案，该方案的核心是“主从”思想，即包括一个基座（MainApp）应用和若干个微（MicroApp）应用，基座应用大多数是一个前端SPA项目，主要负责应用注册，路由映射，消息下发等，而微应用是独立前端项目，这些项目不限于采用React，Vue，Angular或者JQuery开发，每个微应用注册到基座应用中，由基座进行管理，但是如果脱离基座也是可以单独访问，基本的流程如下图所示：</p><p>基于single-spa封装，提供了更加开箱即用的 API<br>技术栈无关，任意技术栈的应用均可 使用/接入，不论是 React/Vue/Angular/JQuery 还是其他等框架<br>HTML Entry 接入方式，让你接入微应用像使用 iframe 一样简单<br>样式隔离，确保微应用之间样式互相不干扰<br>JS 沙箱，确保微应用之间 全局变量/事件 不冲突<br>资源预加载，在浏览器空闲时间预加载未打开的微应用资源，加速微应用打开速度<br>umi 插件，提供了 @umijs/plugin-qiankun 供 umi 应用一键切换成微前端架构系统 除了最后一点拓展以外，微前端想要达到的效果都已经达到。<br>缺点：需要对子项目进行入侵式修改</p><h2 id="MF（去中心化的应用部署方式）"><a href="#MF（去中心化的应用部署方式）" class="headerlink" title="MF（去中心化的应用部署方式）"></a>MF（去中心化的应用部署方式）</h2><p>每个应用是单独部署在各自的服务器，每个应用都可以引用其他应用，也能被其他应用所引用，即每个应用可以充当host的角色，亦可以作为remote出现，无中心应用的概念。</p><h1 id="什么是模块联邦（MF）"><a href="#什么是模块联邦（MF）" class="headerlink" title="什么是模块联邦（MF）"></a>什么是模块联邦（MF）</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="Container"><a href="#Container" class="headerlink" title="Container"></a>Container</h3><p>一个使用 ModuleFederationPlugin 构建的应用就是一个 Container，它可以加载其他的 Container，也可以被其他的 Container 加载。</p><h3 id="Remote、Host、Bidirectional-hosts"><a href="#Remote、Host、Bidirectional-hosts" class="headerlink" title="Remote、Host、Bidirectional-hosts"></a>Remote、Host、Bidirectional-hosts</h3><p>如果一个应用只导出模块给其它应用消费，我们称这样的应用为 remote<br>如果一个应用只消费其它应用导出的模块，我们称这样的应用为 host<br>Bidirectional-hosts，如果一个应用既消费其它应用导出的模块，也导出模块给其它应用消费，我们称这样的应用为 Bidirectional-hosts</p><h3 id="Shared"><a href="#Shared" class="headerlink" title="Shared"></a>Shared</h3><p>shared 表示共享依赖，一个应用可以将自己的依赖共享出去，比如 react、react-dom、mobx等，其他的应用可以直接使用共享作用域中的依赖从而减少应用的体积。</p><h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p><strong>微前端</strong>：通过shared以及exposes可以将多个应用引入同一应用中进行管理。<br><strong>资源复用，减少编译体积</strong>:可以将多个应用都用到的通用组件单独部署，通过mf的功能在runtime时引入到其他项目中，这样组件代码就不会编译到项目中，同时亦能满足多个项目同时使用的需求，一举两得。<br>针对一些封装基础能力或业务组件的项目，要提供给其它项目复用，常用的方式是封装成npm包，业务方再把包引入项目使用，这样做会带来以下问题：<br>通过发包的方式进行进行组件/方法的复用，当组件（方法）有一些更新时候，尤其是更改了某些存在的bug，就不得不通知依赖模块进行升版；如果存在多个依赖方，这种“发布-&gt; 通知-&gt; 更改”模式无疑是低效率的<br>项目伴随着引入的模块增多，编译耗时会增加，并且可能存在编译陷阱（意外的构建失败），需要花费额外的时间去排查。<br>MF的出现，使得以上问题有了新的解决方法。</p><h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ol><li>缺乏类型提示，使用远程组件只是获取到组件的引用，但获取不到类型定义。</li><li>应用一旦发布即会被Host应用消费，一旦出现问题影响范围广。</li></ol><h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>使用MF,只需要配置好以下几个属性：</p><table><thead><tr><th>属性名</th><th>类型</th><th>描述</th></tr></thead><tbody><tr><td></td></tr></tbody></table><p>name |    string    |必传值，即输出的模块名，被远程引用时路径为<code>$&#123;name&#125;/$&#123;expose&#125;</code><br>|library |    object    |声明全局变量的方式，name为umd的name<br>|filename|    string    |构建输出的文件名<br>|remotes    |object|    远程引用的应用名及其别名的映射，使用时以key值作为name<br>|exposes|    object    |被远程引用时可暴露的资源路径及其别名<br>|shared|    object    |与其他应用之间可以共享的第三方依赖，使你的代码中不用重复加载同一份依赖</p><h1 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h1><p><a href="https://github.com/webpack/webpack/blob/main/lib/container/ModuleFederationPlugin.js">源码地址</a></p><p>ModuleFederationPlugin利用了webpack的plugin机制，根据传入的options调用了以下三个plugin：</p><h2 id="ContainerPlugin"><a href="#ContainerPlugin" class="headerlink" title="ContainerPlugin"></a>ContainerPlugin</h2><p>主要作用将exposes的插件当成入口文件模块进行打包，形成单独可运行的文件，然后跟随主模块进行编译，最终expose的组件会被解析成一个入口文件。</p><h2 id="ContainerReferencePlugin"><a href="#ContainerReferencePlugin" class="headerlink" title="ContainerReferencePlugin"></a>ContainerReferencePlugin</h2><p>该插件将指定引用的外部包（remote）添加的容器中。并允许容器导入远程模块。在导入时会调用向容器使用者提供override，为远程模块提供公共依赖。</p><h2 id="SharePlugin"><a href="#SharePlugin" class="headerlink" title="SharePlugin"></a>SharePlugin</h2><p>整个模块都在实现共享的功能，其利用Provider进行提供，Consumer进行消费的机制，将共享的数据隔离在特定的shareScope中，通过resolveMatchedConfigs实现了对provider依赖及consumer依赖的过滤，从而对共有依赖只进行一遍请求。</p><h1 id="行业实践"><a href="#行业实践" class="headerlink" title="行业实践"></a>行业实践</h1><h2 id="UmiJS-MFSU构建加速"><a href="#UmiJS-MFSU构建加速" class="headerlink" title="UmiJS MFSU构建加速"></a>UmiJS MFSU构建加速</h2><p><a href="https://umijs.org/docs/api/config#mfsu">https://umijs.org/docs/api/config#mfsu</a></p><p>mfsu 是一种基于 webpack5 新特性 Module Federation 的打包提速方案。核心原理是将应用的依赖构建为一个 Module Federation 的 remote 应用，以免去应用热更新时对依赖的编译。</p><p>因此，开启 mfsu 可以大幅减少热更新所需的时间。在生产模式，也可以通过提前编译依赖，大幅提升部署效率。</p><h2 id="YY-EMP-2-0-微前端方案"><a href="#YY-EMP-2-0-微前端方案" class="headerlink" title="YY EMP 2.0 微前端方案"></a>YY EMP 2.0 微前端方案</h2><p><a href="https://github.com/efoxTeam/emp/wiki">https://github.com/efoxTeam/emp/wiki</a></p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>ModuleFederationPlugin 源码解析 <a href="https://juejin.cn/post/7163081741094092807">https://juejin.cn/post/7163081741094092807</a></p><p>《模块联邦实践指南》 <a href="https://module-federation.github.io/">https://module-federation.github.io/</a></p><p>微前端-最容易看懂的微前端知识 <a href="https://zhuanlan.zhihu.com/p/141530392">https://zhuanlan.zhihu.com/p/141530392</a></p><p><a href="https://github.com/ogzhanolguncu/react-typescript-module-federation">https://github.com/ogzhanolguncu/react-typescript-module-federation</a></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>webpack</tag>
+      
+      <tag>微前端</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Rollup简易教程</title>
+    <link href="/2022/10/25/rollup/"/>
+    <url>/2022/10/25/rollup/</url>
+    
+    <content type="html"><![CDATA[<h3 id="Rollup是什么"><a href="#Rollup是什么" class="headerlink" title="Rollup是什么"></a>Rollup是什么</h3><p>Rollup是一个JavaScript模块打包工具，相对于Webpack更侧重于应用打包，Rollup更适合用来构建库。Rollup有着简单易用的API、支持Tree-shaking的特性，若你只是想为你的库构建出一个bundle包，Rollup会是非常不错的选择，业内不少优秀框架，如React、Vue都使用Rollup构建，本文将简单介绍Rollup的使用。</p><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --global rollup</span><br></pre></td></tr></table></figure><h3 id="初始化演示项目"><a href="#初始化演示项目" class="headerlink" title="初始化演示项目"></a>初始化演示项目</h3><p>为了方便演示，使用 <strong>npm init</strong> 初始化package.json，并新建index.js、utils/math.js，形成这样的目录结构：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">├── index.js</span><br><span class="line">├── package.json</span><br><span class="line">└── utils</span><br><span class="line">    └── math.js</span><br></pre></td></tr></table></figure><p>在utils/math.js中，编写并导出两个工具函数<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">export const add = (x, y) =&gt; &#123;</span><br><span class="line">  return x + y;</span><br><span class="line">&#125;;</span><br><span class="line">export const reduce = (x, y) =&gt; &#123;</span><br><span class="line">  return x - y;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br>在index.js中，我们引用并打印add函数<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import &#123; add &#125; from &quot;./utils/math&quot;;</span><br><span class="line"></span><br><span class="line">console.log(add(1,2));</span><br></pre></td></tr></table></figure></p><h3 id="Tree-shaking"><a href="#Tree-shaking" class="headerlink" title="Tree-shaking"></a>Tree-shaking</h3><p>接着我们演示Tree-shaking特性，运行打包命令：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rollup index.js --file output.js</span><br></pre></td></tr></table></figure><br>以上命令代表执行打包index.js，<strong>–file</strong>参数表示指定输出的文件名，运行完毕后我们打开output.js：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const add = (x, y) =&gt; &#123;</span><br><span class="line">  return x + y;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">console.log(add(1,2));</span><br></pre></td></tr></table></figure><br>可以看到，utils/math.js中的reduce函数由于没有在index.js中使用，所以被Tree-shaking处理了，并没有出现在打包产物中。</p><h3 id="指定输出文件夹"><a href="#指定输出文件夹" class="headerlink" title="指定输出文件夹"></a>指定输出文件夹</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rollup index.js --dir dirname</span><br></pre></td></tr></table></figure><p>运行后会把打包产物输出到–dir参数后指定的文件夹中</p><h3 id="指定产物构建格式"><a href="#指定产物构建格式" class="headerlink" title="指定产物构建格式"></a>指定产物构建格式</h3><p>rollup支持打包成CommonJS、UMD、自执行函数（IIFE-style scripts for browsers），打包参数略有区别：</p><p>For browsers:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># compile to a &lt;script&gt; containing a self-executing function</span><br><span class="line">rollup main.js --format iife --name &quot;myBundle&quot; --file bundle.js</span><br><span class="line"></span><br></pre></td></tr></table></figure><br>For Node.js:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># compile to a CommonJS module</span><br><span class="line">rollup main.js --format cjs --file bundle.js</span><br></pre></td></tr></table></figure><br>For both browsers and Node.js:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># UMD format requires a bundle name</span><br><span class="line">rollup main.js --format umd --name &quot;myBundle&quot; --file bundle.js</span><br></pre></td></tr></table></figure></p><h3 id="根据配置文件打包"><a href="#根据配置文件打包" class="headerlink" title="根据配置文件打包"></a>根据配置文件打包</h3><p>作为bundle打包工具，rollup自然也支持根据配置文件进行打包，配置文件在区分环境时非常有用。我们可以于项目根目录新建一个rollup.config.js进行演示，内容为：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  input: &#x27;src/main.js&#x27;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    file: &#x27;bundle.js&#x27;,</span><br><span class="line">    format: &#x27;cjs&#x27;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br>上面的配置指定了输入输出以及输出格式，在使用时我们可以使用–config指定配置文件<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rollup --config rollup.config.js</span><br></pre></td></tr></table></figure><br>rollup的配置文件有很多玩法，具体可以参阅<a href="https://rollupjs.org/guide/en/#configuration-files">rollup-configuration-files</a></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>打包工具</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>React应用判断mp4文件是h264、h265编码的方法</title>
+    <link href="/2021/05/27/react-mp4-codec/"/>
+    <url>/2021/05/27/react-mp4-codec/</url>
+    
+    <content type="html"><![CDATA[<p>日常开发中，遇到一个需求是视频文件上传之前，判断用户选择的 mp4 文件编码格式，若不是期望的编码，则不予上传。分析一下，这是一个比较 basic 的需求，我们只需要获取到视频文件的 MINE 信息，就可以判断视频编码。由于网上没有比较完整的文章，所以著文分享。</p><span id="more"></span> <p>我们会使用到<strong>mp4box</strong>这个工具库。首先安装它：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add mp4box</span><br></pre></td></tr></table></figure><p>如果你使用<strong>Typescript</strong>，请参考<a href="https://github.com/gpac/mp4box.js/issues/233">Typescript Support</a>添加声明。</p><p>接着引入库和声明一个 FileReader 用于协助读取文件</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import MP4Box from &#x27;mp4box&#x27;</span><br><span class="line">var reader: FileReader = new FileReader()</span><br></pre></td></tr></table></figure><p>创建 Input 和处理 onChange，这里我们使用HTML5的accept属性限制只能选择mp4格式的文件。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Input type=&quot;file&quot; onChange=&#123;onFileSelected&#125; accept=&quot;video/mp4&quot;&gt;&lt;/Input&gt;</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const onFileSelected = (e: any) =&gt; &#123;</span><br><span class="line">    reader.readAsArrayBuffer(e.target.files[0]);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure><p>接着通过 FileReader 的 loadend 事件进行后续处理，这里记得要回收reader变量。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">useEffect(() =&gt; &#123;</span><br><span class="line">   reader.addEventListene  (&#x27;loadend&#x27;, function () &#123;</span><br><span class="line">     let result: any = reader.result;</span><br><span class="line">     result.fileStart = 0;</span><br><span class="line">     let mp4boxfile = MP4Box.createFile()</span><br><span class="line">     mp4boxfile.onReady = mp4Parsed</span><br><span class="line">     mp4boxfile.appendBuffer(result);</span><br><span class="line">   &#125;);</span><br><span class="line">   return () =&gt; &#123;</span><br><span class="line">     (reader as any) = null</span><br><span class="line">   &#125;</span><br><span class="line">&#125;, [])</span><br></pre></td></tr></table></figure><p>获取到文件后，解析文件MINE类型，后续可以自行添加提示信息。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">const mp4Parsed = (info: any) =&gt; &#123;</span><br><span class="line">  var codecs = [];</span><br><span class="line">  for (var t = 0; t &lt; info.tracks.length; ++t) &#123;</span><br><span class="line">    codecs.push(info.tracks[t].codec);</span><br><span class="line">  &#125;</span><br><span class="line">  let fileCode = analysisCode(codecs[0])</span><br><span class="line">  console.log(fileCode)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">const analysisCode = (code: string) =&gt; &#123;</span><br><span class="line">  if (code.startsWith(&#x27;avc&#x27;)) &#123;</span><br><span class="line">    // h264</span><br><span class="line">    return &#x27;h264&#x27;</span><br><span class="line">  &#125; else if (code.startsWith(&#x27;hvc&#x27;)) &#123;</span><br><span class="line">    // h265</span><br><span class="line">    return &#x27;h265&#x27;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    throw new Error(&#x27;unknown video code&#x27;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>基于Create React App写了一个demo，详见<a href="https://github.com/Achilles822/mp4-codec-demo">github</a>。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>前端开发</tag>
+      
+      <tag>React</tag>
+      
+      <tag>音视频</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>2020年终总结</title>
+    <link href="/2021/01/10/summary-2020/"/>
+    <url>/2021/01/10/summary-2020/</url>
+    
+    <content type="html"><![CDATA[<h1 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h1><p>2020年我的生活发生了翻天覆地的变化，在COVID-19的影响下，被迫降薪了三个月，从计划换工作开始，到最后签offer，经过了整整四个月。那段时间饱受煎熬，不少公司锁了HC，投了没反应，甚至很长一段时间在考虑是否进外包公司，最后戏剧化地在做了外包公司入职体检之后，接受了现公司的offer。新公司很有意思，入职之后需要做半个月的服务员，这种纯体力活对我来说毫无意义，也算是丰富了人生的体验吧。接近年底的时候搬出了住了三年的城中村，到了一个单程通勤一小时的地方，生活作息提前进入了老年状态，由于时间太长，我甚至开始养成在地铁上读书的习惯。</p><h1 id="新工作"><a href="#新工作" class="headerlink" title="新工作"></a>新工作</h1><p>事实证明，在待遇差不多的情况下，我会选择更具有挑战性的工作。在著文的时候，恰巧是我半年以来工作成果的验收————项目上线。过去的半年里，我在electron方面有很多实践，许多同事反应在进行两到三年的前端工作之后开始出现厌倦的感觉，日复一日的编写业务逻辑确实会降低编码的欲望，我也不例外，所以我更乐意去探索新的领域，从几年前的小程序转为桌面端开发，踩坑其实也是一种乐趣。不出意外，今年你们会在我司许多门店里见到我的作品：）</p><h1 id="Best-buy"><a href="#Best-buy" class="headerlink" title="Best buy"></a>Best buy</h1><h3 id="斐讯n1"><a href="#斐讯n1" class="headerlink" title="斐讯n1"></a>斐讯n1</h3><p>同事推荐的型号，为主路由降低了大量负载，现在可以无压力地看油管了：），低廉的价格真是便宜又大碗。</p><h1 id="2021-05-27-update"><a href="#2021-05-27-update" class="headerlink" title="2021.05.27 update"></a>2021.05.27 update</h1><p>因为发新文章的缘故看到这篇半成品，更新一下近况：换了新工作，老东家的作品还在发挥余热，在全国「太二」门店都已经上线，恰逢这个时间点，「太二前传」也即将开业，里面有我iPad端的作品，迫不及待去尝试啦～</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Electron-Vue 01:项目初始化</title>
+    <link href="/2020/07/16/electron-01/"/>
+    <url>/2020/07/16/electron-01/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>因业务需要开了新坑，选型为Electron-Vue，发展到现在比较成熟了，但是没想到项目初始化都启动不了，把一些小坑记录下来。</p></blockquote><h3 id="Get-Started"><a href="#Get-Started" class="headerlink" title="Get Started"></a>Get Started</h3><h4 id="安装vue-cli"><a href="#安装vue-cli" class="headerlink" title="安装vue-cli"></a>安装vue-cli</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g vue-cli</span><br></pre></td></tr></table></figure><h4 id="通过vue-cli初始化项目模版"><a href="#通过vue-cli初始化项目模版" class="headerlink" title="通过vue-cli初始化项目模版"></a>通过vue-cli初始化项目模版</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init simulatedgreg/electron-vue my-project</span><br></pre></td></tr></table></figure><h4 id="安装依赖并运行开发模式"><a href="#安装依赖并运行开发模式" class="headerlink" title="安装依赖并运行开发模式"></a>安装依赖并运行开发模式</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd my-project</span><br><span class="line">yarn # or npm install</span><br><span class="line">yarn run dev # or npm run dev</span><br></pre></td></tr></table></figure><h4 id="ReferenceError-process-is-not-defined"><a href="#ReferenceError-process-is-not-defined" class="headerlink" title="ReferenceError: process is not defined"></a>ReferenceError: process is not defined</h4><p>进行到这里，跑不起来就对了，会报<strong><em>ReferenceError: process is not defined</em></strong>，原因是webpack配置有问题，我们修改项目目录下的 <strong><em>./electron-vue</em></strong> 下的<strong><em>webpack.renderer.config.js和webpack.web.config.js</em></strong>的<strong><em>HtmlWebpackPlugin</em></strong>配置为：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">new HtmlWebpackPlugin(&#123;</span><br><span class="line">  filename: &#x27;index.html&#x27;,</span><br><span class="line">  template: path.resolve(__dirname, &#x27;../src/index.ejs&#x27;),</span><br><span class="line">  templateParameters(compilation, assets, options) &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      compilation: compilation,</span><br><span class="line">      webpack: compilation.getStats().toJson(),</span><br><span class="line">      webpackConfig: compilation.options,</span><br><span class="line">      htmlWebpackPlugin: &#123;</span><br><span class="line">        files: assets,</span><br><span class="line">        options: options</span><br><span class="line">      &#125;,</span><br><span class="line">      process,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  minify: &#123;</span><br><span class="line">    collapseWhitespace: true,</span><br><span class="line">    removeAttributeQuotes: true,</span><br><span class="line">    removeComments: true</span><br><span class="line">  &#125;,</span><br><span class="line">  nodeModules: false</span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure><h4 id="axios-is-not-defined"><a href="#axios-is-not-defined" class="headerlink" title="axios is not defined"></a>axios is not defined</h4><p>改毕再<strong><em>yarn dev</em></strong>一下就可以解锁第二关<strong><em>axios is not defined</em></strong>，这里很容易联想到依赖安装不完整的问题，如果你尝试安装依赖的话会发现错误没有变化，后经过搜索发现插件白名单没有配置。</p><p>接着修改<strong><em>webpack.renderer.config.js</em></strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let whiteListedModules = [&#x27;vue&#x27;,&#x27;axios&#x27;,&#x27;vue-electron&#x27;,&#x27;vue-router&#x27;,&#x27;element-ui&#x27;,&#x27;vuex-electron&#x27;,&#x27;vuex&#x27;]</span><br></pre></td></tr></table></figure><p>把所需要的依赖加上即可，进行到这里项目终于可以跑起来了，文章写到这里不忍结束，接着我们迎来第三关：<strong><em>eslint</em></strong></p><h4 id="eslint-vscode代码格式化"><a href="#eslint-vscode代码格式化" class="headerlink" title="eslint vscode代码格式化"></a>eslint vscode代码格式化</h4><p>在使用vue-cli进行项目初始化的时候，我选择了Javascript Standard Style作为代码风格校验，很多人会不堪其扰选择关闭，但其实一个合适的代码风格在团队协作中是很有必要的，至于烦人的红波浪提醒，我们大可交给code formatter去帮我们格式化代码。<br>首先安装vscode拓展 <strong><em>Prettier-Standard - JavaScript formatter</em></strong>，并于vscode首选项中打开<strong><em>editor.formatOnSave</em></strong>即可愉快地匹配项目代码风格。</p><h4 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h4><p>以上是我花了一天时间踩的坑，后续伴随项目发展，本系列文章将会同步更新，感谢观看～</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Electron</tag>
+      
+      <tag>Vue</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>macOS卸载Xcode导致git报错的解决方法</title>
+    <link href="/2019/07/16/mac-git/"/>
+    <url>/2019/07/16/mac-git/</url>
+    
+    <content type="html"><![CDATA[<p>因为macbook空间不足卸载了没怎么用的Xcode，导致下班前提交代码时发现git报以下错误：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcrun: error: invalid active developer path (/Applications/Xcode.app/Contents/Developer), missing xcrun at: /Applications/Xcode.app/Contents/Developer/usr/bin/xcrun</span><br></pre></td></tr></table></figure><br>经过一番尝试，发现git依赖的CommandLineTools命令行工具路径指向的是Xcode。我们可以通过<strong>xcode-select -p</strong>查看。那么此时我们先把它装回来，执行：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcode-select --install</span><br></pre></td></tr></table></figure><br>看下安装成功了没:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xcode-select --version</span><br><span class="line">-&gt; xcode-select version 2354.</span><br></pre></td></tr></table></figure><br>然后把系统命令行路径重新指向到刚安装的xcode-select目录：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /usr/bin/xcode-select  --switch /Library/Developer/CommandLineTools</span><br></pre></td></tr></table></figure><br>好了，试试git回来了没：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br><span class="line">-&gt; git version 2.20.1 (Apple Git-117)</span><br></pre></td></tr></table></figure></p><p>Done.</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>git</tag>
+      
+      <tag>macOS</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>微信小程序使用贝塞尔曲线绘制加入购物车动画</title>
+    <link href="/2019/06/27/Bezier-curve/"/>
+    <url>/2019/06/27/Bezier-curve/</url>
+    
+    <content type="html"><![CDATA[<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote><p>贝塞尔曲线(Bézier curve)，又称贝兹曲线或贝济埃曲线，是应用于二维图形应用程序的数学曲线。一般的矢量图形软件通过它来精确画出曲线，贝兹曲线由线段与节点组成，节点是可拖动的支点，线段像可伸缩的皮筋，我们在绘图工具上看到的钢笔工具就是来做这种矢量曲线的。</p></blockquote><h3 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h3><p>以上介绍摘自百度百科，看起来有点晦涩难懂，一年多以前我第一次接触到这个名词便心生抗拒之意。然而在前端开发中，我们在实现抛物线动画时，贝塞尔曲线绝对是个好帮手。今天我们通过在微信小程序实现一个常见的加入购物车动画，来进一步理解它。</p><span id="more"></span><h3 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h3><p><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1879928557,2488352621&amp;fm=26&amp;gp=0.jpg" alt=""><br>通过上图，我们可以看出贝塞尔曲线有四个关键点，P0、P1、P2、P3且x、y轴取值范围在 <strong><em>[0,1]</em></strong> 。MDN上特别说明了：</p><blockquote><p>Cubic Bézier curves with the P1 or P2 ordinate outside the [0, 1] range may generate bouncing effects.<br>When you specify an invalid cubic-bezier curve, CSS ignores the whole property.</p></blockquote><p>所以x、y的取值一旦不在区间内，CSS会 <strong><em>忽略</em></strong> 掉。<br>我们只需要关注P1和P2的取值，就可以生成一条曲线。在CSS中，贝塞尔曲线的表达式参数也是这两个坐标：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cubic-bezier(x1, y1, x2, y2)</span><br></pre></td></tr></table></figure><br>贝塞尔曲线属于 <strong><em>缓动函数（easing functions）</em></strong> ，用于表现某段时间内物体 <strong><em>运动的快慢</em></strong> 。我们可以通过一些实用的工具来调整出我们需要的参数<br><a href="https://easings.net/">https://easings.net/</a><br>有多种配置好的曲线，应付常见需求应该没有问题。<br><a href="https://cubic-bezier.com/#.17,.67,.83,.67">https://cubic-bezier.com/#.17,.67,.83,.67</a><br>贝塞尔曲线在线编辑器，可以在线预览效果。url后面的数字即对应四个参数。</p><h3 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h3><p>铺垫了那么多，我们来看一下怎么实现购物车动画。网上有许多该动画在原生js和Vue的实现，其实道理都是一样的:我们需要先获取到「<strong><em>加入购物车</em></strong>」按钮、「<strong><em>购物篮</em></strong>」的坐标，然后通过贝塞尔曲线改变小球的 <strong><em>top</em></strong> 值和 <strong><em>left</em></strong> 值实现从起点到终点的平滑过渡。<br>dom结构：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 触发按钮及小球</span><br><span class="line">&lt;view class=&quot;btn-add-cart before-position&quot; bindtap=&quot;addCart&quot;&gt;加入购物车动画&lt;/view&gt;</span><br><span class="line">&lt;view wx:if=&quot;&#123;&#123;ballDisplay&#125;&#125;&quot; class=&quot;ball&quot; style=&quot;top:&#123;&#123;top&#125;&#125;;left:&#123;&#123;left&#125;&#125;&quot;&gt;&lt;/view&gt;</span><br><span class="line">// 底部tabbar购物栏</span><br><span class="line">&lt;view class=&quot;bottom-bar&quot; hover-class=&quot;none&quot; hover-stop-propagation=&quot;false&quot;&gt;</span><br><span class="line">  &lt;image id=&quot;icon&quot; class=&quot;icon after-position&quot; src=&quot;../../images/cart/cart.png&quot; mode=&quot;widthFix&quot;&gt;&lt;/image&gt;</span><br><span class="line">&lt;/view&gt;</span><br></pre></td></tr></table></figure><br>CSS:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">.btn-add-cart &#123;</span><br><span class="line">  width: 300rpx;</span><br><span class="line">  height: 50rpx;</span><br><span class="line">  position: relative;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.bottom-bar &#123;</span><br><span class="line">  position: fixed;</span><br><span class="line">  bottom: 0;</span><br><span class="line">  left: 0;</span><br><span class="line">  height: 100rpx;</span><br><span class="line">  width: 100%;</span><br><span class="line">  background-color: #333;</span><br><span class="line">  display: flex;</span><br><span class="line">  align-items: center;</span><br><span class="line">  justify-content: flex-end</span><br><span class="line">&#125;</span><br><span class="line">.icon&#123;</span><br><span class="line">  height:64rpx;</span><br><span class="line">  width:64rpx;</span><br><span class="line">  padding:10rpx;</span><br><span class="line">  margin-right:30rpx;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  background-color: royalblue;</span><br><span class="line">&#125;</span><br><span class="line">.ball&#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  width:30rpx;</span><br><span class="line">  height:30rpx;</span><br><span class="line">  background-color: red;</span><br><span class="line">  border-radius: 50%;</span><br><span class="line">  z-index:999;</span><br><span class="line">  transition: 1s top cubic-bezier(0.47, 0, 0.745, 0.715), 1s left cubic-bezier(0, 0, 0, 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>然后写个通用方法获取起点和终点的坐标：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">getRects(cls) &#123;</span><br><span class="line">  return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">    wx.createSelectorQuery()</span><br><span class="line">      .in(this)</span><br><span class="line">      .select(cls)</span><br><span class="line">      .boundingClientRect(function(rect) &#123;</span><br><span class="line">        console.log(rect);</span><br><span class="line">        resolve(rect);</span><br><span class="line">      &#125;)</span><br><span class="line">      .exec();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>注意：获取小球初始位置要在 <strong><em>onShow()</em></strong> 获取。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">onShow() &#123;</span><br><span class="line">  // 获取小球最开始的位置</span><br><span class="line">  this.initBallPos();</span><br><span class="line">  this.start = false;</span><br><span class="line">&#125;,</span><br><span class="line">initBallPos() &#123;</span><br><span class="line">  this.getRects(&quot;.before-position&quot;).then(rect =&gt; &#123;</span><br><span class="line">    this.setData(&#123;</span><br><span class="line">      top: `$&#123;rect.top + 5&#125;px`,</span><br><span class="line">      left: `$&#123;rect.left + 30&#125;px`,</span><br><span class="line">      originTop: `$&#123;rect.top + 5&#125;px`,</span><br><span class="line">      originLeft: `$&#123;rect.left + 30&#125;px`</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>这里是触发函数，用 <strong><em>this.start</em></strong> 防止多次触发<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">// 加入购物车动画</span><br><span class="line"> addCart() &#123;</span><br><span class="line">   let that = this;</span><br><span class="line">   // 禁止动画多次触发</span><br><span class="line">   if (this.start) &#123;</span><br><span class="line">     return;</span><br><span class="line">   &#125;</span><br><span class="line">   this.start = true;</span><br><span class="line">   this.setData(&#123;</span><br><span class="line">     ballDisplay: true</span><br><span class="line">   &#125;);</span><br><span class="line">   // 获取小球终点位置</span><br><span class="line">   this.getRects(&quot;.after-position&quot;).then(rect =&gt; &#123;</span><br><span class="line">     this.setData(&#123;</span><br><span class="line">       top: `$&#123;rect.top + 16&#125;px`,</span><br><span class="line">       left: `$&#123;rect.left + 16&#125;px`</span><br><span class="line">     &#125;);</span><br><span class="line">     // 延时跟动画时长一致，飞完隐藏掉，再把小球重置到初始位置。</span><br><span class="line">     let &#123; originLeft, originTop &#125; = this.data;</span><br><span class="line">     setTimeout(() =&gt; &#123;</span><br><span class="line">       that.setData(&#123;</span><br><span class="line">         ballDisplay: false,</span><br><span class="line">         top: originTop,</span><br><span class="line">         left: originLeft</span><br><span class="line">       &#125;);</span><br><span class="line">       that.start = false;</span><br><span class="line">     &#125;, 1000);</span><br><span class="line">   &#125;);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure><br>demo效果：<br><img src="https://github.com/Achilles822/achilles822.github.io/blob/master/images/curve.gif?raw=true" alt=""></p><p>具体代码可在<a href="https://github.com/Achilles822/wx-miniprogram">Github</a>找到哦～</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>微信小程序</tag>
+      
+      <tag>前端开发</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>微信小程序使用苹方字体</title>
+    <link href="/2018/12/22/wxapp-fonts/"/>
+    <url>/2018/12/22/wxapp-fonts/</url>
+    
+    <content type="html"><![CDATA[<p>最近的一个改版需求设计师在设计稿中使用了苹方字体，在网上找了一下解决方案，无外乎两种方式：</p><h3 id="第一种方式，base64-encode"><a href="#第一种方式，base64-encode" class="headerlink" title="第一种方式，base64 encode"></a>第一种方式，base64 encode</h3><p>如果字体比较小，如各种英文字体，可以把字体上传到 <a href="https://transfonter.org/">https://transfonter.org/</a> 转换成base64格式，然后直接在样式中使用。具体使用可参考 <a href="https://blog.csdn.net/u013451157/article/details/79825740">【微信小程序】如何引入外部字体样式</a>一文。</p><h3 id="第二种方式，官方API"><a href="#第二种方式，官方API" class="headerlink" title="第二种方式，官方API"></a>第二种方式，官方API</h3><p>如果字体比较大，如各种中文字体动辄超过10mb，用base64显然是不合适的，小程序超过2m还要分包处理，为了一个字体实在不值当，那么可以用官方的API <strong>wx.loadFontFace</strong>加载外部字体，像这样：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wx.loadFontFace(&#123;</span><br><span class="line">  family: &#x27;PingFangSC-Medium&#x27;,</span><br><span class="line">  source: &#x27;url(&quot;https://www.your-server.com/PingFangSC-Medium.ttf&quot;)&#x27;,</span><br><span class="line">  success: function()&#123;console.log(&#x27;load font success&#x27;)&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>这里需要注意的一点是，<strong>family</strong>处的名称就是使用时<strong>font-family</strong>的名称，举个例子，上方加载的字体这样使用：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.foo&#123;</span><br><span class="line">    font-family:PingFangSC-Medium;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h3 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h3><p>由于字体可能会比较大，所以不建议在一个小程序中使用多种字体，这样会影响用户体验。为了保证界面效果，可以在<strong>onLoad</strong>周期加载字体，在<strong>success</strong>回调中执行后续操作，必要时加上Loading，让程序更加友好。</p><h3 id="2018-12-28日更新："><a href="#2018-12-28日更新：" class="headerlink" title="2018.12.28日更新："></a>2018.12.28日更新：</h3><p>结合实践，决定写得更详细一点，希望可以帮助到更多道友。</p><p>遇到的问题是下载字体时界面已经渲染完毕，导致字体显示不正确。解决方法的总体思路是在使用到该字体的容器中增加一个loading属性，当字体加载完毕后再显示布局,这样可以确保字体渲染正确。</p><p><em>注：下方代码使用了</em> <a href="https://github.com/youngjuning/wxPromise">wxPromise</a> <em>以支援小程序API Promise化</em><br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- mall.wxml --&gt;</span><br><span class="line">&lt;view wx:if=&quot;&#123;&#123;loading&#125;&#125;&quot; class=&quot;mall-root&quot;&gt;</span><br><span class="line">&lt;/view&gt;</span><br></pre></td></tr></table></figure></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- mall.js --&gt;</span><br><span class="line">Page(&#123;</span><br><span class="line">    data:&#123;</span><br><span class="line">        loading:false</span><br><span class="line">    &#125;,</span><br><span class="line">    onLoad()&#123;</span><br><span class="line">        this.loadFonts().then(()=&gt;&#123;</span><br><span class="line">          this.setData(&#123;</span><br><span class="line">            loading: true</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line">        loadFonts()&#123;</span><br><span class="line">            let PingFangMedium = wx.pro.loadFontFace(&#123;</span><br><span class="line">                family: &#x27;PingFangSC-medium&#x27;,</span><br><span class="line">                source: &#x27;url(&quot;https://img2.misssixty.com.cn/rs/lib/fonts/PingFangSC-medium.ttf&quot;)&#x27;</span><br><span class="line">                &#125;)</span><br><span class="line"></span><br><span class="line">            let PingFangRegular = wx.pro.loadFontFace(&#123;</span><br><span class="line">                family: &#x27;PingFangSC-regular&#x27;,</span><br><span class="line">                source: &#x27;url(&quot;https://img2.misssixty.com.cn/rs/lib/fonts/PingFangSC-regular.ttf&quot;)&#x27;</span><br><span class="line">                &#125;)</span><br><span class="line">        return Promise.all([PingFangMedium, PingFangRegular]).then((res) =&gt; &#123;</span><br><span class="line">            console.log(res)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>前端开发</tag>
+      
+      <tag>小程序</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>2018广州国际车展</title>
+    <link href="/2018/11/17/Guangzhouautoshow2018-cars/"/>
+    <url>/2018/11/17/Guangzhouautoshow2018-cars/</url>
+    
+    <content type="html"><![CDATA[<p>今年的首发新车数量比往年多了不少，由于精力问题只去了部分展馆，大众、奥迪全系都换完了代，给人焕然一新的感觉。A6、新A class、新X5、新卡罗拉、ES是本届的超人气车型。连续五年去看车展，不容易啊～</p><span id="more"></span><p><img src="http://cdn.yanziyu.tech/DSC03267.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03270.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03271.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03277.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03283.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03284.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03285.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03293.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03295.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03297.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03312.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03314.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03320.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03328.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03331.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03334.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03344.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03366.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03373.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03374.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03375.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03381.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03392.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03394.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03397.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03401.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03404.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03406.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03410.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03416.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03417.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03418.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03424.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03428.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03445.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03457.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03459.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03464.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03467.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03476.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03477.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03481.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03496.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03507.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03513.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03517.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03522.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03530.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03533.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03537.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03539.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03554.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03557.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03559.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03568.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03569.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03571.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03572.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03574.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03579.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03583.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03590.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03604.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03624.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03637.jpg" alt=""><img src="http://cdn.yanziyu.tech/DSC03638.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03640.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03655.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03664.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03666.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03681.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03690.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03693.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03702.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03713.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03726.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03735.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03747.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03749.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03763.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03769.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03774.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03776.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03782.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC03785.jpg" alt=""></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>车展</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>解决jQuery无法添加监听</title>
+    <link href="/2018/11/14/jquery-01/"/>
+    <url>/2018/11/14/jquery-01/</url>
+    
+    <content type="html"><![CDATA[<p>在最近的项目开发中，用Webpack做了一套脚手架，用jQuery作为主要工具库，一顿操作猛如虎，一看代码2w5。😅今天在这里记一下无法给Dom绑定监听的小问题。</p><p>谈起jQuery绑定事件，这里以最常用的点击事件为例，常见的两种写法有：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">method one:</span><br><span class="line"></span><br><span class="line">$(&#x27;.selector&#x27;).on(&#x27;click&#x27;,()=&gt;&#123;</span><br><span class="line">    //do something here</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">method two:</span><br><span class="line">$(&#x27;.selector&#x27;).click(()=&gt;&#123;</span><br><span class="line">    //do something here</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>这两种写法大多数旁友都非常熟悉，平时用起来一点问题也没有，但在我的项目中，却愣是绑定不起来，经过一番查找，原因出在我要绑定事件的Dom是循环后append的，所以，点击事件就失效了，查了下jQuery的API：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">on(eve,[sel],[data],fn)</span><br></pre></td></tr></table></figure><br>发现on存在可选的第二个selector参数，官方说明：「一个选择器字符串用于过滤器的触发事件的选择器元素的后代。如果选择的&lt; null或省略，当它到达选定的元素，事件总是触发。」OK，那么要解决这个问题，必须在append html element之后，去on要绑定事件元素的父元素。写成表达式即为:</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&#x27;.parentSelector&#x27;).on(&#x27;click&#x27;,&#x27;.childSelector&#x27;,()=&gt;&#123;&#125;)</span><br></pre></td></tr></table></figure><p>好了，事情解决了，可以开启开心星期四了。🤪</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>前端开发</tag>
+      
+      <tag>jQuery</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Angular4学习总结</title>
+    <link href="/2018/05/06/angular-learning/"/>
+    <url>/2018/05/06/angular-learning/</url>
+    
+    <content type="html"><![CDATA[<h1 id="写在开始"><a href="#写在开始" class="headerlink" title="写在开始"></a>写在开始</h1><p>进入现在的公司快满一年了，记得入职第一天是让我看文档，第二天就正式投入开发了，期间一直想要写点学习心得，但是因为工作量较大，连域名未认证被封了几个月都不知道，趁这次修复blog，大致写一写这一年来积累的东西。</p><h1 id="学习方式"><a href="#学习方式" class="headerlink" title="学习方式"></a>学习方式</h1><p>学习一门语言最好的方法就是实战，我进入公司的时候恰好碰上技术栈转型，逐渐把老项目过渡到Angular4，所以大家都是边做边摸索，Angular在国内远没有Vue那么火，不少问题的解决都要靠老外，国内的开发者也有几个知名的实践，把我们常用的插件集成在一个demo中，这里贴上几个比较经典的学习资源，有需要可以参考：</p><p><a href="https://angular.cn/">官方中文文档</a></p><p><a href="https://github.com/damoqiongqiu/NiceFish">大漠老师的美人鱼</a></p><p><a href="https://github.com/zhongzhong0505/CodeBe">CodeBe插件集成demo</a></p><p><a href="https://github.com/kittencup/angular2-ama-cn">Angular2随便问</a></p><p>理论上实际开发都是专注于业务，所以一般都会使用框架以提高开发速度，这里推荐阿里的NG-ZORRO和PrimeNG，经过多个版本迭代已经比较成熟，可以放心使用：）</p><p><a href="https://github.com/NG-ZORRO/ng-zorro-antd">强烈推荐的框架：NG-ZORRO</a></p><p><a href="https://github.com/primefaces/primeng">PrimeNG</a></p><h1 id="实用技巧"><a href="#实用技巧" class="headerlink" title="实用技巧"></a>实用技巧</h1><p><br>这里就不再讲什么数据绑定、http请求等基础用法了，说几个在实际项目中比较实用的技巧，官方文档或许有提及但不够详细。</p><h3 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h3><p>或许你在某些教程中已经学习了Angular的组件通讯，知道常用的组件关系是父子关系，用的是@Input和@Output去传参，但是在实际项目中，经常会遇到兄弟关系的组件，这时候我们可以定义一个全局共用的Service进行传值，需要避免的坑是使用EventEmitter发送的值在订阅之前要先new EventEmiiter()一下，不然会造成重复触发。具体的使用方法可以参考 <a href="https://segmentfault.com/q/1010000011080965">https://segmentfault.com/q/1010000011080965</a></p><h3 id="动态组件"><a href="#动态组件" class="headerlink" title="动态组件"></a>动态组件</h3><p>当模版内容较多时，例如一个页面包含了多个弹窗，弹窗的内容、逻辑也非常多的时候，按照默认模式Angular会一次全部渲染，影响性能。这时候我们可以使用动态组件，只有初始化事件触发时，才去生成这个弹窗组件，并且这样做有个好处：抽出来的组件可以进行复用。<br>具体的使用方法可以参考 <a href="https://www.jianshu.com/p/10feab2c3102">https://www.jianshu.com/p/10feab2c3102</a></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Angular</tag>
+      
+      <tag>前端</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Windows环境使用nginx反向代理Node.js教程</title>
+    <link href="/2017/05/22/nginx/"/>
+    <url>/2017/05/22/nginx/</url>
+    
+    <content type="html"><![CDATA[<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>最近一直在埋头苦学Node.js,正好手头有个项目需要上线，之前所有项目都是用Apache部署的，接触Node.js后调试都是带端口号的，例如<a href="http://localhost:8080">http://localhost:8080</a> ,但是在生产环境，总不能让用户也访问带端口的地址吧？这个时候就需要用nginx来做端口转发。</p><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><a href="http://nginx.org/en/download.html">官网下载</a></p><p>下载后解压到方便操作的地方，如C:/即可，以下操作以C:/nginx为目录进行演示。</p><p>CMD键入：</p><pre><code>cd C:/nginx</code></pre><p>有两种启动命令，第一种无论是否成功启动都是一闪而过，优点是不会挂起进程，第二种会挂起，但是会抛出错误，在配置阶段方便调试。</p><pre><code>start nginx  //第一种启动命令nginx.exe//第二种启动命令</code></pre><p>接着测试服务是否成功启动：</p><pre><code>http://127.0.0.1</code></pre><p>如果出现nginx的默认网页就算安装成功。测试完了先关闭服务：</p><pre><code>nginx.exe -s quit</code></pre><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>重点来了，网上搜的博文不利于初学者，这也是著此文的目的所在。我们需要修改nginx的配置文件，位于:</p><pre><code>C:\nginx\conf\nginx.conf</code></pre><p>编辑该文件，我们的目标是把当前的80端口转发到8080端口。<br>修改第35行开始的配置为：</p><pre><code>server &#123;    listen       80;    server_name  localhost;    #charset koi8-r;    #access_log  logs/host.access.log  main;    location / &#123;        proxy_set_header X-Real-IP $remote_addr;    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;    proxy_set_header Host  $http_host;    proxy_set_header X-Nginx-Proxy true;    proxy_set_header Connection &quot;&quot;;    proxy_pass      http://127.0.0.1:8080;    &#125;</code></pre><p>保存文件，再次开启nginx服务。至此，输入localhost便能访问之前8080端口的项目，希望对大家有所帮助。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>后台开发</tag>
+      
+      <tag>Node.js</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Win10安装MongoDB教程</title>
+    <link href="/2017/05/12/mongodb-win64/"/>
+    <url>/2017/05/12/mongodb-win64/</url>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>距离MongoDB课程完结已经过去一年半，随着前端知识的系统学习，难免会再次接触到这个数据库，坦白地说之前上课的时候都是应付实验，并没有好好体会它的优点，毕竟你学一门技术如果不能和实战项目结合学习那都是瞎扯淡。接下来的日子得好好学一下了，安装时遇到一些神坑，总结一下与大家分享。</p><h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><p>Windows10 x64 1607、MongoDB v3.4 x64</p><h3 id="获取MongoDB"><a href="#获取MongoDB" class="headerlink" title="获取MongoDB"></a>获取MongoDB</h3><p><a href="https://www.mongodb.com/">MongoDB官网</a></p><h3 id="配置MongoDB相关文件、注册服务"><a href="#配置MongoDB相关文件、注册服务" class="headerlink" title="配置MongoDB相关文件、注册服务"></a>配置MongoDB相关文件、注册服务</h3><p>默认安装目录为</p><p>C:\Program Files\MongoDB\Server\3.4</p><p>新建以下目录和文件，你可以按需修改：</p><p>E:\data\db    //数据库目录<br>E:\data\dblog\MongoDB.log   //数据库目录</p><p>新建完成后我们需要把MongoDB注册为系统服务，这样日后启动会方便非常多。<br>首先以管理员运行cmd</p><p>cd C:\Program Files\MongoDB\Server\3.4\bin<br>   mongod –dbpath “E:\data\db” –logpath “E:\data\dblog\MongoDB.log” –install –serviceName “MongoDB”</p><p>接着<em>net start mongodb</em>启动刚注册的服务，再输入<em>mongo</em>启动mongo shell。</p><h3 id="issue-Win-10无法注册MongoDB服务"><a href="#issue-Win-10无法注册MongoDB服务" class="headerlink" title="issue:Win 10无法注册MongoDB服务"></a>issue:Win 10无法注册MongoDB服务</h3><p>今天要说的重点来了！！！如果到上面为止你还没有出错，那证明你已经安装成功不必往下看，而我的是提示「服务名无效」，这就尴尬了，刚才注册服务也没出错啊，进系统服务一查，好家伙，服务根本没注册成功。ok，接下来要揭晓Win10史上最大的bug了，原来在小娜里右键管理员运行的cmd依旧没获得权限，导致服务注册失败，正确的做法是win+X，里面的「命令提示符（管理员）」才是正品，再注册一次服务，done~</p><h3 id="把MongoDB路径注册到系统path"><a href="#把MongoDB路径注册到系统path" class="headerlink" title="把MongoDB路径注册到系统path"></a>把MongoDB路径注册到系统path</h3><p>这样做的好处是每次启动都节省掉cd命令，非常方便。只需要在系统变量「path」添加你的MongoDB安装路径，如：C:\Program Files\MongoDB\Server\3.4\bin即可。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>学习笔记</tag>
+      
+      <tag>数据库</tag>
+      
+      <tag>后台开发</tag>
+      
+      <tag>MongoDB</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>模仿虎嗅网弹出登录框</title>
+    <link href="/2017/05/02/huxiu-modal/"/>
+    <url>/2017/05/02/huxiu-modal/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>虎嗅网的登录框给我一种眼前一亮的感觉，我也还没做过模态框，遂决定做一个练练手。尺寸并没有严格模仿，因其使用的是Bootstrap，而我想用原生写。</p></blockquote><p>效果如下：<br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/modal-1.png" alt=""><br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/modal-2.png" alt=""><br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/modal-3.png" alt=""></p><p>源码已在<a href="https://github.com/Achilles822/huxiu-modal">Github</a>开源。</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>JavaScript浅拷贝和深拷贝</title>
+    <link href="/2017/04/21/js-copy/"/>
+    <url>/2017/04/21/js-copy/</url>
+    
+    <content type="html"><![CDATA[<p>最近发现学点什么零碎知识点都给记在博客上记得挺牢的，所以比较高产：）</p><h2 id="直接赋值"><a href="#直接赋值" class="headerlink" title="直接赋值"></a>直接赋值</h2><p>今天讲讲JavaScript的浅拷贝和深拷贝，不少面试题爱考这个。首先当我们要复制一个数组时，可能会采取直接赋值的方式，像这样：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var arr1=[1,2,3];</span><br><span class="line">var arr2=arr1;</span><br><span class="line">arr2[1]=7;</span><br><span class="line">console.log(arr1);//[1, 7, 3]</span><br><span class="line">console.log(arr2);//[1, 7, 3]</span><br></pre></td></tr></table></figure><br>这就出事了，一个数组改变另一个数组也会跟着变，这就是浅拷贝。</p><p>我们可以通过slice、concat方法来实现深拷贝</p><h2 id="slice"><a href="#slice" class="headerlink" title="slice()"></a>slice()</h2><p>先从网上摘一段方法介绍</p><blockquote><p>对于array对象的slice函数，返回一个数组的一段。（仍为数组）<br>arrayObj.slice(start, [end])<br>参数：<br>arrayObj 必选项。一个 Array 对象。<br>start 必选项。arrayObj 中所指定的部分的开始元素是从零开始计算的下标。<br>end可选项。arrayObj 中所指定的部分的结束元素是从零开始计算的下标。<br>说明：<br>slice 方法返回一个 Array 对象，其中包含了 arrayObj 的指定部分。<br>slice 方法一直复制到 end 所指定的元素，但是不包括该元素。<br>如果 start 为负，将它作为 length + start处理，此处 length 为数组的长度。<br>如果 end 为负，就将它作为 length + end 处理，此处 length 为数组的长度。<br>如果省略 end ，那么 slice 方法将一直复制到 arrayObj 的结尾。<br>如果 end 出现在 start 之前，不复制任何元素到新数组中。</p></blockquote><p>好，我们来试试slice方法：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var arr1=[1,2,3];</span><br><span class="line">var arr2=arr1.slice();</span><br><span class="line">arr2[1]=9;</span><br><span class="line">console.log(arr1);//[1, 2, 3]</span><br><span class="line">console.log(arr2);//[1, 9, 3]</span><br></pre></td></tr></table></figure></p><h2 id="concat"><a href="#concat" class="headerlink" title="concat()"></a>concat()</h2><p>是不是就没问题了？再来看看concat方法：</p><blockquote><p>concat() 方法用于连接两个或多个数组。该方法不会改变现有的数组，而仅仅会返回被连接数组的一个副本。<br>语法：arrayObject.concat(arrayX,arrayX,……,arrayX)<br>说明：返回一个新的数组。该数组是通过把所有 arrayX 参数添加到 arrayObject 中生成的。如果要进行 concat() 操作的参数是数组，那么添加的是数组中的元素，而不是数组。</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var arr1 = [&quot;1&quot;,&quot;2&quot;,&quot;3&quot;];</span><br><span class="line">var arr2 = arr1.concat();</span><br><span class="line">arr2[1] = &quot;9&quot;;</span><br><span class="line">console.log(arr1);//[1, 2, 3]</span><br><span class="line">console.log(arr2);//[1, 9, 3]</span><br></pre></td></tr></table></figure><h2 id="局限性"><a href="#局限性" class="headerlink" title="局限性"></a>局限性</h2><p>目前看来，这两个方法做深拷贝没什么问题，但它们也存在着局限性。<em>只适用于不包含引用对象的一维数组的深拷贝</em></p><h2 id="对象的深拷贝"><a href="#对象的深拷贝" class="headerlink" title="对象的深拷贝"></a>对象的深拷贝</h2><p>既然如此，那该怎么对对象进行深拷贝呢？其实也很简单，把对象的属性都给遍历一次，再赋给一个新的对象就行。举个例子：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var a =&#123;name:&#x27;Jack&#x27;,age:40&#125;;</span><br><span class="line">var b =new Object();</span><br><span class="line">b.name=a.name;</span><br><span class="line">b.age=a.age;</span><br><span class="line">a.name=&#x27;robin&#x27;;</span><br><span class="line">console.log(a);//&#123;name: &quot;robin&quot;, age: 40&#125;</span><br><span class="line">console.log(b);//&#123;name: &quot;Jack&quot;, age: 40&#125;</span><br></pre></td></tr></table></figure></p><p>————2018.10.17更新————-</p><h2 id="拓展运算符"><a href="#拓展运算符" class="headerlink" title="拓展运算符"></a>拓展运算符</h2><p>这是ES6带来的新特性，虽然ES6出来很久了，但因为公司的一些历史遗留问题，未能随心所欲地使用。到了18年，开始开发小程序，旧项目上了babel，已经没有了障碍，所以写一下这个能省下不少代码的特性。</p><h4 id="数组深拷贝"><a href="#数组深拷贝" class="headerlink" title="数组深拷贝"></a>数组深拷贝</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let a = [1,2,3,4];</span><br><span class="line">let b = [...a];</span><br><span class="line">b[1] = 5;</span><br><span class="line">console.log(a)  =&gt; [1, 2, 3, 4]</span><br><span class="line">console.log(b)  =&gt; [1, 5, 3, 4]</span><br></pre></td></tr></table></figure><h4 id="对象深拷贝"><a href="#对象深拷贝" class="headerlink" title="对象深拷贝"></a>对象深拷贝</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let a = &#123;&quot;name&quot;:&quot;jack&quot;,&quot;age&quot;:12&#125;;</span><br><span class="line">let b = &#123;...a&#125;;</span><br><span class="line">b.name = &quot;leo&quot;;</span><br><span class="line">console.log(a)  =&gt; &#123;name: &quot;jack&quot;, age: 12&#125;</span><br><span class="line">console.log(b)  =&gt; &#123;name: &quot;leo&quot;, age: 12&#125;</span><br></pre></td></tr></table></figure><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>技术的积累是一点一滴的，正所谓温故而知新，像本篇这种总结基础知识点的文章，偶尔翻来看一看感觉也不错～：）</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>前端开发</tag>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>学习笔记</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>一张图解释JavaScript event对象</title>
+    <link href="/2017/04/20/event-obj/"/>
+    <url>/2017/04/20/event-obj/</url>
+    
+    <content type="html"><![CDATA[<p>最近被各种clientX,offsetX…搞混了，画个图记录一下，特意去装了个AI，真特么难用。灵魂画风，随意看看。</p><p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/soul.png" alt="event对象"></p><p>注：红圈为鼠标点击位置，灰色部位为一个div，白色区域为浏览器可视区域。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>前端开发</tag>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>学习笔记</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>apply()和call()的区别</title>
+    <link href="/2017/04/15/js-apply-call/"/>
+    <url>/2017/04/15/js-apply-call/</url>
+    
+    <content type="html"><![CDATA[<h2 id="call和apply的区别"><a href="#call和apply的区别" class="headerlink" title="call和apply的区别"></a>call和apply的区别</h2><p>首先两者的作用是一样的，都是为了动态改变This，从语法我们可以看出它们所接受的参数不同：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">obj.apply(thisObj, [arg1, arg2, ...]);</span><br><span class="line">obj.call(thisObj, arg1, arg2, ...);</span><br><span class="line"></span><br></pre></td></tr></table></figure><br>第一个参数都一样，即把this绑定到thisObj，这时候thisObj继承了this的属性和方法，重点在第二个参数，apply所接受的是一个数组参数，call所接受的是连续参数。</p><h3 id="apply示例"><a href="#apply示例" class="headerlink" title="apply示例"></a>apply示例</h3><p>我们来看个例子：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 定义一个人类</span><br><span class="line">function Person(name,age)</span><br><span class="line">&#123;</span><br><span class="line">    this.name=name;</span><br><span class="line">    this.age=age;</span><br><span class="line">&#125;</span><br><span class="line">//定义某个人类</span><br><span class="line">function someOne(name,age,job)&#123;</span><br><span class="line">    </span><br><span class="line">    Person.apply(this,arguments);</span><br><span class="line">    this.job=job;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">var person1 = new someOne(&quot;Jack&quot;,&quot;21&quot;,&quot;doctor&quot;);</span><br><span class="line">alert(&quot;My name is &quot;+person1.name+&quot;. I am &quot;+person1.age+&quot; years old.And now I am a &quot;+person1.job);</span><br><span class="line">//弹出结果是My name is Jack. I am 21 years old.And now I am a doctor</span><br></pre></td></tr></table></figure></p><p>可以看到我们在someOne类中并没有给name和age属性赋值，而是通过apply方法去继承Person类的方法，这个时候<br>apply(this,arguments)里的this指向创建的对象person1,arguments指向[“Jack”,”21”,”doctor”]。</p><h3 id="call示例"><a href="#call示例" class="headerlink" title="call示例"></a>call示例</h3><p>第二个参数开始传入要劫持的属性<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Person.call(this,name,age);</span><br></pre></td></tr></table></figure></p><h2 id="什么时候用apply，什么时候用call？"><a href="#什么时候用apply，什么时候用call？" class="headerlink" title="什么时候用apply，什么时候用call？"></a>什么时候用apply，什么时候用call？</h2><p>在给定参数列表，并且参数是数组类型，同时父子函数的参数列表顺序是一致的，即可用apply。如不一致，就得用call来实现了，参数列表顺序以父函数为准。举个例子，父函数Person(name,age)，子函数someOne(age,name,job),这时候就得这样使用:Person.call(this,name,age)</p><h2 id="实用的apply"><a href="#实用的apply" class="headerlink" title="实用的apply"></a>实用的apply</h2><p>利用apply可以把数组参数转为一个一个的参数传递给方法这个特性，我们可以为Math方法做一个良好的拓展。原生的Math.max()是不接受数组参数的，确实是个遗憾，不过现在我们可以这样写：<code>Math.max.apply(null,array)</code>去求最大值，同样也可以用<code>Math.min.apply(null,array)</code>求出数组里的最小值。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+      <tag>学习笔记</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Hexo3.0重装系统后的还原</title>
+    <link href="/2017/04/04/reinstall-hexo/"/>
+    <url>/2017/04/04/reinstall-hexo/</url>
+    
+    <content type="html"><![CDATA[<p>网上的教程比较陈旧零散，每次重装系统都要折腾一会儿才能恢复博客，索性记录下来。<br> <span id="more"></span></p><ol><li>备份原Hexo文件夹下的source文件夹，以及站点目录下的_config.yml和主题目录下的_config.yml，后将整个Hexo文件夹删除。</li><li>重装系统后，安装<a href="https://nodejs.org/en/">Node.js</a>和<a href="https://git-scm.com/download/win">Git for Windows</a></li><li>配置SSH key：在Git Bash敲入<br> ssh-keygen -t rsa -C “你的邮箱”<br>生成的密钥默认保存在C:\Users\XPS.ssh\id_rsa.pub，用笔记本打开该文件，复制里面的内容到Github-Settings-SSH and GPG keys-New SSH key-Key一栏里，title可任意发挥。</li><li>配置Git的个人信息：在Git Bash输入<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;yourname&quot;</span><br><span class="line">git config --global user.email &quot;youremail&quot;</span><br></pre></td></tr></table></figure></li><li>在你要放置博客的文件夹打开Git Bash， 安装Hexo框架<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure></li><li>初始化Hexo<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init hexo</span><br></pre></td></tr></table></figure></li><li><em>Hexo3.0以上版本，需要安装hexo-deployer插件才能部署到Github，命令如下：</em><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></li></ol><p>主题文件下的Git配置类似于这样：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@git.coding.net:yourUsername/yourRepositoryName.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure><ol><li>下载所需的Hexo主题到Hexo的themes文件夹里，把第一步备份的若干文件归位。</li><li>恢复Hexo blog完成~</li></ol><p>tips: 可通过npm install hexo-wordcount –save增加文字总数、阅读时间的功能，安装完毕后在主题配置文件修改以下字段即可：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">post_wordcount:</span><br><span class="line">  item_text: true</span><br><span class="line">  wordcount: true</span><br><span class="line">  min2read: true</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Hexo</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>如何更改iTunes的备份路径（iPhone、iPad通用）</title>
+    <link href="/2017/03/28/update-iOS/"/>
+    <url>/2017/03/28/update-iOS/</url>
+    
+    <content type="html"><![CDATA[<h2 id="为什么要线刷？"><a href="#为什么要线刷？" class="headerlink" title="为什么要线刷？"></a>为什么要线刷？</h2><blockquote><p>iOS设备的线刷通常有以下几种：</p><ol><li>直接通过电脑端iTunes升级</li><li>iOS设备的恢复模式(屏幕显示连接iTunes标志)</li><li>DFU模式</li></ol><ul><li>线刷能避免OTA升级产生的各种奇怪问题</li><li>有时候OTA升级不了，例如会卡在“正在验证”页面</li><li>已越狱设备不能OTA升级，只能线刷升级系统</li></ul></blockquote><h2 id="为什么要更改iTunes备份路径？"><a href="#为什么要更改iTunes备份路径？" class="headerlink" title="为什么要更改iTunes备份路径？"></a>为什么要更改iTunes备份路径？</h2><p>根源在于iTunes本身是不支持修改备份目录的，每次都是保存在你的C盘下，而每次刷机都没法避免有个自动备份的过程。举个例子，我的设备是iPhone6 64GB，刷机前大概用了50G，自动备份文件大小是18+GB，这时候你的C盘未必有这么大的剩余空间，我们应该明白，最新一代的iPhone主流购买容量都是128GB版本，备份下来的文件大小真的难以想象，这个时候我们就需要想办法迁移备份目录。</p><h2 id="开工"><a href="#开工" class="headerlink" title="开工~"></a>开工~</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>使用Junction命令行工具，生成iTunes备份文件夹的快捷方式指向我们所要移动的目录。</p><h3 id="下载Junction"><a href="#下载Junction" class="headerlink" title="下载Junction"></a>下载Junction</h3><p><a href="https://technet.microsoft.com/en-us/sysinternals/bb896768.aspx">官网下载地址</a></p><p>把压缩包里的<em>junction.exe,junction64.exe</em>放到<em>C:\windows\system32</em>下，这样就配置好系统环境。</p><h3 id="命令行操作"><a href="#命令行操作" class="headerlink" title="命令行操作"></a>命令行操作</h3><p>便于你们理解，这里的路径基于假设，请根据实际环境修改路径：<br>我们要移动的文件夹路径是：<br><em>C:\Users\UserName\AppData\Roaming\Apple Computer\MobileSync</em>（这个大家都是一样的，替换UserName为你的用户名即可。）<br>我们要移动到以下路径：<br><em>D:\MobileSync</em>（这个可以自定义，选择空间充足的盘符。）</p><ol><li>接下来剪切(必须是剪切，不然会出错！)C盘下的MobileSync文件夹到D盘下</li><li>按下win+R运行cmd，输入以下命令并回车</li></ol><pre><code>mklink /J &quot;C:\Users\UserName\AppData\Roaming\Apple Computer\MobileSync&quot; &quot;D:\MobileSync&quot;</code></pre><p>如果出现以下提示，那么恭喜你成功了，可以放心去升级系统了~</p><p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/iOS.png" alt=""></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>软件</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>腾讯的又一次良心发现？————TIM上线之我见</title>
+    <link href="/2017/03/07/TIM/"/>
+    <url>/2017/03/07/TIM/</url>
+    
+    <content type="html"><![CDATA[<p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170307220610.png" alt="TIM"></p><h2 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h2><p>QQ作为腾讯的基石，发展到如今已经第18个年头，作为一个即时聊天平台，承载着腾讯太多的业务，从小学开始使用QQ时,见证着QQ日渐变得臃肿不堪，其中有不少失败的尝试，例如仿照微信推出的公众号和服务号，这让QQ变得非常不纯粹，微信作为一个新兴的通讯平台，加入这些新元素能增加用户活跃度，而QQ给用户的传统印象早已经根深蒂固，它就是一个纯粹的聊天工具，面对日渐减少的用户，QQ团队终于明白得开始做减法。</p><h2 id="再回首"><a href="#再回首" class="headerlink" title="再回首"></a>再回首</h2><p>不知道有多少朋友知道一个软件叫TM，以下介绍摘自百度百科</p><blockquote><p>腾讯TM是Tencent Messenger的简称，是腾讯公司推出的一款面向个人的即时通讯软件，能够与QQ互联互通，具有无广告、抗骚扰、安静高效的特点，风格简约清新，侧重在办公环境中使用。</p></blockquote><p>没错，TM就是轻量化的QQ，除了即使通讯，其他能删就删。TM的活跃年份是04-12年，当年第一次用的时候我的第一感觉是：“腾讯又想抄袭MSN了？”很显然，TM不适合当年读初中的我，QQZone都找不到入口：(。<br>如果没听过这个产品(TM)，那就对了,TM的用户量少得可怜，并且也不能带动腾讯的收入，所以这个项目停滞了几年，而TIM，就是TM的一次华丽回归。</p><h2 id="现状"><a href="#现状" class="headerlink" title="现状"></a>现状</h2><p>腾讯的步伐总是慢别人一步，后知后觉地在钉钉这类瞄准商务办公市场的软件大热时才想着祭出新版TM，换个角度来看，以前商务市场并不明朗，而现在随着互联网的发展，网络带宽的提高，商务在线协作也成为了大厂能大展拳脚的一块沃土，私以为这次TIM团队只要别走偏，专注于协作效率的提高，功能要明确与QQ做出差异化，TIM将大有可为。目前官网展示有以下主推特性：<br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170307220551.png" alt="Feture"><br>看着很不错，有点专业团队办公软件的意思了，但是我最想要的是什么？是优化QQ上那个破烂不堪的远程功能，给我一个理由放弃TeamViewer啊！</p><h2 id="先睹为快"><a href="#先睹为快" class="headerlink" title="先睹为快"></a>先睹为快</h2><blockquote><p>清爽、简介、轻、快是TIM不变的主题。</p></blockquote><p>看看iOS版本，做得非常专业和到位，让人有使用的欲望。<br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/IMG_7339%2820170307-220026%29.jpg" alt="APP"></p><p>再看PC版，把联系人列表和聊天窗口合二为一，本身就是一种有效提高效率的设计。<br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/@MK%28TWGOR4~%25%2978%5BWQ09HBJ.png" alt="PC"></p><p>腾讯于数日前刚上线TIM三端的客户端，大家可以去下载体验一把，不用担心，依旧可以抢你们最爱的一分钱红包~</p><p><a href="https://office.qq.com">TIM官网</a></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>软件</tag>
+      
+      <tag>杂谈</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>JavaScript实现Material Design计算器</title>
+    <link href="/2017/01/24/JScalculator/"/>
+    <url>/2017/01/24/JScalculator/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>造轮子是快速提高的方法之一。</p></blockquote><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>以为在花瓣上随便找了一张设计图就可以开工了，结果踩了大坑：（<br>这是我找的图，有没有发现什么不对劲？<br><img src="http://ohvi9wpj7.bkt.clouddn.com/cal1.png" alt=""></p><p>没错，乘法x哪去了？我可是做完了才发现的。这种设计师应该被做成爆炒鱿鱼，为了更完美，无奈只好加了几个功能上去。</p><h3 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h3><p>计算器重在考虑多种错误输入的处理，由于我也是初学者，这里用switch来判断运算</p><pre><code>function operator(type)&#123;switch(type)&#123;case &quot;clear&quot;:  input.value=&quot;0&quot;;  _string.length=0;break;case &quot;plus&quot;:if(checknum(input.value)!=0)&#123;_string.push(input.value);_type=&quot;plus&quot;input.value=&quot;+&quot;;input.name=&quot;type&quot;;&#125;break;case &quot;minus&quot;:if(checknum(input.value)!=0)&#123;_string.push(input.value);_type=&quot;minus&quot;input.value=&quot;-&quot;;input.name=&quot;type&quot;;&#125;break;</code></pre><h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><p><img src="http://ohvi9wpj7.bkt.clouddn.com/cal2.png" alt=""><br><a href="https://coding.net/u/achilles822/p/Demo/attachment/1385854">完整源码</a><br><a href="http://112.74.187.252/calculator/calculator.html">在线demo，仅限pc端</a></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>前端开发</tag>
+      
+      <tag>JavaScript</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>2016年终总结</title>
+    <link href="/2016/12/31/Year-End-Review-for-2016/"/>
+    <url>/2016/12/31/Year-End-Review-for-2016/</url>
+    
+    <content type="html"><![CDATA[<p> <blockquote class="blockquote-center">赶在2017年新年钟声敲响之前，从头到尾回顾一下2016。</blockquote><br><span id="more"></span></p><p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=16495488&auto=1&height=66"></iframe></p><h2 id="大概看看这一年"><a href="#大概看看这一年" class="headerlink" title="大概看看这一年"></a>大概看看这一年</h2><p>上半年（大二第二学期）全心全力去准备海印的比赛，从校内赛到决赛，整整经过两个半月，现在回想起那段日子的没日没夜，感觉是累并快乐着，或许这是因为结局是好的（二等）。我们团队做的是一个校园服务应用，原生Android开发，因为我这个人比较龟毛，界面一改再改，当时Android6.0的教程也比较少，直到最后app完成度也比较差，只能做基本演示。值得一提的是比赛后的单独面试我也专程去广州参加了，team leader曹主任人不错，觉得我符合他们的需求，但是不可抗力又来了（钱太少的委婉说法），只能婉拒offer了。当时一群人热情高涨，还入驻了学校的创新创业学院，无奈这个项目由于某些不可抗力只能不了了之，但总体而言，这个项目极大地充实了我的大学经历，也接触并了解了一些大学生创业的现状（潜规则）。</p><p>下半年（大三第一学期）仗着自己是大三老人课少的优势，有更多时间去了解、探索前端行业的发展趋势，偶尔翻翻招聘网站看需求，发现自己的基本功还存在很多不足，JavaScript和CSS3的知识时至今日我还在不断学习，打算学好了再去接触Vue和Node.js，这样对下学期找工作或者对以后工作的顺利度都有帮助。</p><h2 id="坚定方向，披襟斩棘"><a href="#坚定方向，披襟斩棘" class="headerlink" title="坚定方向，披襟斩棘"></a>坚定方向，披襟斩棘</h2><p>大学以前是散漫的，大学以后更加注重个人规划，能拿的证书和奖项都强迫自己一次拿到，今年陆续把四级、六级、奖学金都拿了，这样才有更多时间去做别的事，至于那种持“明明就有很多次机会，为什么那么急”想法的人，纯粹是没有意识到“Time is money.”这句话的含义，想想大学这么快就要完结，真的很可怕。<br>完整度过两年大学生涯以后，终于明确了自己的职业方向，似乎比大多数人同龄人早醒悟了一学期，尝试性地去面试过几次，在校生确实比较难找工作。今年陆陆续续地写了一些小demo，受学校课程影响做的东西更倾向于综合应用，没法根据个人喜好偏向前端，虽然今年没做过什么完整的大项目，但是在练习的过程中也没有少踩坑，填坑成功令人快乐。：）</p><h2 id="展望2017"><a href="#展望2017" class="headerlink" title="展望2017"></a>展望2017</h2><p>明年是大三和大四的交接，注定要走向工作岗位，注定也是更辛苦但同时又充满希望的一年，人生若没有留点悬念注定不会精彩，希望新的一年能坚守自己的方向，吃苦耐劳尽职尽责地突破每一个难关，毕竟还有那么多目标没有实现：）</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>年终总结</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>PHP+心知天气API实现手机端天气查询demo</title>
+    <link href="/2016/12/17/weather-demo/"/>
+    <url>/2016/12/17/weather-demo/</url>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这两天恰逢软件系答辩，扫了一眼我大数本的毕设题目，好家伙八成是Web项目，怎奈我手痒+技穷，只能尝试用PHP来写个天气Demo了，说实话这两年国内好用的天气API接口越来越少了，心知天气算是比较坚挺的一个，申请完接口后发现稳定性还不如用公共开放接口，当然获取的信息也会少很多，没关系，我们懂原理就好。：)</p><h2 id="开发准备"><a href="#开发准备" class="headerlink" title="开发准备"></a>开发准备</h2><p><a href="http://www.thinkpage.cn/">心知天气官网</a></p><p>值得一提的是，官网为我们准备了两套天气图标，虽然风格较老，但是做做demo没问题的。</p><h2 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码"></a>核心代码</h2><h3 id="从心知API返回天气JSON数据"><a href="#从心知API返回天气JSON数据" class="headerlink" title="从心知API返回天气JSON数据"></a>从心知API返回天气JSON数据</h3><pre><code>function weather()&#123;@$location=$_POST[&apos;location&apos;];$url=&quot;http://www.thinkpage.cn/weather/api.svc/getWeather?city=$location&amp;language=zh-CHS&amp;provider=CMA&amp;unit=C&amp;aqi=city&quot;;$vhtml=curl_get_contents($url);//这是主函数~通过API接口返回JSON数据$final=json_decode($vhtml,true);//对Json进行解码，便于提取数据$GLOBALS[&apos;wind_scale&apos;]=$final[&quot;results&quot;][0][&quot;now&quot;][&quot;wind_scale&quot;];//风力$GLOBALS[&apos;location_name&apos;]=$final[&quot;results&quot;][0][&quot;location&quot;][&quot;name&quot;];$GLOBALS[&apos;now_code&apos;]=$final[&quot;results&quot;][0] [&quot;daily&quot;][0][&quot;text_day&quot;];//当前天气$GLOBALS[&apos;now_temp&apos;]=$final[&quot;results&quot;][0][&quot;now&quot;][&quot;temperature&quot;];//当前温度$GLOBALS[&apos;weather_code_today&apos;]=$final[&apos;results&apos;][0][&apos;now&apos;][&apos;code&apos;];//当前图标...后面类似省略&#125;</code></pre><h3 id="发起CURL连接"><a href="#发起CURL连接" class="headerlink" title="发起CURL连接"></a>发起CURL连接</h3><pre><code>function curl_get_contents($url)&#123;$ch = curl_init();curl_setopt($ch, CURLOPT_URL, $url);//设置访问的url地址curl_setopt($ch, CURLOPT_USERAGENT, &apos;Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1&apos;);   //用户访问代理 User-Agentcurl_setopt($ch, CURLOPT_REFERER,&quot;http://www.thinkpage.cn&quot;);//设置 referercurl_setopt($ch, CURLOPT_TIMEOUT, 2);//设置超时curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);//返回结果curl_setopt($ch, CURLOPT_COOKIE, &quot;&quot;);$result = curl_exec($ch);curl_close($ch);return $result;&#125;</code></pre><h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/2.gif" alt=""><br><a href="http://112.74.187.252/php/index.html">在线demo</a></p><p>前端代码不贴了，因为太简单了，想看的等我传到github。<br>这次总共不到300行代码就能实现比较令人开心的效果，以后可以举一反三咯~</p><h2 id="收获"><a href="#收获" class="headerlink" title="收获"></a>收获</h2><p>通过写这个demo我掌握了：</p><ul><li>PHP对JSON数据的处理</li><li>心知API部分功能的使用</li><li>编写移动端网页的经验有所提高</li></ul><h2 id="遗憾"><a href="#遗憾" class="headerlink" title="遗憾"></a>遗憾</h2><ul><li>前端方面依然离不开框架的帮助，框架虽好，可还是贪杯了:(</li></ul>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>前端开发</tag>
+      
+      <tag>后台开发</tag>
+      
+      <tag>PHP</tag>
+      
+      <tag>API</tag>
+      
+      <tag>demo</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>CSS3实现旋转音乐按钮</title>
+    <link href="/2016/12/10/spinning-button/"/>
+    <url>/2016/12/10/spinning-button/</url>
+    
+    <content type="html"><![CDATA[<p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/black.jpg" alt=""><br>在手机H5活动页上音乐静音按钮是个非常常见的需求，今天我们来实现一下。：）<br><span id="more"></span></p><ul><li>先准备一下音乐图标，状态on和off各一张，以及音乐文件</li></ul><p>html代码非常简单:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;music&quot;&gt;</span><br><span class="line">   &lt;div id=&quot;audio-btn&quot; class=&quot;on&quot; onclick=&quot;music.changeClass(this,&#x27;media&#x27;)&quot;&gt;</span><br><span class="line">&lt;audio loop=&quot;loop&quot; src=&quot;assets/LastChristmas.mp3&quot; id=&quot;media&quot; preload=&quot;preload&quot;&gt;&lt;/audio&gt;</span><br><span class="line">   &lt;/div&gt;</span><br><span class="line">   &lt;/div&gt;</span><br></pre></td></tr></table></figure></p><p>CSS3代码，这里自定义animation属性名为rotating，结合@keyframes规则定义图标旋转过程，from是动画开始状态，to是动画结束状态，看代码应该比较好理解：</p><pre><code>#music #audio-btn&#123;width: 44px;height: 44px; margin:100px auto;background-size: 100% 100%;&#125;#music .on&#123;background: url(&apos;images/music_on.png&apos;) no-repeat 0 0;-webkit-animation: rotating 4.0s linear infinite;animation: rotating 4.0s linear infinite;&#125;#music .off&#123;background: url(&apos;images/music_off.png&apos;) no-repeat 0 0;&#125;</code></pre><p>jQuery设定按钮事件，切换之前CSS定义的class on and off。</p><pre><code>var music = &#123;changeClass: function (target,id) &#123;       var className = $(target).attr(&apos;class&apos;);       var ids = document.getElementById(id);       (className == &apos;on&apos;)           ? $(target).removeClass(&apos;on&apos;).addClass(&apos;off&apos;)           : $(target).removeClass(&apos;off&apos;).addClass(&apos;on&apos;);       (className == &apos;on&apos;)           ? ids.pause()           : ids.play();   &#125;,play:function()&#123;    document.getElementById(&apos;media&apos;).play();&#125;&#125;music.play();</code></pre><p><a href="http://112.74.187.252/spinningbutton/index.html">在线demo</a></p><p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/1.gif" alt="效果图"></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>前端开发</tag>
+      
+      <tag>jQuery</tag>
+      
+      <tag>CSS3</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Bootstrap Modal 垂直居中</title>
+    <link href="/2016/11/30/modal-center/"/>
+    <url>/2016/11/30/modal-center/</url>
+    
+    <content type="html"><![CDATA[<p>个人不偏好修改源码的方式，用js可以更简单地达到目的。<br><span id="more"></span></p><pre><code>&lt;script&gt;$(&apos;#myModal&apos;).on(&apos;show.bs.modal&apos;, function (e) &#123;  $(this).find(&apos;.modal-dialog&apos;).css(&#123;  &apos;margin-top&apos;: function () &#123;  var modalHeight = $(&apos;#myModal&apos;).find(&apos;.modal-dialog&apos;).height();  return ($(window).height() / 2 - (modalHeight / 2));  &#125;  &#125;);      &#125;);  &lt;/script&gt;</code></pre><p>当然部分使用场景完全居中并不美观，具体还得根据使用场景修改函数。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>前端开发</tag>
+      
+      <tag>Bootstrap</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>2016广州国际车展---汽车篇</title>
+    <link href="/2016/11/20/Guangzhouautoshow2016-cars/"/>
+    <url>/2016/11/20/Guangzhouautoshow2016-cars/</url>
+    
+    <content type="html"><![CDATA[<p><blockquote class="blockquote-center">今年的广州车展亮点不多，随便拍了一些~终于坐到了new S-class的后座，差点睡着：) </blockquote></p><p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=340 height=86 src="http://music.163.com/outchain/player?type=2&id=2103740&auto=0&height=66"></iframe><br><img src="http://cdn.yanziyu.tech/DSC02032.jpg" alt=""><br><span id="more"></span><br><img src="http://cdn.yanziyu.tech/DSC02042.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC02050.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC02044.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC02038.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC02022.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC02018.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC02016.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC02013.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC02014.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC02012.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01995.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01997.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01998.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC02004.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC02006.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC02008.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01569.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01573.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01579.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01599.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01623.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01624.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01644.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01648.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01668.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01674.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01681.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01695.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01702.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01704.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01708.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01731.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01734.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01737.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01738.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01740.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01741.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01745.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01746.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01749.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01751.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01756.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01758.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01761.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01762.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01795-(2" alt="">.jpg)<br><img src="http://cdn.yanziyu.tech/DSC01796-(2" alt="">.jpg)<br><img src="http://cdn.yanziyu.tech/DSC01796.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01799.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01801.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01807.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01808.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01810.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01814-(2" alt="">.jpg)<br><img src="http://cdn.yanziyu.tech/DSC01815-(2" alt="">.jpg)<br><img src="http://cdn.yanziyu.tech/DSC01818-(2" alt="">.jpg)<br><img src="http://cdn.yanziyu.tech/DSC01819-(2" alt="">.jpg)<br><img src="http://cdn.yanziyu.tech/DSC01820-(2" alt="">.jpg)<br><img src="http://cdn.yanziyu.tech/DSC01823-(2" alt="">.jpg)<br><img src="http://cdn.yanziyu.tech/DSC01828-(2" alt="">.jpg)<br><img src="http://cdn.yanziyu.tech/DSC01824.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01830.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01832---副本.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01831-(2" alt="">—副本.jpg)<br><img src="http://cdn.yanziyu.tech/DSC01833-(2" alt="">—副本.jpg)<br><img src="http://cdn.yanziyu.tech/DSC01835-(2" alt="">.jpg)<br><img src="http://cdn.yanziyu.tech/DSC01836-(2" alt="">.jpg)<br><img src="http://cdn.yanziyu.tech/DSC01838-(2" alt="">.jpg)<br><img src="http://cdn.yanziyu.tech/DSC01839.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01852.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01853.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01868.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01868-(2" alt="">.jpg)<br><img src="http://cdn.yanziyu.tech/DSC01872-(2" alt="">.jpg)<br><img src="http://cdn.yanziyu.tech/DSC01873-(2" alt="">.jpg)<br><img src="http://cdn.yanziyu.tech/DSC01881-(2" alt="">.jpg)<br><img src="http://cdn.yanziyu.tech/DSC01881.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01882.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01883-(2" alt="">.jpg)<br><img src="http://cdn.yanziyu.tech/DSC01884-(2" alt="">.jpg)<br><img src="http://cdn.yanziyu.tech/DSC01884.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01885.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01889.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01886-(2" alt="">.jpg)<br><img src="http://cdn.yanziyu.tech/DSC01888-(2" alt="">.jpg)<br><img src="http://cdn.yanziyu.tech/DSC01889-(2" alt="">.jpg)<br><img src="http://cdn.yanziyu.tech/DSC01890-(2" alt="">.jpg)<br><img src="http://cdn.yanziyu.tech/DSC01893.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01895.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01896.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01898.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01900.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01904.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01921.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01922.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01924.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01927.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01928.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01929.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01935.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01936.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01937.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01939.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01941.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01943.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01945.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01947.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01955.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01958.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01960.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01963.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC01988.jpg" alt=""></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>车展</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>windows环境Ruby、Sass、Compass环境配置</title>
+    <link href="/2016/11/16/compass/"/>
+    <url>/2016/11/16/compass/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>今天介绍下Win下如何配置Ruby、Sass、Compass：</p></blockquote><h3 id="安装Ruby"><a href="#安装Ruby" class="headerlink" title="安装Ruby"></a>安装Ruby</h3><p>在<a href="http://railsinstaller.org/en">Ruby官网</a>下载安装RubyInstaller。</p><p><em>安装时记得勾选“add to PATH”选项</em></p><p><em>最好把git也装上，其命令行工具更好用。</em></p><h3 id="更换成境内的源"><a href="#更换成境内的源" class="headerlink" title="更换成境内的源"></a>更换成境内的源</h3><pre><code>gem sources --remove https://rubygem.org/gem sources -a https://gems.ruby-china.org/</code></pre><p><em>如果遇到SSL证书问题，可将https协议换为http协议</em></p><p>使用以下命令检查源是否正确：</p><pre><code>gem sources -l</code></pre><h3 id="安装Sass"><a href="#安装Sass" class="headerlink" title="安装Sass"></a>安装Sass</h3><pre><code>gem install Sass</code></pre><h3 id="检查Sass版本"><a href="#检查Sass版本" class="headerlink" title="检查Sass版本"></a>检查Sass版本</h3><pre><code>sass -v</code></pre><h3 id="安装Compass"><a href="#安装Compass" class="headerlink" title="安装Compass"></a>安装Compass</h3><pre><code>gem install Compass</code></pre><h3 id="检查Compass版本"><a href="#检查Compass版本" class="headerlink" title="检查Compass版本"></a>检查Compass版本</h3><pre><code>compass -v</code></pre><h3 id="Compass创建项目"><a href="#Compass创建项目" class="headerlink" title="Compass创建项目"></a>Compass创建项目</h3><pre><code>compass create your-project-name</code></pre><h3 id="Compass设置监听"><a href="#Compass设置监听" class="headerlink" title="Compass设置监听"></a>Compass设置监听</h3><p>open your project PATH</p><pre><code>compass watch</code></pre>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Ruby</tag>
+      
+      <tag>Sass</tag>
+      
+      <tag>Compass</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Bootstrap自带类让图片水平居中</title>
+    <link href="/2016/11/03/img-responsive/"/>
+    <url>/2016/11/03/img-responsive/</url>
+    
+    <content type="html"><![CDATA[<p>最近在练习Bootstrap的时候需要把图片水平居中，这里要分为两种情况：</p><ol><li>图片使用了.img-responsive类</li></ol><ul><li><p>需要在.img-responsive类后添加.center-block类，like this：</p><pre><code>&lt;img class=&quot;img-responsive center-block&quot; src=&quot;...&quot; /&gt;</code></pre></li></ul><ol><li>未使用.img-responsive图片响应式类</li></ol><ul><li><p>直接使用.text-center类，like this：</p><pre><code>&lt;p class=&quot;text-center&quot;&gt;&lt;img src=&quot;...&quot;&gt;&lt;/p&gt;</code></pre></li></ul><p>这样，Bootstrap的图片水平居中就实现了~</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>前端开发</tag>
+      
+      <tag>Bootstrap</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>『極速快感19』豪華版体验报告</title>
+    <link href="/2016/07/21/need-for-speed/"/>
+    <url>/2016/07/21/need-for-speed/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>在牢里的时候天天盼着出狱，几个cellmates电脑配置稀烂得感人只能在期末玩几把cs1.6(他们是怎么活这么久的？)，到家之后恰逢游戏荒，正好有时间细品一下 『极速快感19』。</p></blockquote><p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/NFS16%202016-07-19%2022-08-34-55.jpg" alt="游戏封面"><br><span id="more"></span></p><h2 id="The-Taste-Of-Childhood"><a href="#The-Taste-Of-Childhood" class="headerlink" title="The Taste Of Childhood"></a>The Taste Of Childhood</h2><p>没错，这次是童年的味道，本作在经历前几代的迷茫之后在寒霜3引擎的基础上极力使玩家体验到当年『极速快感8：地下狂飙2』、『极速快感9：最高通缉』的味道，登场的车型也非常old school,典型的例子就是这次的deluxe版会在游戏开始的时候附赠一部BMW M3 E46，记性好的玩家应该记得这是 『最高通缉』 里的明星车型，然而一开始我并不知情，按照剧情会让你在开始时从『本田市民Type-R』、『福特野马Foxbody』、『丰田GT86』中选择一部，然而在我选择86之后却发现很难赢得比赛，所以普通版的玩家会有点累。总共有26个车款可供选择：<br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20160721013616.png" alt="登场车款"></p><p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/NFS16CARS.jpg" alt="游戏开局所提供的车款"></p><h2 id="Five-Game-Mode"><a href="#Five-Game-Mode" class="headerlink" title="Five Game Mode"></a>Five Game Mode</h2><p>本作有五种游戏模式，分别为Speed（极速）、Style（风格）、Build（打造）、Crew（团队）、Outlaw（逍遥法外）。 『19』 削弱了前几作过于强大的条子元素，cops不再紧追不舍，不再有潮州交警的风范这点值得称赞，但经过十几代的进化橡皮筋机制依然存在，既不会被对手甩远，对方也不会从你的后视镜消失，相当不真实。就本人来说对其中的漂移赛最具好感，虽然手感依然糟糕，但对手刹的使用时机、车辆调教颇具要求，偶尔尝试不同于 『Dirt』 系列的操作风格也是不错的选择。</p><h2 id="Collect-System"><a href="#Collect-System" class="headerlink" title="Collect System"></a>Collect System</h2><p>『19』 的收集物分为三类：</p><ul><li>甜甜圈地点</li><li>风景地点</li><li>『免费』零件</li></ul><p>不是我针对在座的各位，它们三都是垃圾，完全提不起玩家的兴趣。</p><h2 id="Rich-Authentic-Customization"><a href="#Rich-Authentic-Customization" class="headerlink" title="Rich Authentic Customization"></a>Rich Authentic Customization</h2><p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/NFS16%202016-07-21%2001-12-56-28.jpg" alt="改装系统"><br>毫无疑问数量繁多的改件是本作的巨大亮点，玩家只要花心思便能把车改得很细致，并且分享方案到网上供其它网友使用，美中不足的是改装系统的操作并不顺手，似乎这是EA的老毛病了~</p><h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>一言蔽之，『極速快感19』 作为一款官方定价69.99欧元的快餐赛车游戏，自然无法给你带来购买『GTA V』那般的超值感，但就像它的名字一般，玩过之后能体会到喝着罗斯福8号宿醉的快感。在游戏防盗版机制日益严格的今天，本作凭借着不俗的画面以及大量怀旧元素的加入依旧能吸引为数不少的玩家为之解囊，毕竟这个时代很多东西讲的都是————情怀。</p><p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/NFS16%202016-07-16%2013-01-38-45.jpg" alt=""><br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/NFS16%202016-07-18%2021-17-43-59.jpg" alt=""><br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/NFS16%202016-07-19%2022-24-03-56.jpg" alt=""><br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/NFS16%202016-07-19%2022-35-30-61.jpg" alt=""><br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/NFS16%202016-07-19%2021-12-57-89.jpg" alt=""><br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/NFS16%202016-07-19%2021-13-18-54.jpg" alt=""><br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/NFS16%202016-07-21%2001-42-51-09.jpg" alt=""><br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/NFS16%202016-07-17%2020-43-12-54.jpg" alt=""></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Games</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>使用CollapsingToolbarLayout时底部出现空白toolbar的解决方法</title>
+    <link href="/2016/05/05/toolbar-issue/"/>
+    <url>/2016/05/05/toolbar-issue/</url>
+    
+    <content type="html"><![CDATA[<p>最近在练习CoordinatorLayout的时候碰见一个奇怪的问题：当在CollapsingToolbarLayout中加入toolbar之后，会在布局底部也生成一条一样大小的空白区域，把页面内容遮挡住，如图所示；</p><p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/toolbar1.jpg" alt=""><br>布局文件如下：</p><pre><code>&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;xmlns:tools=&quot;http://schemas.android.com/tools&quot;android:layout_width=&quot;match_parent&quot;android:layout_height=&quot;match_parent&quot;android:orientation=&quot;vertical&quot;&gt;&lt;android.support.design.widget.CoordinatorLayout    android:layout_width=&quot;match_parent&quot;    android:layout_height=&quot;match_parent&quot;    &gt;    &lt;android.support.design.widget.AppBarLayout        android:id=&quot;@+id/appbar_layout&quot;        android:layout_width=&quot;match_parent&quot;        android:layout_height=&quot;wrap_content&quot;        android:theme=&quot;@style/ThemeOverlay.AppCompat.Dark.ActionBar&quot;&gt;        &lt;android.support.design.widget.CollapsingToolbarLayout            android:layout_width=&quot;match_parent&quot;            android:layout_height=&quot;wrap_content&quot;            app:contentScrim=&quot;?colorPrimary&quot;            app:expandedTitleMarginEnd=&quot;8dp&quot;            app:expandedTitleMarginStart=&quot;4dp&quot;            app:layout_scrollFlags=&quot;scroll|snap|exitUntilCollapsed&quot;&gt;            &lt;android.support.v7.widget.Toolbar                android:id=&quot;@+id/toolbar&quot;                android:layout_width=&quot;match_parent&quot;                android:layout_height=&quot;?attr/actionBarSize&quot;                app:layout_collapseMode=&quot;pin&quot; /&gt;            &lt;ImageView                android:layout_width=&quot;match_parent&quot;                android:layout_height=&quot;240dp&quot;                android:fitsSystemWindows=&quot;true&quot;                android:scaleType=&quot;centerCrop&quot;                android:src=&quot;@drawable/scape1&quot;                app:layout_collapseMode=&quot;parallax&quot; /&gt;        &lt;/android.support.design.widget.CollapsingToolbarLayout&gt;    &lt;/android.support.design.widget.AppBarLayout&gt;    &lt;android.support.v4.widget.NestedScrollView        android:layout_width=&quot;match_parent&quot;        android:layout_height=&quot;match_parent&quot;        android:fillViewport=&quot;true&quot;        android:scrollbars=&quot;none&quot;        app:layout_behavior=&quot;@string/appbar_scrolling_view_behavior&quot;&gt;        &lt;RelativeLayout            android:layout_width=&quot;match_parent&quot;            android:layout_height=&quot;match_parent&quot;&gt;            &lt;com.ogaclejapan.smarttablayout.SmartTabLayout                android:id=&quot;@+id/viewpagertab&quot;                android:layout_width=&quot;match_parent&quot;                android:layout_height=&quot;48dp&quot;             /&gt;            &lt;android.support.v4.view.ViewPager                android:id=&quot;@+id/viewpager&quot;                android:layout_width=&quot;match_parent&quot;                android:layout_height=&quot;match_parent&quot;                android:layout_below=&quot;@id/viewpagertab&quot; /&gt;        &lt;/RelativeLayout&gt;    &lt;/android.support.v4.widget.NestedScrollView&gt;&lt;/android.support.design.widget.CoordinatorLayout&gt;</code></pre><p></LinearLayout><br>最初还以为toolbar在作祟，因为把toolbar的layout_height属性设到极小时发现下部的空白也随之变小，后来在调整各个属性后无果的情况下开始怀疑是整体布局的问题，最后在stackoverflow上找到了解决方法：<br>该页面的根布局需由LinearLayout改为RelativeLayout，再加入android:fitsSystemWindows=”true”属性就没问题了~因为解决这个bug花了两天时间，所以特地分享一下：）</p><p>修改后代码:</p><pre><code>&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;    xmlns:tools=&quot;http://schemas.android.com/tools&quot;    android:layout_width=&quot;match_parent&quot;    android:layout_height=&quot;match_parent&quot;    android:fitsSystemWindows=&quot;true&quot;&gt;</code></pre><p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/toolbar2.jpg" alt=""></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Android</tag>
+      
+      <tag>学习笔记</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Android Studio Plugin is too old、Gradle version 2.10 is required问题解决方法</title>
+    <link href="/2016/03/21/as-issue/"/>
+    <url>/2016/03/21/as-issue/</url>
+    
+    <content type="html"><![CDATA[<p>周末的时候打开Android Studio的时候一脸懵逼，新建任何Demo之后Gradle在sync的时候的都会冒出来这个错误：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Plugin is too old please update to a more recent version, or set ANDROID_DAILY_OVERRIDE environment variable to &quot;a8faa180fc282060c9b8ec88f9bdcc9072121284&quot;</span><br></pre></td></tr></table></figure><br>解决完之后又出现了：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Warning:Gradle version 2.10 is required. Current version is 2.8. If using the gradle wrapper, try editing the distributionUrl in D:\aaa\Rundom\gradle\wrapper\gradle-wrapper.properties to gradle-2.10-all.zip</span><br></pre></td></tr></table></figure><br>毕竟之前学习Android的时候就踩过不少坑，用过AS后再也不想用Eclipse，故习惯性地上stackoverflow寻求解决方案，然而这并没有什么卵用，最后在联系师兄后得到启发，自己找到了解决方法，希望对以后进这个坑的人有所帮助~</p><h2 id="依赖包下载"><a href="#依赖包下载" class="headerlink" title="依赖包下载"></a>依赖包下载</h2><h3 id="Gradle-dependencies"><a href="#Gradle-dependencies" class="headerlink" title="Gradle dependencies"></a>Gradle dependencies</h3><p><strong>你可以直接修改build.gradle中的版本号后sync一下，as会自动下载对应版本，或者可以按以下方法手动下载。</strong><br>下载地址：<a href="https://jcenter.bintray.com/com/android/tools/build/gradle/">https://jcenter.bintray.com/com/android/tools/build/gradle/</a><br>声明形式是这样的：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">      classpath &#x27;com.android.tools.build:gradle:2.1.0-alpha3&#x27;</span><br><span class="line"></span><br><span class="line">      // NOTE: Do not place your application dependencies here; they belong</span><br><span class="line">      // in the individual module build.gradle files</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure><p>步骤：以我著文时的版本2.1.0-alpha3为例子，你需要下载</p><pre><code>1. gradle-2.1.0-alpha3.jar2. gradle-2.1.0-alpha3.pom3. gradle-2.1.0-alpha3-sources.jar这三个文件放入*:\android-studio\gradle\m2repository\com\android\tools\build\gradle-core\2.1.0-alpha3*:\android-studio\gradle\m2repository\com\android\tools\build\gradle\2.1.0-alpha3之后sync一下~</code></pre><p>注：位于build.gradle中所声明的依赖包，有时候一些错误可通过强制控制该依赖包版本来解决，但是我用了一段时间后发现还是乖乖升级为最新版本吧，因为强制锁定低版本会造成某些新特性不能使用。</p><h3 id="Gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h3><p>这是为了解决上面第二个问题，需要更新Gradle至你项目所要求的版本~<br>下载地址：<a href="http://services.gradle.org/distributions">http://services.gradle.org/distributions</a><br>例如要求2-10版本，你就下载gradle-2.10-all.zip解压至：<br>*:\android-studio\gradle\gradle-2.10<br>后在Android Studio-Flie-Setting-gradle如图设置：<br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160321233515.png" alt=""></p><p>跳出深海巨坑感觉真好，have a nice day!</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Android</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>2015广州国际车展 ---汽车篇</title>
+    <link href="/2015/11/22/Guangzhouautoshow2015-cars/"/>
+    <url>/2015/11/22/Guangzhouautoshow2015-cars/</url>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center">今年首发新车不多，由于时间关系国产展区也没怎么走，挑选了一部分发上来。</blockquote><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="http://music.163.com/outchain/player?type=2&id=26484066&auto=0&height=66"></iframe><p><img src="http://cdn.yanziyu.tech/DSC00156.jpg" alt=""><br><span id="more"></span><br><img src="http://cdn.yanziyu.tech/DSC00160.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00163.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00185.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00151.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00152.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00195.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00197.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00206.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00211.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00217.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00223.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00229.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00233.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00246.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00251.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00253.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00255.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00257.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00259.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00271.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00274.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00278.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00285.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00288.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00298.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00301.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00303.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00315.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00327.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00335.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00340.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00360.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00364.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00368.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00396.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00397.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00403.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00404.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00413.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00417.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00418.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00419.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00421.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00430.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00432.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00434.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00435.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00437.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00440.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00443.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00451.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00457.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00459.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00461.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00466.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00469.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00472.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00487.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00526.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00532.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00533.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00536.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00550.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00559.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00563.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00568.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00573.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00580.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00584.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00585.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00599.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00623.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00624.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00628.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00630.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00632.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00650.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00674.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00679.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00683.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00698.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00700.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00702.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00708.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00717.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00722.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00728.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00738.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00741.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00742.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00744.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00787.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00790.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00792.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00795.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00805.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00831.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00873.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00913.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00915.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00923.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00926.jpg" alt=""></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>车展</tag>
+      
+      <tag>汽车</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>2015广州国际车展 ---模特篇</title>
+    <link href="/2015/11/22/Guangzhouautoshow2015-model/"/>
+    <url>/2015/11/22/Guangzhouautoshow2015-model/</url>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center">看过本次车展的某些模特，有种『此物只应天上有』的感觉。</blockquote><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86src="http://music.163.com/outchain/player?type=2&id=4295959&auto=0&height=66"></iframe><p><img src="http://cdn.yanziyu.tech/DSC00143.jpg" alt=""><br><span id="more"></span><br><img src="http://cdn.yanziyu.tech/DSC00145.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00123.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00136.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00372.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00375.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00377.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00379.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00499.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00507.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00508.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00510.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00511.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00515.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00590.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00591.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00595.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00597.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00748.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00751.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00757.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00761.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00762.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00767.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00768.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00770.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00777.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00780.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00782.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00784.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00812.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00838.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00839.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00848.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00851.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00854.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00858.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00864.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00865.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00879.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00885.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00889.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00890.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00894.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00899.jpg" alt=""><br><img src="http://cdn.yanziyu.tech/DSC00900.jpg" alt=""></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>车展</tag>
+      
+      <tag>汽车</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Nexus5刷入Android6.0教程</title>
+    <link href="/2015/11/09/android6-0-install/"/>
+    <url>/2015/11/09/android6-0-install/</url>
+    
+    <content type="html"><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>很多年没刷过安卓完全忘了，这次因开发需要购入五太子，到手第一件事就是升级为Android6.0，但是刷机过程并不顺利，下面归纳下刷机步骤:</p><h2 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h2><p>adb &amp; fastboot驱动：<br>下载地址：<a href="http://pan.baidu.com/s/16AxVH">http://pan.baidu.com/s/16AxVH</a><br>安装方法：</p><ol><li>下载解压，将名称中含有adb和fastboot.exe复制到 c:/windows/system32下</li><li>再将名称中含有adb的所有文件复制到 c:/windows/system。</li></ol><p>Android6.0官方镜像：<br>下载地址： <a href="http://pan.baidu.com/s/1kT6cHEn">http://pan.baidu.com/s/1kT6cHEn</a> 密码：elf8<br>MD5:159361223f975326fc261bb48def426b<br>SHA-1:52364034a9e22d7622c397abe59495fcbdc9c79c</p><h2 id="部署刷机包"><a href="#部署刷机包" class="headerlink" title="部署刷机包"></a>部署刷机包</h2><ol><li>把官方镜像解压到某一文件夹中，在这里我选择 C:/adb 目录，如图所示：</li></ol><p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/step1.jpg" alt=""></p><ol><li><p>打开cmd，进入到上面的adb目录，命令为：</p><p> cd c:\adb</p></li><li><p>把adb目录中的flash-all.bat拖入到命令行窗口中即开始刷机。</p></li></ol><p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/step2.jpg" alt=""></p><h2 id="第一次进入系统"><a href="#第一次进入系统" class="headerlink" title="第一次进入系统"></a>第一次进入系统</h2><p>这里仅罗列几点要注意的地方：</p><ol><li>第一次进入系统很慢，比如我就耗时十分钟左右，耐心等。</li><li>如无意外，你会卡在“正在检查网络连接”页面，别紧张，按以下操作即可：<br>2.1 先后退忘记之前连接的wifi，在填写密码的界面点击『显示高级选项』<br>2.2 到 <a href="http://www.xicidaili.com/wn/">http://www.xicidaili.com/wn/</a>      上选择一组ip和端口，在wifi高级选项中填入，后连接wifi即可，如果不行的话多换几组ip试试，注意要选择网络自由的国家。</li><li>Android6.0的开发者模式在『设置-关于手机-点击 5 次版本号』可以开启。</li><li>Enjoy it!<br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/step3.jpg" alt=""></li></ol>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Android</tag>
+      
+      <tag>Mobile</tag>
+      
+      <tag>Google</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>git clone其他分支的方法</title>
+    <link href="/2015/11/08/git-clone-branch/"/>
+    <url>/2015/11/08/git-clone-branch/</url>
+    
+    <content type="html"><![CDATA[<blockquote><p>“为了用上这个主题稍微去学了一下git。”</p></blockquote><p>直接上干货好了：</p><pre><code>clone xxx.git //把所需项目clone到本地git checkout -b &quot;要下载的分支名&quot;  //转换到该分支，注意引号要去掉git pull xxx.git &quot;要下载的分支名&quot; //把代码拉到本地</code></pre><p>似乎渐渐地喜欢上用git了，慢慢积累吧~ ：)</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>学习笔记</tag>
+      
+      <tag>git</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>电脑常用软件推荐&amp;建议</title>
+    <link href="/2015/10/18/computer-habits/"/>
+    <url>/2015/10/18/computer-habits/</url>
+    
+    <content type="html"><![CDATA[<h2 id="为什么要规范软件使用习惯？"><a href="#为什么要规范软件使用习惯？" class="headerlink" title="为什么要规范软件使用习惯？"></a>为什么要规范软件使用习惯？</h2><p>Windows并非像Android那样使用虚拟机机制，越用越卡的原因主要是因为日渐臃肿的注册表(软件装越多注册表项越多)和各种软件缓存(常指IE缓存)，所以很多人被国内软件厂商推出的“一键加速”概念所吸引安装了诸如“X60安全卫士”、“X讯电脑管家”等看似可以给电脑加速实则是在拖慢电脑速度的软件，那么我们作为一个对电脑不怎么懂的普通用户，该怎么去维护我们的系统呢？其实很简单，安装并使用一些良心厂商推出的软件就行了，而至于如何清理垃圾，下文也将会提及。</p><blockquote><p>以下介绍按软件分类进行</p></blockquote><h3 id="浏览器类"><a href="#浏览器类" class="headerlink" title="浏览器类"></a>浏览器类</h3><ol><li><p>Google Chrome<br>不可否认的是，无论对于一个普通用户或是一个开发者来说，Chrome浏览器具有致命的吸引力，首先界面就不像国内大多数浏览器一样杂乱，充满各种所谓的新功能，其实一个浏览器的本质还是浏览网页，仅此而已。而其强大的插件市场有各种新奇的小玩意，常用的去广告软件，X墙软件随处可以找到。</p></li><li><p>Microsoft Edge<br>其实这个浏览器的Windows10自带的两个浏览器之一，也是10的主打新特性之一，使用习惯和IE类似但优于IE，网页解析性能甚至超过了Chrome，看来微软也是有意让IE退居幕后。如果用户没什么功能需求，该浏览器也是个不错的选择。</p></li></ol><h3 id="杀毒软件类"><a href="#杀毒软件类" class="headerlink" title="杀毒软件类"></a>杀毒软件类</h3><p>1.Microsoft Security Essentials(微软安全软件)</p><blockquote><p>特别注意！从Windows8起系统已经内置该杀毒软件，Windows7用户才需要额外安装。百度MSE第一个链接就是。</p></blockquote><p>系统自带的版本叫Windows Defender，相信不少关了防火墙的人都被这个软件吵过，它的存在让很多人不以为然，然而这个轻量级的杀毒软件可谓威力十足，每次都差点把我的keygen杀了，过滤些普通的小病毒根本不少问题，你需要做的就是去更新一下病毒定义而已。至于装个X360杀毒、金山毒王吗？</p><h3 id="音乐播放类"><a href="#音乐播放类" class="headerlink" title="音乐播放类"></a>音乐播放类</h3><p>1.网易云音乐（下载地址：<a href="http://music.163.com）">http://music.163.com）</a><br>这个软件不想过多赘述，别人有的它有，别人没有的它也有，除了我们常用的歌单多平台共享，私人Fm算法也是极其聪明，非会员支持下载320K的mp3，已经算是业界良心了，用过了什么X狗、XQ音乐你都会怒删的。</p><p>2.Foobar2000<br>如果你只是普通地听听歌，请忽略这个软件，但如果你对音质有一定追求，320K的mp3已经没法满足你的耳朵，那么请回到原始社会，一个一个无损专辑去找，下载完再用Foobar2000播放，完全是另一个层次的享受。</p><h3 id="视频播放类"><a href="#视频播放类" class="headerlink" title="视频播放类"></a>视频播放类</h3><ol><li><p>射手影音（下载地址：<a href="http://www.splayer.org/">http://www.splayer.org/</a> 请安装标准版）<br>虽然老板已经被抓了，但是留下的这款开源轻量级视频播放软件依然没被世人遗忘，也是我帮人重装系统必装的一个软件，特点是占用资源少，不像X风影音这种Sb软件经常出错、乱加后台，界面也非常人性化，支持的格式足够应付一般使用。</p></li><li><p>完美解码<br>如果你是高清发烧友，经常观看奇葩格式、高码率视频，那么这款软件更适合你，内置多种解码包，支持硬件加速，也算是国内的良心软件之一~</p></li></ol><h3 id="下载工具类"><a href="#下载工具类" class="headerlink" title="下载工具类"></a>下载工具类</h3><ol><li>迅雷极速版<br>迅雷算是人类启蒙大师了，虽然后来变得很现实，各种垃圾软件捆绑、界面广告令人厌恶，但我们依然离不开它。极速版比起普通版精简了不少，仅保留常用功能，必要时再开个会员，在这个时间就是金钱的时代，绝对不会感觉亏。</li><li>Internet Download Manager（IDM）<br>这个软件真的让人爱不释手，连下载都变成一种享受，因为它能吃尽你的每一分带宽，支持ftp和http协议，不支持磁力和bt下载，但像我用它能满速下载百度云(教程自行百度)和内网的文件，真是节省了不少时间。强烈推荐使用的一个软件！</li></ol><h3 id="垃圾清理类"><a href="#垃圾清理类" class="headerlink" title="垃圾清理类"></a>垃圾清理类</h3><ol><li><p>CCleaner<br>网页缓存、注册表清理就用它，界面傻瓜是人都会用。</p></li><li><p>Dism++（下载地址：<a href="http://www.chuyu.me/thread-510-1-1.html）">http://www.chuyu.me/thread-510-1-1.html）</a><br>写在最后当然是最牛的，清理能力异常惊人，随便扫一下都能清出好几gb的空间，不过需要注意的是由于执行的是系统底层级的清理，一定要按照软件建议操作，不要乱删东西，否则会造成系统损坏！！！</p></li></ol><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>本文带来了一定的干货，推荐了一些良心软件给你们，初衷就是希望大家不要再给电脑装360、腾讯管家等一系列无用软件，当今的社会那么浮躁，我们不该疯狂的点击迷信的加速球，而应该注重自己的主观感觉，还自己的电脑一片净土，只有这样我们才能用得更舒心，更好地提高工作效率。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>软件</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>型格锐志——浅析已国产的三代锐志</title>
+    <link href="/2015/10/07/reiz/"/>
+    <url>/2015/10/07/reiz/</url>
+    
+    <content type="html"><![CDATA[<h2 id="引进背景"><a href="#引进背景" class="headerlink" title="引进背景"></a>引进背景</h2><p>时间回溯到2005年，当时中国的B级车市场由雅阁、天籁、帕萨特、君威等经典车型盘踞，而丰田看到这个市场后并不好动手，在售的第七代凯美瑞（佳美）已经是01年推出的车型，Camry车系正处于换代交接年，引进绝对不是个好主意，为了更有把握地抢占市场，引进04年刚上市的Mark X(X120)显然是个最佳选择。</p><h3 id="国产第一代锐志（X120）"><a href="#国产第一代锐志（X120）" class="headerlink" title="国产第一代锐志（X120）"></a>国产第一代锐志（X120）</h3><p>这一代车型基于第十二代皇冠S180横向开发而来，FR+V6的组合强调运动性，这也是锐志的魅力所在。整车里里外外充满了特色设计，比如隐藏于后保险杠内的尾鼓，波箱可发光底座等十分个性，发动机使用同代皇冠的3GR-FSE(3.0 V6)与4GR-FSE(2.5 V6),波箱为6AT。<br><img src="http://7xn1ui.com1.z0.glb.clouddn.com/S120.jpg" alt="中规锐志05&#39;"></p><blockquote><p>“从那时起，国内的车主们开始在车的外观做文章，时至今日，依然可以在路上见到大量的锐志改日规X标中网、日规尾灯。”</p></blockquote><p>  下图为X120的日规版本，注意与上图中规对比差别，哪个更好看各花入各眼真不好说。</p><p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/S1201.jpg" alt="Mark X(X120)"></p><h3 id="国产第二代锐志（X130）"><a href="#国产第二代锐志（X130）" class="headerlink" title="国产第二代锐志（X130）"></a>国产第二代锐志（X130）</h3><p>由于X120在市场上大获成功，一汽丰田引进X130也是顺理成章，这一代继承了上一代的4GR-FSE，略微削弱动力换取燃油效率提升15%，讲真，这代锐志虽然外形更加凶猛，但中网稍显小气，上一代的特色设计并没有保留，进一步中庸化。</p><p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/X130.jpg" alt="Mark X(X130)"></p><h3 id="国产第三代锐志（X140）"><a href="#国产第三代锐志（X140）" class="headerlink" title="国产第三代锐志（X140）"></a>国产第三代锐志（X140）</h3><p>为了配合Toyota的Under Priority设计理念，第三代锐志于13年9月上市，由于距离上次换代时间不是很长，所以尾部造型变化不是很大，前脸造型可以说不用改也非常漂亮，这一代动力总成依然是那套老掉牙的组合，但胜在改装潜力依然巨大，运动款式G’S今天仍然被放在日本锐志官网上大书特书，一系列的特制部件让G’S版称得上是真正的运动版，白色尾灯直接让我口水一地。需要注意的是，这一代锐志别买最低配，少了很多常用配置。</p><p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/X140.jpg" alt="Mark X(X140)"></p><blockquote><p>以上为普通版，以下为毒物G’S版</p></blockquote><p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/X140GS.jpg" alt="Mark X G&#39;S(X140)"></p><h2 id="前途未卜的下一代"><a href="#前途未卜的下一代" class="headerlink" title="前途未卜的下一代"></a>前途未卜的下一代</h2><p>虽然这几代锐志在广东地区可以说红极一时，但不能否认的是丰田有种不思进取的趋势，动力总成三代不变，V6的平顺也带来了高油耗，以上个月销量来看仅有可怜的800多辆，锐志沦落到现在这个地步确实让人唏嘘不已，坊间有种种传闻说下一代锐志即将转型，从新一代皇冠的趋势来看，老锐志迷想必不会太喜欢。最后感谢一汽丰田为中国带来了这么好的一款车。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>汽车</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>白云山半日游</title>
+    <link href="/2015/09/26/bys/"/>
+    <url>/2015/09/26/bys/</url>
+    
+    <content type="html"><![CDATA[<p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/images/bys1.jpg" alt=""><br>因为年轻不懂事被百毒骗了，去到白云山西南门已经十点了，买完票直接上山，毕竟是白云区的标志性景点，路面的修缮可不是我大潮州的西湖能比的，即使是小径较陡处也专门放置了可以垫脚的东西，可能是常在山上锻炼的人特地铺的，在我看来，各大流派在山上都有自己的地盘。</p><p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/images/bys-2.jpg" alt=""></p><blockquote><p>“曲径通幽处，禅房花木深。”</p></blockquote><p>这是我对白云山的第一印象，初看似乎禅意十足，但越走到后面伴随着体力的消耗你会发现石梯仿佛永无止境，我们由于不熟地形，从西南门选择了一条较缓的路上山，后止步于山顶广场之下，从另一边走了一条较陡的路从南门出景区，走这条路会节省大量的时间。当然有经验的人也可以从南门直接搭观光车或者从白云索道坐缆车上山。然并卵，这是我们下山的时候才发现的。</p><p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/images/bys5.jpg" alt=""></p><blockquote><p>“每一座山上都有一群卧虎藏龙的长老。”</p></blockquote><p>不好意思，这张拍糊了。除开常见的各种广场舞大妈、太极拳王之外，在半山腰你能见到的更多是各种老年歌王，即使到了山上已经是中午时分，依然能把流行、民族、美声三种唱法领略一遍，情趣高点的还有男女深情对唱，最可贵的是老人家们并不是乱唱一通，而是唱得真有那么点意思，挺好的，算不上扰民。</p><p><img src="http://7xn1ui.com1.z0.glb.clouddn.com/images/bys4.jpg" alt=""></p><blockquote><p>“村里人与城里人的代沟。”</p></blockquote><p>本次出游是本着中秋佳节来临之际组织宿友去广州看看的目的，但是途中发现三观不合，下次不会再干这种吃力不讨好的事了~</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>日志</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>HelloWorld</title>
+    <link href="/2015/09/25/HelloWorld/"/>
+    <url>/2015/09/25/HelloWorld/</url>
+    
+    <content type="html"><![CDATA[<h2 id="About-this-site"><a href="#About-this-site" class="headerlink" title="About this site"></a>About this site</h2><p>  这是我的个人网站，主要用来记录学习笔记以及生活琐碎，为了搭建成功我花费了不少力气，但从成果来看效果还算不错。在学习的过程中我初步掌握了：</p><ul><li>Hexo构架搭建</li><li>Github项目上传语法</li><li>node.js和npm的初始化</li><li>个人域名CNAME用法</li><li>Markdown语法入门</li></ul><p>由此可见，虽然有构架加持，但要建立一个个人网站需要学习很多东西，历经无数次失败，整个过程花费了我13小时左右，而这仅仅是能让这个网站正常运行，日后的美化、维护还要慢慢学习。早在两年前便有建站的想法，但当时主流框架是Wordpress，没有一点基础学起来真是苍白无力所以这次决定一鼓作气要用Hexo来建站。</p><h2 id="Recently"><a href="#Recently" class="headerlink" title="Recently"></a>Recently</h2><p>我在华软读了一年之后，最近越发觉得老师讲的课没点卵用，开始在机房课上学自己感兴趣的内容，马克思之类的理论课就看点有用的书，至少不会感觉在荒废时间。明天打算组织两个宿舍去爬山，书读得多了自然会想多出去走走，毕竟电脑里一个游戏都没，只能看看内网的无聊综艺是很难度日的。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>日志</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>
