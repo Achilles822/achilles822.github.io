@@ -1,650 +1,126 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
-
-
-
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript浅拷贝和深拷贝 | 黑人筆記</title>
+  <meta name="description" content="">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   
-  <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="Leo Yen">
-  <meta name="keywords" content="">
-  
-    <meta name="description" content="最近发现学点什么零碎知识点都给记在博客上记得挺牢的，所以比较高产：） 直接赋值今天讲讲JavaScript的浅拷贝和深拷贝，不少面试题爱考这个。首先当我们要复制一个数组时，可能会采取直接赋值的方式，像这样：12345var arr1&#x3D;[1,2,3];var arr2&#x3D;arr1;arr2[1]&#x3D;7;console.log(arr1);&#x2F;&#x2F;[1, 7, 3]console.log(arr2);&#x2F;&#x2F;[1">
-<meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript浅拷贝和深拷贝">
-<meta property="og:url" content="http://yanziyu.fun/2017/04/21/js-copy/index.html">
-<meta property="og:site_name" content="黑人筆記">
-<meta property="og:description" content="最近发现学点什么零碎知识点都给记在博客上记得挺牢的，所以比较高产：） 直接赋值今天讲讲JavaScript的浅拷贝和深拷贝，不少面试题爱考这个。首先当我们要复制一个数组时，可能会采取直接赋值的方式，像这样：12345var arr1&#x3D;[1,2,3];var arr2&#x3D;arr1;arr2[1]&#x3D;7;console.log(arr1);&#x2F;&#x2F;[1, 7, 3]console.log(arr2);&#x2F;&#x2F;[1">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2017-04-21T14:36:25.000Z">
-<meta property="article:modified_time" content="2018-10-17T12:47:20.000Z">
-<meta property="article:author" content="Leo Yen">
-<meta property="article:tag" content="前端开发">
-<meta property="article:tag" content="JavaScript">
-<meta property="article:tag" content="学习笔记">
-<meta name="twitter:card" content="summary_large_image">
-  
-  
-  
-  <title>JavaScript浅拷贝和深拷贝 - 黑人筆記</title>
+<link rel="stylesheet" href="/css/style.css">
 
-  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
-
-
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
-
-  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-<!-- Do not modify the link that theme dependent icons -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
-  
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
-  
-
-
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"yanziyu.fun","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
-
-    if (CONFIG.web_analytics.follow_dnt) {
-      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
-      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
-    }
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-  
-
-
-  
 <meta name="generator" content="Hexo 5.4.0"></head>
-
-
 <body>
-  
-
-  <header>
-    
-
-<div class="header-inner" style="height: 70vh;">
-  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/" target="_self">
-                <i class="iconfont icon-home-fill"></i>
-                <span>首页</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/" target="_self">
-                <i class="iconfont icon-archive-fill"></i>
-                <span>归档</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/" target="_self">
-                <i class="iconfont icon-category-fill"></i>
-                <span>分类</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/" target="_self">
-                <i class="iconfont icon-tags-fill"></i>
-                <span>标签</span>
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/" target="_self">
-                <i class="iconfont icon-user-fill"></i>
-                <span>关于</span>
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              <i class="iconfont icon-search"></i>
-            </a>
-          </li>
-          
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
-              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
-            </a>
-          </li>
-        
-      </ul>
+  <header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <div class="header-brand">
+      <a href="/" class="brand-logo">黑人筆記</a>
     </div>
+    <nav class="header-nav" id="headerNav">
+      
+        <a href="/" class="nav-link">首页</a>
+      
+        <a href="/archives" class="nav-link">归档</a>
+      
+        <a href="/tags" class="nav-link">标签</a>
+      
+        <a href="/about" class="nav-link">关于</a>
+      
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+    </button>
   </div>
-</nav>
+</header>
 
-  
-
-<div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
-  <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-      <div class="banner-text text-center fade-in-up">
-        <div class="h2">
-          
-            <span id="subtitle" data-typed-text="JavaScript浅拷贝和深拷贝"></span>
-          
-        </div>
-
-        
-          
-  <div class="mt-3">
-    
-    
-      <span class="post-meta">
-        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2017-04-21 22:36" pubdate>
-          2017年4月21日 晚上
-        </time>
-      </span>
-    
-  </div>
-
-  <div class="mt-1">
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-chart"></i>
-        
-          939 字
-        
-      </span>
-    
-
-    
-      <span class="post-meta mr-2">
-        <i class="iconfont icon-clock-fill"></i>
-        
-        
-        
-          8 分钟
-        
-      </span>
-    
-
-    
-    
-  </div>
-
-
+  <main class="main-content">
+    <article class="article">
+  <header class="article-header">
+    <div class="article-header__inner">
+      <div class="article-header__meta">
+        <time datetime="2017-04-21">2017年4月21日</time>
         
       </div>
-
-      
+      <h1 class="article-header__title">JavaScript浅拷贝和深拷贝</h1>
     </div>
-  </div>
-</div>
-
-</div>
-
   </header>
 
-  <main>
-    
-      
-
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-
-    </div>
-
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div id="board">
-          <article class="post-content mx-auto">
-            <h1 id="seo-header">JavaScript浅拷贝和深拷贝</h1>
-            
-            
-              <div class="markdown-body">
-                
-                <p>最近发现学点什么零碎知识点都给记在博客上记得挺牢的，所以比较高产：）</p>
-<h2 id="直接赋值"><a href="#直接赋值" class="headerlink" title="直接赋值"></a>直接赋值</h2><p>今天讲讲JavaScript的浅拷贝和深拷贝，不少面试题爱考这个。首先当我们要复制一个数组时，可能会采取直接赋值的方式，像这样：<br><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">var</span> arr<span class="hljs-number">1</span>=[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>];<br><span class="hljs-attribute">var</span> arr<span class="hljs-number">2</span>=arr<span class="hljs-number">1</span>;<br><span class="hljs-attribute">arr2</span>[<span class="hljs-number">1</span>]=<span class="hljs-number">7</span>;<br><span class="hljs-attribute">console</span>.log(arr<span class="hljs-number">1</span>);//[<span class="hljs-number">1</span>, <span class="hljs-number">7</span>, <span class="hljs-number">3</span>]<br><span class="hljs-attribute">console</span>.log(arr<span class="hljs-number">2</span>);//[<span class="hljs-number">1</span>, <span class="hljs-number">7</span>, <span class="hljs-number">3</span>]<br></code></pre></td></tr></table></figure><br>这就出事了，一个数组改变另一个数组也会跟着变，这就是浅拷贝。</p>
+  <div class="article-body">
+    <div class="article-body__inner">
+      <p>最近发现学点什么零碎知识点都给记在博客上记得挺牢的，所以比较高产：）</p>
+<h2 id="直接赋值"><a href="#直接赋值" class="headerlink" title="直接赋值"></a>直接赋值</h2><p>今天讲讲JavaScript的浅拷贝和深拷贝，不少面试题爱考这个。首先当我们要复制一个数组时，可能会采取直接赋值的方式，像这样：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var arr1=[1,2,3];</span><br><span class="line">var arr2=arr1;</span><br><span class="line">arr2[1]=7;</span><br><span class="line">console.log(arr1);//[1, 7, 3]</span><br><span class="line">console.log(arr2);//[1, 7, 3]</span><br></pre></td></tr></table></figure><br>这就出事了，一个数组改变另一个数组也会跟着变，这就是浅拷贝。</p>
 <p>我们可以通过slice、concat方法来实现深拷贝</p>
 <h2 id="slice"><a href="#slice" class="headerlink" title="slice()"></a>slice()</h2><p>先从网上摘一段方法介绍</p>
 <blockquote>
 <p>对于array对象的slice函数，返回一个数组的一段。（仍为数组）<br>arrayObj.slice(start, [end])<br>参数：<br>arrayObj 必选项。一个 Array 对象。<br>start 必选项。arrayObj 中所指定的部分的开始元素是从零开始计算的下标。<br>end可选项。arrayObj 中所指定的部分的结束元素是从零开始计算的下标。<br>说明：<br>slice 方法返回一个 Array 对象，其中包含了 arrayObj 的指定部分。<br>slice 方法一直复制到 end 所指定的元素，但是不包括该元素。<br>如果 start 为负，将它作为 length + start处理，此处 length 为数组的长度。<br>如果 end 为负，就将它作为 length + end 处理，此处 length 为数组的长度。<br>如果省略 end ，那么 slice 方法将一直复制到 arrayObj 的结尾。<br>如果 end 出现在 start 之前，不复制任何元素到新数组中。</p>
 </blockquote>
-<p>好，我们来试试slice方法：<br><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">var</span> arr<span class="hljs-number">1</span>=[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>];<br><span class="hljs-attribute">var</span> arr<span class="hljs-number">2</span>=arr<span class="hljs-number">1</span>.slice();<br><span class="hljs-attribute">arr2</span>[<span class="hljs-number">1</span>]=<span class="hljs-number">9</span>;<br><span class="hljs-attribute">console</span>.log(arr<span class="hljs-number">1</span>);//[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<br><span class="hljs-attribute">console</span>.log(arr<span class="hljs-number">2</span>);//[<span class="hljs-number">1</span>, <span class="hljs-number">9</span>, <span class="hljs-number">3</span>]<br></code></pre></td></tr></table></figure></p>
+<p>好，我们来试试slice方法：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var arr1=[1,2,3];</span><br><span class="line">var arr2=arr1.slice();</span><br><span class="line">arr2[1]=9;</span><br><span class="line">console.log(arr1);//[1, 2, 3]</span><br><span class="line">console.log(arr2);//[1, 9, 3]</span><br></pre></td></tr></table></figure></p>
 <h2 id="concat"><a href="#concat" class="headerlink" title="concat()"></a>concat()</h2><p>是不是就没问题了？再来看看concat方法：</p>
 <blockquote>
 <p>concat() 方法用于连接两个或多个数组。该方法不会改变现有的数组，而仅仅会返回被连接数组的一个副本。<br>语法：arrayObject.concat(arrayX,arrayX,……,arrayX)<br>说明：返回一个新的数组。该数组是通过把所有 arrayX 参数添加到 arrayObject 中生成的。如果要进行 concat() 操作的参数是数组，那么添加的是数组中的元素，而不是数组。</p>
 </blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> arr1 = [<span class="hljs-string">&quot;1&quot;</span>,<span class="hljs-string">&quot;2&quot;</span>,<span class="hljs-string">&quot;3&quot;</span>];<br><span class="hljs-keyword">var</span> arr2 = arr1.concat();<br>arr2[<span class="hljs-number">1</span>] = <span class="hljs-string">&quot;9&quot;</span>;<br><span class="hljs-built_in">console</span>.log(arr1);<span class="hljs-comment">//[1, 2, 3]</span><br><span class="hljs-built_in">console</span>.log(arr2);<span class="hljs-comment">//[1, 9, 3]</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var arr1 = [&quot;1&quot;,&quot;2&quot;,&quot;3&quot;];</span><br><span class="line">var arr2 = arr1.concat();</span><br><span class="line">arr2[1] = &quot;9&quot;;</span><br><span class="line">console.log(arr1);//[1, 2, 3]</span><br><span class="line">console.log(arr2);//[1, 9, 3]</span><br></pre></td></tr></table></figure>
 <h2 id="局限性"><a href="#局限性" class="headerlink" title="局限性"></a>局限性</h2><p>目前看来，这两个方法做深拷贝没什么问题，但它们也存在着局限性。<em>只适用于不包含引用对象的一维数组的深拷贝</em></p>
-<h2 id="对象的深拷贝"><a href="#对象的深拷贝" class="headerlink" title="对象的深拷贝"></a>对象的深拷贝</h2><p>既然如此，那该怎么对对象进行深拷贝呢？其实也很简单，把对象的属性都给遍历一次，再赋给一个新的对象就行。举个例子：<br><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">var a =&#123;<span class="hljs-type">name</span>:<span class="hljs-string">&#x27;Jack&#x27;</span>,age:<span class="hljs-number">40</span>&#125;;<br>var b =<span class="hljs-built_in">new</span> <span class="hljs-keyword">Object</span>();<br>b.name=a.name;<br>b.age=a.age;<br>a.name=<span class="hljs-string">&#x27;robin&#x27;</span>;<br>console.log(a);//&#123;<span class="hljs-type">name</span>: &quot;robin&quot;, age: <span class="hljs-number">40</span>&#125;<br>console.log(b);//&#123;<span class="hljs-type">name</span>: &quot;Jack&quot;, age: <span class="hljs-number">40</span>&#125;<br></code></pre></td></tr></table></figure></p>
+<h2 id="对象的深拷贝"><a href="#对象的深拷贝" class="headerlink" title="对象的深拷贝"></a>对象的深拷贝</h2><p>既然如此，那该怎么对对象进行深拷贝呢？其实也很简单，把对象的属性都给遍历一次，再赋给一个新的对象就行。举个例子：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var a =&#123;name:&#x27;Jack&#x27;,age:40&#125;;</span><br><span class="line">var b =new Object();</span><br><span class="line">b.name=a.name;</span><br><span class="line">b.age=a.age;</span><br><span class="line">a.name=&#x27;robin&#x27;;</span><br><span class="line">console.log(a);//&#123;name: &quot;robin&quot;, age: 40&#125;</span><br><span class="line">console.log(b);//&#123;name: &quot;Jack&quot;, age: 40&#125;</span><br></pre></td></tr></table></figure></p>
 <p>————2018.10.17更新————-</p>
 <h2 id="拓展运算符"><a href="#拓展运算符" class="headerlink" title="拓展运算符"></a>拓展运算符</h2><p>这是ES6带来的新特性，虽然ES6出来很久了，但因为公司的一些历史遗留问题，未能随心所欲地使用。到了18年，开始开发小程序，旧项目上了babel，已经没有了障碍，所以写一下这个能省下不少代码的特性。</p>
-<h4 id="数组深拷贝"><a href="#数组深拷贝" class="headerlink" title="数组深拷贝"></a>数组深拷贝</h4><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs livescript"><span class="hljs-keyword">let</span> a = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>];<br><span class="hljs-keyword">let</span> b = [...a];<br>b[<span class="hljs-number">1</span>] = <span class="hljs-number">5</span>;<br><span class="hljs-built_in">console</span>.log(a)  =&gt; [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]<br><span class="hljs-built_in">console</span>.log(b)  =&gt; [<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]<br></code></pre></td></tr></table></figure>
-<h4 id="对象深拷贝"><a href="#对象深拷贝" class="headerlink" title="对象深拷贝"></a>对象深拷贝</h4><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs livescript"><span class="hljs-keyword">let</span> a = &#123;<span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;jack&quot;</span>,<span class="hljs-string">&quot;age&quot;</span>:<span class="hljs-number">12</span>&#125;;<br><span class="hljs-keyword">let</span> b = &#123;...a&#125;;<br>b.name = <span class="hljs-string">&quot;leo&quot;</span>;<br><span class="hljs-built_in">console</span>.log(a)  =&gt; &#123;name: <span class="hljs-string">&quot;jack&quot;</span>, age: <span class="hljs-number">12</span>&#125;<br><span class="hljs-built_in">console</span>.log(b)  =&gt; &#123;name: <span class="hljs-string">&quot;leo&quot;</span>, age: <span class="hljs-number">12</span>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="数组深拷贝"><a href="#数组深拷贝" class="headerlink" title="数组深拷贝"></a>数组深拷贝</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let a = [1,2,3,4];</span><br><span class="line">let b = [...a];</span><br><span class="line">b[1] = 5;</span><br><span class="line">console.log(a)  =&gt; [1, 2, 3, 4]</span><br><span class="line">console.log(b)  =&gt; [1, 5, 3, 4]</span><br></pre></td></tr></table></figure>
+<h4 id="对象深拷贝"><a href="#对象深拷贝" class="headerlink" title="对象深拷贝"></a>对象深拷贝</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let a = &#123;&quot;name&quot;:&quot;jack&quot;,&quot;age&quot;:12&#125;;</span><br><span class="line">let b = &#123;...a&#125;;</span><br><span class="line">b.name = &quot;leo&quot;;</span><br><span class="line">console.log(a)  =&gt; &#123;name: &quot;jack&quot;, age: 12&#125;</span><br><span class="line">console.log(b)  =&gt; &#123;name: &quot;leo&quot;, age: 12&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>技术的积累是一点一滴的，正所谓温故而知新，像本篇这种总结基础知识点的文章，偶尔翻来看一看感觉也不错～：）</p>
 
-                
-              </div>
-            
-            <hr/>
-            <div>
-              <div class="post-metas my-3">
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" class="print-no-link">#前端开发</a>
-      
-        <a href="/tags/JavaScript/" class="print-no-link">#JavaScript</a>
-      
-        <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="print-no-link">#学习笔记</a>
-      
-    </div>
-  
-</div>
-
-
-              
-  
-
-  <div class="license-box my-3">
-    <div class="license-title">
-      <div>JavaScript浅拷贝和深拷贝</div>
-      <div>http://yanziyu.fun/2017/04/21/js-copy/</div>
-    </div>
-    <div class="license-meta">
-      
-        <div class="license-meta-item">
-          <div>作者</div>
-          <div>Leo Yen</div>
-        </div>
-      
-      
-        <div class="license-meta-item license-meta-date">
-          <div>发布于</div>
-          <div>2017年4月21日</div>
-        </div>
-      
-      
-      
-        <div class="license-meta-item">
-          <div>许可协议</div>
-          <div>
-            
-              
-              
-                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                    <i class="iconfont icon-by"></i>
-                  </span>
-                </a>
-              
-            
-          </div>
-        </div>
-      
-    </div>
-    <div class="license-icon iconfont"></div>
-  </div>
-
-
-
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/2017/05/02/huxiu-modal/" title="模仿虎嗅网弹出登录框">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">模仿虎嗅网弹出登录框</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/2017/04/20/event-obj/" title="一张图解释JavaScript event对象">
-                        <span class="hidden-mobile">一张图解释JavaScript event对象</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-          </article>
-        </div>
-      </div>
-    </div>
-
-    <div class="side-col d-none d-lg-block col-lg-2">
-      
-  <aside class="sidebar" style="margin-left: -1rem">
-    <div id="toc">
-  <p class="toc-header">
-    <i class="iconfont icon-list"></i>
-    <span>目录</span>
-  </p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
-
-
-
-  </aside>
-
-
     </div>
   </div>
-</div>
 
-
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-    
-
-    
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-      </a>
-    
-
-    
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+  <footer class="article-footer">
+    <div class="article-footer__inner">
+      
+        <div class="article-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" class="tag-item">前端开发</a>
+          
+            <a href="/tags/JavaScript/" class="tag-item">JavaScript</a>
+          
+            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="tag-item">学习笔记</a>
+          
         </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
+      
+
+      <nav class="article-nav">
+        
+          <a href="/2017/05/02/huxiu-modal/" class="article-nav__link article-nav__link--prev">
+            <span class="article-nav__label">上一篇</span>
+            <span class="article-nav__title">模仿虎嗅网弹出登录框</span>
+          </a>
+        
+        
+          <a href="/2017/04/20/event-obj/" class="article-nav__link article-nav__link--next">
+            <span class="article-nav__label">下一篇</span>
+            <span class="article-nav__title">一张图解释JavaScript event对象</span>
+          </a>
+        
+      </nav>
     </div>
-  </div>
-</div>
-
-    
-
-    
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-  
-    <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-    </div>
-  
-  
-  
-  
-</div>
-
   </footer>
+</article>
 
-  <!-- Scripts -->
-  
-  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
-<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-
-  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var subtitle = document.getElementById('subtitle');
-      if (!subtitle || !typing) {
-        return;
-      }
-      var text = subtitle.getAttribute('data-typed-text');
-      
-        typing(text);
-      
-    })(window, document);
-  </script>
-
-
-
+  </main>
+  <footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="/">黑人筆記</a>
+    </div>
+    <div class="footer-meta">
+      <p>&copy; 2016–2026 Leo Yen. All rights reserved.</p>
+      <p class="footer-powered">Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a></p>
+    </div>
+  </div>
+</footer>
 
   
-    <script  src="/js/img-lazyload.js" ></script>
-  
+<script src="/js/main.js"></script>
 
-
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
-    var toc = jQuery('#toc');
-    if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
-    var boardTop = boardCtn.offset().top;
-
-    window.tocbot.init(Object.assign({
-      tocSelector     : '#toc-body',
-      contentSelector : '.markdown-body',
-      linkClass       : 'tocbot-link',
-      activeLinkClass : 'tocbot-active-link',
-      listClass       : 'tocbot-list',
-      isCollapsedClass: 'tocbot-is-collapsed',
-      collapsibleClass: 'tocbot-is-collapsible',
-      scrollSmooth    : true,
-      includeTitleTags: true,
-      headingsOffset  : -boardTop,
-    }, CONFIG.toc));
-    if (toc.find('.toc-list-item').length > 0) {
-      toc.css('visibility', 'visible');
-    }
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('tocbot' in window) {
-        tocbot.refresh();
-        var toc = jQuery('#toc');
-        if (toc.length === 0 || !tocbot) {
-          return;
-        }
-        if (toc.find('.toc-list-item').length > 0) {
-          toc.css('visibility', 'visible');
-        }
-      }
-    });
-  });
-</script>
-
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
-
-  <script>Fluid.plugins.codeWidget();</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
-    window.anchors.options = {
-      placement: CONFIG.anchorjs.placement,
-      visible  : CONFIG.anchorjs.visible
-    };
-    if (CONFIG.anchorjs.icon) {
-      window.anchors.options.icon = CONFIG.anchorjs.icon;
-    }
-    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-    var res = [];
-    for (var item of el) {
-      res.push('.markdown-body > ' + item.trim());
-    }
-    if (CONFIG.anchorjs.placement === 'left') {
-      window.anchors.options.class = 'anchorjs-link-left';
-    }
-    window.anchors.add(res.join(', '));
-
-    Fluid.events.registerRefreshCallback(function() {
-      if ('anchors' in window) {
-        anchors.removeAll();
-        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
-        var res = [];
-        for (var item of el) {
-          res.push('.markdown-body > ' + item.trim());
-        }
-        if (CONFIG.anchorjs.placement === 'left') {
-          anchors.options.class = 'anchorjs-link-left';
-        }
-        anchors.add(res.join(', '));
-      }
-    });
-  });
-</script>
-
-
-  
-<script>
-  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
-    Fluid.plugins.fancyBox();
-  });
-</script>
-
-
-  <script>Fluid.plugins.imageCaption();</script>
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-
-
-<!-- 主题的启动项，将它保持在最底部 -->
-<!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
-
-
-  
-
-  <noscript>
-    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
-  </noscript>
 </body>
 </html>
